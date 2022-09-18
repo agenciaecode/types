@@ -19,7 +19,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Mkioschi\\ValueObjects\\": "src/ValueObjects/"
+      "Mkioschi\\": "src/"
     }
   },
   "autoload-dev": {
