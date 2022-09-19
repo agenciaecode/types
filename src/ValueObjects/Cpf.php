@@ -15,7 +15,7 @@ class Cpf extends ValueObject
         if (!$this->isValid($value))
             throw new InvalidValueHttpException(sprintf('%s is an invalid CPF.', $value));
 
-        $this->value = self::cleanOnlyNumbers($value);
+        $this->value = self::getOnlyNumbers($value);
     }
 
     /**
@@ -24,7 +24,7 @@ class Cpf extends ValueObject
      */
     public static function isValid(string $value): bool
     {
-        $cpf = self::cleanOnlyNumbers($value);
+        $cpf = self::getOnlyNumbers($value);
 
         if (strlen($cpf) != 11) return false;
         if (preg_match(pattern: '/(\d)\1{10}/', subject: $cpf)) return false;

@@ -15,7 +15,7 @@ class Cnpj extends ValueObject
         if (!$this->isValid($value))
             throw new InvalidValueHttpException(sprintf('%s is an invalid CNPJ.', $value));
 
-        $this->value = self::cleanOnlyNumbers($value);
+        $this->value = self::getOnlyNumbers($value);
     }
 
     /**
@@ -24,7 +24,7 @@ class Cnpj extends ValueObject
      */
     public static function isValid(string $value): bool
     {
-        $cnpj = self::cleanOnlyNumbers($value);
+        $cnpj = self::getOnlyNumbers($value);
 
         if (strlen($cnpj) !== 14) return false;
         if (preg_match(pattern: '/(\d)\1{13}/', subject: $cnpj)) return false;

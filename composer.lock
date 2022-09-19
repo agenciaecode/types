@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "mkioschi/enums",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mkioschi/enums.git",
-                "reference": "dd9fb71998573704c10b62da36443c4844b76bae"
+                "reference": "1b8670ecc45ebd50583e196fccbe333a8e9e33fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mkioschi/enums/zipball/dd9fb71998573704c10b62da36443c4844b76bae",
-                "reference": "dd9fb71998573704c10b62da36443c4844b76bae",
+                "url": "https://api.github.com/repos/mkioschi/enums/zipball/1b8670ecc45ebd50583e196fccbe333a8e9e33fa",
+                "reference": "1b8670ecc45ebd50583e196fccbe333a8e9e33fa",
                 "shasum": ""
             },
             "require": {
@@ -29,7 +29,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Mkioschi\\Enums\\": "src/Enums/"
+                    "Mkioschi\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -46,22 +46,22 @@
             "homepage": "https://github.com/mkioschi/enums",
             "support": {
                 "issues": "https://github.com/mkioschi/enums/issues",
-                "source": "https://github.com/mkioschi/enums/tree/v1.0.0"
+                "source": "https://github.com/mkioschi/enums/tree/v1.0.1"
             },
-            "time": "2022-09-18T19:30:40+00:00"
+            "time": "2022-09-18T23:57:33+00:00"
         },
         {
             "name": "mkioschi/exceptions",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mkioschi/exceptions.git",
-                "reference": "6adb5a37eac421f8e19bf3a21b1f0ed0caf6ba86"
+                "reference": "0de514f481add4696cab54b334f5133f1803c0a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mkioschi/exceptions/zipball/6adb5a37eac421f8e19bf3a21b1f0ed0caf6ba86",
-                "reference": "6adb5a37eac421f8e19bf3a21b1f0ed0caf6ba86",
+                "url": "https://api.github.com/repos/mkioschi/exceptions/zipball/0de514f481add4696cab54b334f5133f1803c0a2",
+                "reference": "0de514f481add4696cab54b334f5133f1803c0a2",
                 "shasum": ""
             },
             "require": {
@@ -74,7 +74,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Mkioschi\\Exceptions\\": "src/Exceptions/"
+                    "Mkioschi\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -91,9 +91,9 @@
             "homepage": "https://github.com/mkioschi/exceptions",
             "support": {
                 "issues": "https://github.com/mkioschi/exceptions/issues",
-                "source": "https://github.com/mkioschi/exceptions/tree/v1.0.0"
+                "source": "https://github.com/mkioschi/exceptions/tree/v1.0.1"
             },
-            "time": "2022-09-18T19:55:02+00:00"
+            "time": "2022-09-18T23:57:21+00:00"
         }
     ],
     "packages-dev": [

@@ -49,9 +49,9 @@ class PhoneNumber extends ValueObject
         if (count($valueExploded) < 3)
             throw new InvalidValueHttpException(sprintf('%s is an invalid Phone Number.', $value));
 
-        $this->countryCode = self::cleanOnlyNumbers(array_shift($valueExploded));
-        $this->areaCode = self::cleanOnlyNumbers(array_shift($valueExploded));
-        $this->localNumber = self::cleanOnlyNumbers(join($valueExploded));
+        $this->countryCode = self::getOnlyNumbers(array_shift($valueExploded));
+        $this->areaCode = self::getOnlyNumbers(array_shift($valueExploded));
+        $this->localNumber = self::getOnlyNumbers(join($valueExploded));
 
         $this->standardPhoneNumber = $this->buildStandardPhoneNumber($this->countryCode);
 

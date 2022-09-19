@@ -47,7 +47,7 @@ abstract class ValueObject implements ValueObjectContract
      * @param string $value
      * @return string
      */
-    public static function cleanOnlyNumbers(string $value): string
+    public static function getOnlyNumbers(string $value): string
     {
         return preg_replace(pattern: '/\D/i', replacement: '', subject: trim($value));
     }

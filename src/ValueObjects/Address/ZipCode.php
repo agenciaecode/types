@@ -16,7 +16,7 @@ class ZipCode extends ValueObject
         if (!$this->isValid($value))
             throw new InvalidValueHttpException(sprintf('%s is an invalid Zip Code.', $value));
 
-        $this->value = self::cleanOnlyNumbers($value);
+        $this->value = self::getOnlyNumbers($value);
     }
 
     /**
@@ -25,7 +25,7 @@ class ZipCode extends ValueObject
      */
     public static function isValid(string $value): bool
     {
-        $zipCode = self::cleanOnlyNumbers($value);
+        $zipCode = self::getOnlyNumbers($value);
         if (strlen($zipCode) != 8) return false;
         return is_numeric($zipCode);
     }
