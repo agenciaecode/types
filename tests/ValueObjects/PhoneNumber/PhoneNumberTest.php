@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\Tests\ValueObjects;
+namespace Mkioschi\Tests\ValueObjects\PhoneNumbers;
 
 use Mkioschi\ValueObjects\PhoneNumber\PhoneNumber;
 use PHPUnit\Framework\TestCase;

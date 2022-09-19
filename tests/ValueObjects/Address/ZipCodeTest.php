@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\Tests\ValueObjects;
+namespace Mkioschi\Tests\ValueObjects\Address;
 
 use Mkioschi\Exceptions\Http\InvalidValueHttpException;
 use Mkioschi\ValueObjects\Address\ZipCode;

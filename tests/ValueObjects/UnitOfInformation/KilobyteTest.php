@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\Tests\ValueObjects;
+namespace Mkioschi\Tests\ValueObjects\UnitOfInformation;
 
 use Mkioschi\ValueObjects\UnitOfInformation\Kilobyte;
 use PHPUnit\Framework\TestCase;

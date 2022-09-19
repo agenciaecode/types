@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\Tests\ValueObjects;
+namespace Mkioschi\Tests\ValueObjects\UnitOfMeasurement\Length;
 
 use Mkioschi\ValueObjects\UnitOfMeasurement\Length\Centimeter;
 use PHPUnit\Framework\TestCase;
