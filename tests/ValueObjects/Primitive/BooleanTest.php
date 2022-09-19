@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\Tests\ValueObjects;
+namespace Mkioschi\Tests\ValueObjects\Primitive;
 
-use Mkioschi\ValueObjects\Boolean;
+use Mkioschi\ValueObjects\Primitive\Boolean;
 use PHPUnit\Framework\TestCase;
 
 class BooleanTest extends TestCase

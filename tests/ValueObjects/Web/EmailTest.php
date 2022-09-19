@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\Tests\ValueObjects;
+namespace Mkioschi\Tests\ValueObjects\Web;
 
-use Mkioschi\ValueObjects\Email;
+use Mkioschi\ValueObjects\Web\Email;
 use PHPUnit\Framework\TestCase;
 
 class EmailTest extends TestCase

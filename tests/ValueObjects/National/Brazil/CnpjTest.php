@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\Tests\ValueObjects;
+namespace Mkioschi\Tests\ValueObjects\National\Brazil;
 
 use Mkioschi\Exceptions\Http\InvalidValueHttpException;
-use Mkioschi\ValueObjects\Cnpj;
+use Mkioschi\ValueObjects\National\Brazil\Cnpj;
 use PHPUnit\Framework\TestCase;
 
 class CnpjTest extends TestCase

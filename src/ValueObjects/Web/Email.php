@@ -1,8 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\ValueObjects;
+namespace Mkioschi\ValueObjects\Web;
 
 use Mkioschi\Exceptions\Http\InvalidValueHttpException;
+use Mkioschi\ValueObjects\ValueObject;
 
 class Email extends ValueObject
 {

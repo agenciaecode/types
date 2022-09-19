@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\ValueObjects\String;
+namespace Mkioschi\ValueObjects\Primitive\String;
 
 use Mkioschi\Exceptions\Http\InvalidValueHttpException;
 use Mkioschi\ValueObjects\ValueObject;

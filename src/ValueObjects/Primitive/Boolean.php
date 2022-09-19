@@ -1,6 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\ValueObjects;
+namespace Mkioschi\ValueObjects\Primitive;
+
+use Mkioschi\ValueObjects\ValueObject;
 
 class Boolean extends ValueObject
 {

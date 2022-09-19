@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\Tests\ValueObjects\String;
+namespace Mkioschi\Tests\ValueObjects\Primitive\String;
 
 use Mkioschi\Exceptions\Http\InvalidValueHttpException;
-use Mkioschi\ValueObjects\String\Str;
-use Mkioschi\ValueObjects\String\Text;
-use Mkioschi\ValueObjects\String\Varchar;
+use Mkioschi\ValueObjects\Primitive\String\Str;
+use Mkioschi\ValueObjects\Primitive\String\Text;
+use Mkioschi\ValueObjects\Primitive\String\Varchar;
 use PHPUnit\Framework\TestCase;
 
 class StrTest extends TestCase

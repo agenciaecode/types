@@ -1,8 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\ValueObjects;
+namespace Mkioschi\ValueObjects\National\Brazil;
 
 use Mkioschi\Exceptions\Http\InvalidValueHttpException;
+use Mkioschi\ValueObjects\ValueObject;
 
 class Cpf extends ValueObject
 {
