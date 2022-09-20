@@ -3,6 +3,7 @@
 namespace Mkioschi\ValueObjects\National\Brazil;
 
 use Mkioschi\Exceptions\Http\InvalidValueHttpException;
+use Mkioschi\ValueObjects\Primitive\String\Str;
 use Mkioschi\ValueObjects\ValueObject;
 
 class Cpf extends ValueObject
@@ -16,7 +17,7 @@ class Cpf extends ValueObject
         if (!$this->isValid($value))
             throw new InvalidValueHttpException(sprintf('%s is an invalid CPF.', $value));
 
-        $this->value = self::getOnlyNumbers($value);
+        $this->value = Str::extractNumbers($value);
     }
 
     /**
@@ -25,7 +26,7 @@ class Cpf extends ValueObject
      */
     public static function isValid(string $value): bool
     {
-        $cpf = self::getOnlyNumbers($value);
+        $cpf = Str::extractNumbers($value);
 
         if (strlen($cpf) != 11) return false;
         if (preg_match(pattern: '/(\d)\1{10}/', subject: $cpf)) return false;

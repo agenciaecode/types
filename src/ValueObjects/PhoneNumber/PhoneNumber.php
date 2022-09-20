@@ -6,6 +6,7 @@ use Mkioschi\Exceptions\Http\InvalidValueHttpException;
 use Mkioschi\ValueObjects\PhoneNumber\Standards\Br;
 use Mkioschi\ValueObjects\PhoneNumber\Standards\Generic;
 use Mkioschi\ValueObjects\PhoneNumber\Standards\Us;
+use Mkioschi\ValueObjects\Primitive\String\Str;
 use Mkioschi\ValueObjects\ValueObject;
 
 class PhoneNumber extends ValueObject
@@ -49,9 +50,9 @@ class PhoneNumber extends ValueObject
         if (count($valueExploded) < 3)
             throw new InvalidValueHttpException(sprintf('%s is an invalid Phone Number.', $value));
 
-        $this->countryCode = self::getOnlyNumbers(array_shift($valueExploded));
-        $this->areaCode = self::getOnlyNumbers(array_shift($valueExploded));
-        $this->localNumber = self::getOnlyNumbers(join($valueExploded));
+        $this->countryCode = Str::extractNumbers(array_shift($valueExploded));
+        $this->areaCode = Str::extractNumbers(array_shift($valueExploded));
+        $this->localNumber = Str::extractNumbers(join($valueExploded));
 
         $this->standardPhoneNumber = $this->buildStandardPhoneNumber($this->countryCode);
 

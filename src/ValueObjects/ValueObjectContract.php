@@ -6,6 +6,12 @@ interface ValueObjectContract
 {
     /**
      * @param mixed $value
+     * @return bool
+     */
+    public static function isValid(mixed $value): bool;
+
+    /**
+     * @param mixed $value
      * @return static
      */
     public static function from(mixed $value): static;

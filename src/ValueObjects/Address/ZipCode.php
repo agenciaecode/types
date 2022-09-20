@@ -3,6 +3,7 @@
 namespace Mkioschi\ValueObjects\Address;
 
 use Mkioschi\Exceptions\Http\InvalidValueHttpException;
+use Mkioschi\ValueObjects\Primitive\String\Str;
 use Mkioschi\ValueObjects\ValueObject;
 
 class ZipCode extends ValueObject
@@ -16,7 +17,7 @@ class ZipCode extends ValueObject
         if (!$this->isValid($value))
             throw new InvalidValueHttpException(sprintf('%s is an invalid Zip Code.', $value));
 
-        $this->value = self::getOnlyNumbers($value);
+        $this->value = Str::extractNumbers($value);
     }
 
     /**
@@ -25,7 +26,7 @@ class ZipCode extends ValueObject
      */
     public static function isValid(string $value): bool
     {
-        $zipCode = self::getOnlyNumbers($value);
+        $zipCode = Str::extractNumbers($value);
         if (strlen($zipCode) != 8) return false;
         return is_numeric($zipCode);
     }

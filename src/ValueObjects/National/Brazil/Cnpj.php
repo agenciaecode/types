@@ -3,6 +3,7 @@
 namespace Mkioschi\ValueObjects\National\Brazil;
 
 use Mkioschi\Exceptions\Http\InvalidValueHttpException;
+use Mkioschi\ValueObjects\Primitive\String\Str;
 use Mkioschi\ValueObjects\ValueObject;
 
 class Cnpj extends ValueObject
@@ -16,7 +17,7 @@ class Cnpj extends ValueObject
         if (!$this->isValid($value))
             throw new InvalidValueHttpException(sprintf('%s is an invalid CNPJ.', $value));
 
-        $this->value = self::getOnlyNumbers($value);
+        $this->value = Str::extractNumbers($value);
     }
 
     /**
@@ -25,7 +26,7 @@ class Cnpj extends ValueObject
      */
     public static function isValid(string $value): bool
     {
-        $cnpj = self::getOnlyNumbers($value);
+        $cnpj = Str::extractNumbers($value);
 
         if (strlen($cnpj) !== 14) return false;
         if (preg_match(pattern: '/(\d)\1{13}/', subject: $cnpj)) return false;

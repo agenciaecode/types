@@ -41,4 +41,13 @@ class Str extends ValueObject
     {
         return $this->value;
     }
+
+    /**
+     * @param string $value
+     * @return string
+     */
+    public static function extractNumbers(string $value): string
+    {
+        return preg_replace(pattern: '/\D/i', replacement: '', subject: trim($value));
+    }
 }
