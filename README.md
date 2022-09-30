@@ -9,6 +9,12 @@ To install this module, run the following command in your terminal:
 composer require mkioschi/types
 ```
 
+## Basic usage
+```php
+$email = Email::from('email@domain.com');
+echo $email->getHiddenFormat(); // Output: e***l@d********m
+```
+
 ## Common methods
 Every type have at least the following common methods:
 ```php
