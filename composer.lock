@@ -52,16 +52,16 @@
         },
         {
             "name": "mkioschi/exceptions",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mkioschi/exceptions.git",
-                "reference": "0de514f481add4696cab54b334f5133f1803c0a2"
+                "reference": "9b09bd95ffcc4e940440d3f37798d7a9def78bee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mkioschi/exceptions/zipball/0de514f481add4696cab54b334f5133f1803c0a2",
-                "reference": "0de514f481add4696cab54b334f5133f1803c0a2",
+                "url": "https://api.github.com/repos/mkioschi/exceptions/zipball/9b09bd95ffcc4e940440d3f37798d7a9def78bee",
+                "reference": "9b09bd95ffcc4e940440d3f37798d7a9def78bee",
                 "shasum": ""
             },
             "require": {
@@ -91,9 +91,9 @@
             "homepage": "https://github.com/mkioschi/exceptions",
             "support": {
                 "issues": "https://github.com/mkioschi/exceptions/issues",
-                "source": "https://github.com/mkioschi/exceptions/tree/v1.0.1"
+                "source": "https://github.com/mkioschi/exceptions/tree/v1.0.2"
             },
-            "time": "2022-09-18T23:57:21+00:00"
+            "time": "2022-09-28T00:43:27+00:00"
         }
     ],
     "packages-dev": [

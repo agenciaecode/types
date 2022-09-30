@@ -1,4 +1,4 @@
-# Common Value Objects
+# Common Types
 
 ## Requirements
 - PHP ^8.1
@@ -9,7 +9,19 @@ To install this module, run the following command in your terminal:
 composer require mkioschi/value-objects
 ```
 
-## Available Value Objects
+## Common methods
+Every type have at least the following common methods:
+```php
+ - public static function from(...$args)
+ - public static function tryFrom(...$args)
+ - public static function fromIfNotNull(...$args)
+ - public static function isValid(...$args)
+ - public function equals($value)
+ - public function getValue(...$args)
+ - public function __toString(...$args)
+```
+
+## Available Types
 - Boolean
 - Byte
 - Centimeter

@@ -19,7 +19,7 @@
     </coverage>
     <testsuites>
         <testsuite name="Value Objects Test Suite">
-            <directory>./tests/ValueObjects/</directory>
+            <directory>./tests/Types/</directory>
         </testsuite>
     </testsuites>
     <php>

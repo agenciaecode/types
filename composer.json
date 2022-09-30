@@ -1,7 +1,7 @@
 {
-  "name": "mkioschi/value-objects",
-  "description": "Common value objects for clean code PHP projects.",
-  "homepage": "https://github.com/mkioschi/value-objects",
+  "name": "mkioschi/types",
+  "description": "Common types for clean code PHP projects.",
+  "homepage": "https://github.com/mkioschi/types",
   "license": "MIT",
   "authors": [
     {
