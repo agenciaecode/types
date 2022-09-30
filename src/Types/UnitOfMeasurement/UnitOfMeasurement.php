@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\Types\UnitOfInformation;
+namespace Mkioschi\Types\UnitOfMeasurement;
 
 use Mkioschi\Types\Numeric;
 
-abstract class UnitOfInformation extends Numeric
+abstract class UnitOfMeasurement extends Numeric
 {
     /**
      * @param bool $abbreviated

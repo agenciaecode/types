@@ -9,10 +9,18 @@ class CentimeterTest extends TestCase
 {
     public function test_should_be_able_to_create_a_valid_centimeter()
     {
-        $centimeter = Centimeter::from(105);
-        $this->assertInstanceOf(Centimeter::class, $centimeter);
-        $this->assertEquals(105, $centimeter->getValue());
-        $this->assertEquals('105', (string)$centimeter);
+        $this->assertInstanceOf(Centimeter::class, Centimeter::from(105));
+        $this->assertEquals(105, Centimeter::from(105)->getValue());
+        $this->assertEquals('105', (string)Centimeter::from(105));
+        $this->assertEquals('105 cm', Centimeter::from(105)->getHumansFormat());
+        $this->assertEquals('105 centimeters', Centimeter::from(105)->getHumansFormat(false));
+        $this->assertEquals('1 centimeter', Centimeter::from(1)->getHumansFormat(false));
+        $this->assertEquals('1 centimeter', Centimeter::innFrom(1)->getHumansFormat(false));
+    }
+
+    public function test_should_not_be_able_to_create_a_valid_null_centimeter()
+    {
+        $this->assertEquals(null, Centimeter::innFrom(null));
     }
 
     public function test_should_be_able_to_create_a_valid_centimeter_from_millimeters()

@@ -2,10 +2,14 @@
 
 namespace Mkioschi\Types\UnitOfMeasurement\Length;
 
-use Mkioschi\Types\Numeric;
+use Mkioschi\Types\UnitOfMeasurement\UnitOfMeasurement;
 
-final class Centimeter extends Numeric
+final class Centimeter extends UnitOfMeasurement
 {
+    const NAME = 'Centimeter';
+    const PLURAL = 'Centimeters';
+    const SYMBOL = 'cm';
+
     /**
      * @param int|float $value
      */
@@ -80,5 +84,29 @@ final class Centimeter extends Numeric
     public function toFeet(): int|float
     {
         return $this->value / 30.48;
+    }
+
+    /**
+     * @return string
+     */
+    public static function getSymbol(): string
+    {
+        return self::SYMBOL;
+    }
+
+    /**
+     * @return string
+     */
+    public static function getName(): string
+    {
+        return self::NAME;
+    }
+
+    /**
+     * @return string
+     */
+    public static function getPlural(): string
+    {
+        return self::PLURAL;
     }
 }
