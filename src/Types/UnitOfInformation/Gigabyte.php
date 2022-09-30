@@ -10,11 +10,21 @@ class Gigabyte extends UnitOfInformation
 
     /**
      * @param int|float $value
-     * @return static
+     * @return Gigabyte
      */
-    public static function fromBytes(int|float $value): self
+    public static function fromBytes(int|float $value): Gigabyte
     {
-        return new static($value / 1024 / 1024 / 1024);
+        return new Gigabyte($value / 1024 / 1024 / 1024);
+    }
+
+    /**
+     * @param int|float|null $value
+     * @return ?Gigabyte
+     */
+    public static function innFromBytes(int|float|null $value): ?Gigabyte
+    {
+        if (is_null($value)) return null;
+        return new Gigabyte($value / 1024 / 1024 / 1024);
     }
 
     /**
@@ -27,11 +37,21 @@ class Gigabyte extends UnitOfInformation
 
     /**
      * @param int|float $value
-     * @return static
+     * @return Gigabyte
      */
-    public static function fromKilobytes(int|float $value): self
+    public static function fromKilobytes(int|float $value): Gigabyte
     {
-        return new static($value / 1024 / 1024);
+        return new Gigabyte($value / 1024 / 1024);
+    }
+
+    /**
+     * @param int|float|null $value
+     * @return ?Gigabyte
+     */
+    public static function innFromKilobytes(int|float|null $value): ?Gigabyte
+    {
+        if (is_null($value)) return null;
+        return new Gigabyte($value / 1024 / 1024);
     }
 
     /**
@@ -44,11 +64,21 @@ class Gigabyte extends UnitOfInformation
 
     /**
      * @param int|float $value
-     * @return static
+     * @return Gigabyte
      */
-    public static function fromMegabytes(int|float $value): self
+    public static function fromMegabytes(int|float $value): Gigabyte
     {
-        return new static($value / 1024);
+        return new Gigabyte($value / 1024);
+    }
+
+    /**
+     * @param int|float|null $value
+     * @return ?Gigabyte
+     */
+    public static function innFromMegabytes(int|float|null $value): ?Gigabyte
+    {
+        if (is_null($value)) return null;
+        return new Gigabyte($value / 1024);
     }
 
     /**

@@ -14,8 +14,16 @@ class GigabyteTest extends TestCase
         $this->assertEquals(2.6, $gigabyte->getValue());
         $this->assertEquals('2.6', (string)$gigabyte);
         $this->assertEquals('2.6 GB', $gigabyte->getHumansFormat(decimalPlaces: 1));
-        $this->assertEquals('2.6 Gigabytes', $gigabyte->getHumansFormat(abbreviated: false, decimalPlaces: 1));
-        $this->assertEquals('1 Gigabyte', Gigabyte::from(1)->getHumansFormat(false));
+        $this->assertEquals('2.6 gigabytes', $gigabyte->getHumansFormat(abbreviated: false, decimalPlaces: 1));
+        $this->assertEquals('1 gigabyte', Gigabyte::from(1)->getHumansFormat(false));
+    }
+
+    public function test_should_not_be_able_to_create_a_valid_null_gigabyte()
+    {
+        $this->assertEquals(null, Gigabyte::innFrom(null));
+        $this->assertEquals(null, Gigabyte::innFromMegabytes(null));
+        $this->assertEquals(null, Gigabyte::innFromKilobytes(null));
+        $this->assertEquals(null, Gigabyte::innFromBytes(null));
     }
 
     public function test_should_be_able_to_create_a_valid_gigabyte_from_bytes()

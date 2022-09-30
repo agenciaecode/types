@@ -14,8 +14,16 @@ class MegabyteTest extends TestCase
         $this->assertEquals(6.5, $megabyte->getValue());
         $this->assertEquals('6.5', (string)$megabyte);
         $this->assertEquals('6.5 MB', $megabyte->getHumansFormat(decimalPlaces: 1));
-        $this->assertEquals('6.5 Megabytes', $megabyte->getHumansFormat(abbreviated: false, decimalPlaces: 1));
-        $this->assertEquals('1 Megabyte', Megabyte::from(1)->getHumansFormat(false));
+        $this->assertEquals('6.5 megabytes', $megabyte->getHumansFormat(abbreviated: false, decimalPlaces: 1));
+        $this->assertEquals('1 megabyte', Megabyte::from(1)->getHumansFormat(false));
+    }
+
+    public function test_should_not_be_able_to_create_a_valid_null_megabyte()
+    {
+        $this->assertEquals(null, Megabyte::innFrom(null));
+        $this->assertEquals(null, Megabyte::innFromBytes(null));
+        $this->assertEquals(null, Megabyte::innFromGigabytes(null));
+        $this->assertEquals(null, Megabyte::innFromKilobytes(null));
     }
 
     public function test_should_be_able_to_create_a_valid_megabyte_from_bytes()

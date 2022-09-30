@@ -21,6 +21,10 @@ class CentimeterTest extends TestCase
     public function test_should_not_be_able_to_create_a_valid_null_centimeter()
     {
         $this->assertEquals(null, Centimeter::innFrom(null));
+        $this->assertEquals(null, Centimeter::innFromFeet(null));
+        $this->assertEquals(null, Centimeter::innFromInches(null));
+        $this->assertEquals(null, Centimeter::innFromMeters(null));
+        $this->assertEquals(null, Centimeter::innFromMillimeters(null));
     }
 
     public function test_should_be_able_to_create_a_valid_centimeter_from_millimeters()

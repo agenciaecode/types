@@ -14,8 +14,16 @@ class ByteTest extends TestCase
         $this->assertEquals(123000, $byte->getValue());
         $this->assertEquals('123000', (string)$byte);
         $this->assertEquals('123000 B', $byte->getHumansFormat());
-        $this->assertEquals('123000 Bytes', $byte->getHumansFormat(false));
-        $this->assertEquals('1 Byte', Byte::from(1)->getHumansFormat(false));
+        $this->assertEquals('123000 bytes', $byte->getHumansFormat(false));
+        $this->assertEquals('1 byte', Byte::from(1)->getHumansFormat(false));
+    }
+
+    public function test_should_not_be_able_to_create_a_valid_null_byte()
+    {
+        $this->assertEquals(null, Byte::innFrom(null));
+        $this->assertEquals(null, Byte::innFromGigabytes(null));
+        $this->assertEquals(null, Byte::innFromKilobytes(null));
+        $this->assertEquals(null, Byte::innFromMegabytes(null));
     }
 
     public function test_should_be_able_to_create_a_valid_byte_from_kilobytes()

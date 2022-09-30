@@ -14,8 +14,16 @@ class KilobyteTest extends TestCase
         $this->assertEquals(12, $kilobyte->getValue());
         $this->assertEquals('12', (string)$kilobyte);
         $this->assertEquals('12 KB', $kilobyte->getHumansFormat());
-        $this->assertEquals('12 Kilobytes', $kilobyte->getHumansFormat(false));
-        $this->assertEquals('1 Kilobyte', Kilobyte::from(1)->getHumansFormat(false));
+        $this->assertEquals('12 kilobytes', $kilobyte->getHumansFormat(false));
+        $this->assertEquals('1 kilobyte', Kilobyte::from(1)->getHumansFormat(false));
+    }
+
+    public function test_should_not_be_able_to_create_a_valid_null_kilobyte()
+    {
+        $this->assertEquals(null, Kilobyte::innFrom(null));
+        $this->assertEquals(null, Kilobyte::innFromBytes(null));
+        $this->assertEquals(null, Kilobyte::innFromMegabytes(null));
+        $this->assertEquals(null, Kilobyte::innFromGigabytes(null));
     }
 
     public function test_should_be_able_to_create_a_valid_kilobyte_from_bytes()

@@ -12,18 +12,20 @@ final class Centimeter extends UnitOfMeasurement
 
     /**
      * @param int|float $value
-     */
-    protected function __construct(int|float $value)
-    {
-        parent::__construct($value);
-    }
-
-    /**
-     * @param int|float $value
      * @return Centimeter
      */
     public static function fromMillimeters(int|float $value): Centimeter
     {
+        return new Centimeter($value / 10);
+    }
+
+    /**
+     * @param int|float|null $value
+     * @return ?Centimeter
+     */
+    public static function innFromMillimeters(int|float|null $value): ?Centimeter
+    {
+        if (is_null($value)) return null;
         return new Centimeter($value / 10);
     }
 
@@ -45,6 +47,16 @@ final class Centimeter extends UnitOfMeasurement
     }
 
     /**
+     * @param int|float|null $value
+     * @return ?Centimeter
+     */
+    public static function innFromMeters(int|float|null $value): ?Centimeter
+    {
+        if (is_null($value)) return null;
+        return new Centimeter($value * 100);
+    }
+
+    /**
      * @return int|float
      */
     public function toMeters(): int|float
@@ -62,6 +74,16 @@ final class Centimeter extends UnitOfMeasurement
     }
 
     /**
+     * @param int|float|null $value
+     * @return ?Centimeter
+     */
+    public static function innFromInches(int|float|null $value): ?Centimeter
+    {
+        if (is_null($value)) return null;
+        return new Centimeter($value * 2.54);
+    }
+
+    /**
      * @return int|float
      */
     public function toInches(): int|float
@@ -75,6 +97,16 @@ final class Centimeter extends UnitOfMeasurement
      */
     public static function fromFeet(int|float $value): Centimeter
     {
+        return new Centimeter($value * 30.48);
+    }
+
+    /**
+     * @param int|float|null $value
+     * @return ?Centimeter
+     */
+    public static function innFromFeet(int|float|null $value): ?Centimeter
+    {
+        if (is_null($value)) return null;
         return new Centimeter($value * 30.48);
     }
 

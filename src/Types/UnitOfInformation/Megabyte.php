@@ -10,11 +10,21 @@ class Megabyte extends UnitOfInformation
 
     /**
      * @param int|float $value
-     * @return static
+     * @return Megabyte
      */
-    public static function fromBytes(int|float $value): self
+    public static function fromBytes(int|float $value): Megabyte
     {
-        return new static($value / 1024 / 1024);
+        return new Megabyte($value / 1024 / 1024);
+    }
+
+    /**
+     * @param int|float|null $value
+     * @return ?Megabyte
+     */
+    public static function innFromBytes(int|float|null $value): ?Megabyte
+    {
+        if (is_null($value)) return null;
+        return new Megabyte($value / 1024 / 1024);
     }
 
     /**
@@ -27,11 +37,21 @@ class Megabyte extends UnitOfInformation
 
     /**
      * @param int|float $value
-     * @return static
+     * @return Megabyte
      */
-    public static function fromKilobytes(int|float $value): self
+    public static function fromKilobytes(int|float $value): Megabyte
     {
-        return new static($value / 1024);
+        return new Megabyte($value / 1024);
+    }
+
+    /**
+     * @param int|float|null $value
+     * @return ?Megabyte
+     */
+    public static function innFromKilobytes(int|float|null $value): ?Megabyte
+    {
+        if (is_null($value)) return null;
+        return new Megabyte($value / 1024);
     }
 
     /**
@@ -44,11 +64,21 @@ class Megabyte extends UnitOfInformation
 
     /**
      * @param int|float $value
-     * @return static
+     * @return Megabyte
      */
-    public static function fromGigabytes(int|float $value): self
+    public static function fromGigabytes(int|float $value): Megabyte
     {
-        return new static($value * 1024);
+        return new Megabyte($value * 1024);
+    }
+
+    /**
+     * @param int|float|null $value
+     * @return ?Megabyte
+     */
+    public static function innFromGigabytes(int|float|null $value): ?Megabyte
+    {
+        if (is_null($value)) return null;
+        return new Megabyte($value * 1024);
     }
 
     /**
