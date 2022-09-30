@@ -20,7 +20,7 @@ Every type have at least the following common methods:
 ```php
  - public static function from(...$args)
  - public static function tryFrom(...$args)
- - public static function fromIfNotNull(...$args)
+ - public static function innFrom(...$args)
  - public static function isValid(...$args)
  - public function equals($value)
  - public function getValue(...$args)
@@ -53,7 +53,7 @@ Every type have at least the following common methods:
 - Password (coming soon)
 - Path (coming soon)
 - Percent (coming soon)
-- PhoneNumber (coming soon)
+- PhoneNumber
 - Pounds (coming soon)
 - Second (coming soon)
 - Str

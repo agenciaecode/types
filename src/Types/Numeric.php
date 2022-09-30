@@ -54,7 +54,7 @@ class Numeric
      * @param float|int|null $value
      * @return ?static
      */
-    public static function fromIfNotNull(float|int|null $value): ?static
+    public static function innFrom(float|int|null $value): ?static
     {
         if (is_null($value)) return null;
         return new static($value);

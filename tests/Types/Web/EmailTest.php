@@ -12,10 +12,10 @@ class EmailTest extends TestCase
         $this->assertInstanceOf(Email::class, Email::from('email@domain.com'));
         $this->assertEquals('email@domain.com', Email::from('email@domain.com')->getValue());
         $this->assertEquals('email@domain.com', (string)Email::from('EMAIL@DOMAIN.COM'));
-        $this->assertEquals('email@domain.com', (string)Email::fromIfNotNull('email@domain.com'));
+        $this->assertEquals('email@domain.com', (string)Email::innFrom('email@domain.com'));
         $this->assertEquals(true, Email::from('email@domain.com')->equals(Email::from('EMAIL@DOMAIN.COM')));
         $this->assertEquals(null, Email::tryFrom('lorem_ipsum'));
-        $this->assertEquals(null, Email::fromIfNotNull(null));
+        $this->assertEquals(null, Email::innFrom(null));
     }
 
     public function test_email_hidden_format()

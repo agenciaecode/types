@@ -102,7 +102,7 @@ final class PhoneNumber
      * @return ?PhoneNumber
      * @throws InvalidTypeHttpException
      */
-    public static function fromIfNotNull(?string $value): ?PhoneNumber
+    public static function innFrom(?string $value): ?PhoneNumber
     {
         if (is_null($value)) return null;
         return new PhoneNumber($value);

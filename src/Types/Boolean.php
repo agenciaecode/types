@@ -55,7 +55,7 @@ class Boolean
      * @param mixed $value
      * @return ?static
      */
-    public static function fromIfNotNull(mixed $value): ?static
+    public static function innFrom(mixed $value): ?static
     {
         if (is_null($value)) return null;
         return new static($value);
