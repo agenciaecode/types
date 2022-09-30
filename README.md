@@ -6,7 +6,7 @@
 ## Installation
 To install this module, run the following command in your terminal:
 ```bash
-composer require mkioschi/value-objects
+composer require mkioschi/types
 ```
 
 ## Common methods
@@ -52,8 +52,6 @@ Every type have at least the following common methods:
 - Second (coming soon)
 - Str
 - Temperature (coming soon)
-- Text
 - Url (coming soon)
 - Uuid (coming soon)
-- Varchar
 - ZipCode
