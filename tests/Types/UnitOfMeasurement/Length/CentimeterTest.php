@@ -16,31 +16,23 @@ class CentimeterTest extends TestCase
         $this->assertEquals('105 centimeters', Centimeter::from(105)->getHumansFormat(false));
         $this->assertEquals('1 centimeter', Centimeter::from(1)->getHumansFormat(false));
         $this->assertEquals('1 centimeter', Centimeter::innFrom(1)->getHumansFormat(false));
-    }
-
-    public function test_should_not_be_able_to_create_a_valid_null_centimeter()
-    {
         $this->assertEquals(null, Centimeter::innFrom(null));
-        $this->assertEquals(null, Centimeter::innFromFeet(null));
-        $this->assertEquals(null, Centimeter::innFromInches(null));
-        $this->assertEquals(null, Centimeter::innFromMeters(null));
-        $this->assertEquals(null, Centimeter::innFromMillimeters(null));
     }
 
     public function test_should_be_able_to_create_a_valid_centimeter_from_millimeters()
     {
-        $centimeter = Centimeter::fromMillimeters(100);
-        $this->assertInstanceOf(Centimeter::class, $centimeter);
-        $this->assertEquals(10, $centimeter->getValue());
-        $this->assertEquals(100, $centimeter->toMillimeters());
+        $this->assertInstanceOf(Centimeter::class, Centimeter::fromMillimeters(100));
+        $this->assertEquals(10, Centimeter::fromMillimeters(100)->getValue());
+        $this->assertEquals(100, Centimeter::fromMillimeters(100)->toMillimeters());
+        $this->assertEquals(null, Centimeter::innFromMillimeters(null));
     }
 
     public function test_should_be_able_to_create_a_valid_centimeter_from_meters()
     {
-        $centimeter = Centimeter::fromMeters(100);
-        $this->assertInstanceOf(Centimeter::class, $centimeter);
-        $this->assertEquals(10000, $centimeter->getValue());
-        $this->assertEquals(100, $centimeter->toMeters());
+        $this->assertInstanceOf(Centimeter::class, Centimeter::fromMeters(100));
+        $this->assertEquals(10000, Centimeter::fromMeters(100)->getValue());
+        $this->assertEquals(100, Centimeter::fromMeters(100)->toMeters());
+        $this->assertEquals(null, Centimeter::innFromMeters(null));
     }
 
     public function test_should_be_able_to_create_a_valid_centimeter_from_inches()
@@ -49,13 +41,14 @@ class CentimeterTest extends TestCase
         $this->assertInstanceOf(Centimeter::class, $centimeter);
         $this->assertEquals(127, $centimeter->getValue());
         $this->assertEquals(50, $centimeter->toInches());
+        $this->assertEquals(null, Centimeter::innFromInches(null));
     }
 
     public function test_should_be_able_to_create_a_valid_centimeter_from_feet()
     {
-        $centimeter = Centimeter::fromFeet(2);
-        $this->assertInstanceOf(Centimeter::class, $centimeter);
-        $this->assertEquals(60.96, $centimeter->getValue());
-        $this->assertEquals(2, $centimeter->toFeet());
+        $this->assertInstanceOf(Centimeter::class, Centimeter::fromFeet(2));
+        $this->assertEquals(60.96, Centimeter::fromFeet(2)->getValue());
+        $this->assertEquals(2, Centimeter::fromFeet(2)->toFeet());
+        $this->assertEquals(null, Centimeter::innFromFeet(null));
     }
 }
