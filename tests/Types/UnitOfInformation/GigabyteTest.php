@@ -9,41 +9,33 @@ class GigabyteTest extends TestCase
 {
     public function test_should_be_able_to_create_a_valid_gigabyte()
     {
-        $gigabyte = Gigabyte::from(2.6);
-        $this->assertInstanceOf(Gigabyte::class, $gigabyte);
-        $this->assertEquals(2.6, $gigabyte->getValue());
-        $this->assertEquals('2.6', (string)$gigabyte);
-        $this->assertEquals('2.6 GB', $gigabyte->getHumansFormat(decimalPlaces: 1));
-        $this->assertEquals('2.6 gigabytes', $gigabyte->getHumansFormat(abbreviated: false, decimalPlaces: 1));
+        $this->assertInstanceOf(Gigabyte::class, Gigabyte::from(2.6));
+        $this->assertEquals(2.6, Gigabyte::from(2.6)->getValue());
+        $this->assertEquals('2.6', (string)Gigabyte::from(2.6));
+        $this->assertEquals('2.6 GB', Gigabyte::from(2.6)->getHumansFormat(decimalPlaces: 1));
+        $this->assertEquals('2.6 gigabytes', Gigabyte::from(2.6)->getHumansFormat(abbreviated: false, decimalPlaces: 1));
         $this->assertEquals('1 gigabyte', Gigabyte::from(1)->getHumansFormat(false));
-    }
-
-    public function test_should_not_be_able_to_create_a_valid_null_gigabyte()
-    {
         $this->assertEquals(null, Gigabyte::innFrom(null));
-        $this->assertEquals(null, Gigabyte::innFromMegabytes(null));
-        $this->assertEquals(null, Gigabyte::innFromKilobytes(null));
-        $this->assertEquals(null, Gigabyte::innFromBytes(null));
     }
 
     public function test_should_be_able_to_create_a_valid_gigabyte_from_bytes()
     {
-        $gigabyte = Gigabyte::fromBytes(2147483648);
-        $this->assertEquals(2, $gigabyte->getValue());
-        $this->assertEquals(2147483648, $gigabyte->toBytes());
+        $this->assertEquals(2, Gigabyte::fromBytes(2147483648)->getValue());
+        $this->assertEquals(2147483648, Gigabyte::fromBytes(2147483648)->toBytes());
+        $this->assertEquals(null, Gigabyte::innFromBytes(null));
     }
 
     public function test_should_be_able_to_create_a_valid_gigabyte_from_kilobytes()
     {
-        $gigabyte = Gigabyte::fromKilobytes(2097152);
-        $this->assertEquals(2, $gigabyte->getValue());
-        $this->assertEquals(2097152, $gigabyte->toKilobytes());
+        $this->assertEquals(2, Gigabyte::fromKilobytes(2097152)->getValue());
+        $this->assertEquals(2097152, Gigabyte::fromKilobytes(2097152)->toKilobytes());
+        $this->assertEquals(null, Gigabyte::innFromKilobytes(null));
     }
 
     public function test_should_be_able_to_create_a_valid_gigabyte_from_megabytes()
     {
-        $gigabyte = Gigabyte::fromMegabytes(1024);
-        $this->assertEquals(1, $gigabyte->getValue());
-        $this->assertEquals(1024, $gigabyte->toMegabytes());
+        $this->assertEquals(1, Gigabyte::fromMegabytes(1024)->getValue());
+        $this->assertEquals(1024, Gigabyte::fromMegabytes(1024)->toMegabytes());
+        $this->assertEquals(null, Gigabyte::innFromMegabytes(null));
     }
 }

@@ -9,42 +9,33 @@ class ByteTest extends TestCase
 {
     public function test_should_be_able_to_create_a_valid_byte()
     {
-        $byte = Byte::from(123000);
-        $this->assertInstanceOf(Byte::class, $byte);
-        $this->assertEquals(123000, $byte->getValue());
-        $this->assertEquals('123000', (string)$byte);
-        $this->assertEquals('123000 B', $byte->getHumansFormat());
-        $this->assertEquals('123000 bytes', $byte->getHumansFormat(false));
+        $this->assertInstanceOf(Byte::class, Byte::from(123000));
+        $this->assertEquals(123000, Byte::from(123000)->getValue());
+        $this->assertEquals('123000', (string)Byte::from(123000));
+        $this->assertEquals('123000 B', Byte::from(123000)->getHumansFormat());
+        $this->assertEquals('123000 bytes', Byte::from(123000)->getHumansFormat(false));
         $this->assertEquals('1 byte', Byte::from(1)->getHumansFormat(false));
-    }
-
-    public function test_should_not_be_able_to_create_a_valid_null_byte()
-    {
         $this->assertEquals(null, Byte::innFrom(null));
-        $this->assertEquals(null, Byte::innFromGigabytes(null));
-        $this->assertEquals(null, Byte::innFromKilobytes(null));
-        $this->assertEquals(null, Byte::innFromMegabytes(null));
     }
 
     public function test_should_be_able_to_create_a_valid_byte_from_kilobytes()
     {
-        $byte = Byte::fromKilobytes(1);
-        $this->assertEquals(1024, $byte->getValue());
-        $this->assertEquals(1, $byte->toKilobytes());
+        $this->assertEquals(1024, Byte::fromKilobytes(1)->getValue());
+        $this->assertEquals(1, Byte::fromKilobytes(1)->toKilobytes());
+        $this->assertEquals(null, Byte::innFromKilobytes(null));
     }
 
     public function test_should_be_able_to_create_a_valid_byte_from_megabytes()
     {
-        $byte = Byte::fromMegabytes(5);
-        $this->assertEquals(5242880, $byte->getValue());
-        $this->assertEquals(5, $byte->toMegabytes());
+        $this->assertEquals(5242880, Byte::fromMegabytes(5)->getValue());
+        $this->assertEquals(5, Byte::fromMegabytes(5)->toMegabytes());
+        $this->assertEquals(null, Byte::innFromMegabytes(null));
     }
 
     public function test_should_be_able_to_create_a_valid_byte_from_gigabytes()
     {
-        $byte = Byte::fromGigabytes(1.234);
-        $this->assertEquals(1324997410.816, $byte->getValue());
-        $this->assertEquals('1324997410.82 B', $byte->getHumansFormat());
-        $this->assertEquals(1.234, $byte->toGigabytes());
+        $this->assertEquals(1324997410.816, Byte::fromGigabytes(1.234)->getValue());
+        $this->assertEquals(1.234, Byte::fromGigabytes(1.234)->toGigabytes());
+        $this->assertEquals(null, Byte::innFromGigabytes(null));
     }
 }
