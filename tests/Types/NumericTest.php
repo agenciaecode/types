@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class NumericTest extends TestCase
 {
-    public function test_should_be_able_to_create_a_valid_str()
+    public function test_should_be_able_to_create_a_valid_numeric()
     {
         $this->assertInstanceOf(Numeric::class, Numeric::from(123));
         $this->assertEquals('123', (string)Numeric::from(123));
