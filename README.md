@@ -39,7 +39,7 @@ Every type have at least the following common methods:
 - Duration (coming soon) Input: 25:35:12
 - Email
 - Foot (coming soon)
-- Gram (coming soon)
+- Gram
 - Gigabyte
 - Hour (coming soon)
 - Integer (coming soon)
@@ -54,7 +54,7 @@ Every type have at least the following common methods:
 - Path (coming soon)
 - Percent (coming soon)
 - PhoneNumber
-- Pounds (coming soon)
+- Pound (coming soon)
 - Second (coming soon)
 - Str
 - Temperature (coming soon)
