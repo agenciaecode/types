@@ -66,11 +66,22 @@ class Boolean
      * @return static
      * @throws InvalidTypeHttpException
      */
-    public static function fromTruthyString(string $value): static
+    public static function fromString(string $value): static
     {
         $filteredValue = filter_var($value, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
-        if (!static::isValid($filteredValue)) throw new InvalidTypeHttpException("Invalid truthy string.");
+        if (!static::isValid($filteredValue)) throw new InvalidTypeHttpException("Invalid truthy or falsy string.");
         return new static($filteredValue);
+    }
+
+    /**
+     * @param ?string $value
+     * @return ?static
+     * @throws InvalidTypeHttpException
+     */
+    public static function innFromString(?string $value): ?static
+    {
+        if (is_null($value)) return null;
+        return static::fromString($value);
     }
 
     /**
