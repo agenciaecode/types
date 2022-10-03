@@ -2,7 +2,7 @@
 
 namespace Mkioschi\Types\UnitOfInformation;
 
-class Megabyte extends UnitOfInformation
+final class Megabyte extends UnitOfInformation
 {
     const NAME = 'Megabyte';
     const PLURAL = 'Megabytes';

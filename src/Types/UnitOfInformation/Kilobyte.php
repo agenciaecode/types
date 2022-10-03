@@ -2,7 +2,7 @@
 
 namespace Mkioschi\Types\UnitOfInformation;
 
-class Kilobyte extends UnitOfInformation
+final class Kilobyte extends UnitOfInformation
 {
     const NAME = 'Kilobyte';
     const PLURAL = 'Kilobytes';

@@ -2,7 +2,7 @@
 
 namespace Mkioschi\Types\UnitOfInformation;
 
-class Byte extends UnitOfInformation
+final class Byte extends UnitOfInformation
 {
     const NAME = 'Byte';
     const PLURAL = 'Bytes';

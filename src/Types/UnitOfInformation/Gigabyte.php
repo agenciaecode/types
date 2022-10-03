@@ -2,7 +2,7 @@
 
 namespace Mkioschi\Types\UnitOfInformation;
 
-class Gigabyte extends UnitOfInformation
+final class Gigabyte extends UnitOfInformation
 {
     const NAME = 'Gigabyte';
     const PLURAL = 'Gigabytes';
