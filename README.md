@@ -58,6 +58,6 @@ Every type have at least the following common methods:
 - Second (coming soon)
 - Str
 - Temperature (coming soon)
-- Url (coming soon)
+- Url
 - Uuid (coming soon)
 - ZipCode
