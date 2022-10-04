@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8f8e083893e0472a6bfa9bdde5b77ee4",
+    "content-hash": "94d4c28fb30bee4fb14447b80a7f65d4",
     "packages": [
         {
             "name": "mkioschi/enums",
-            "version": "v1.0.1",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mkioschi/enums.git",
-                "reference": "1b8670ecc45ebd50583e196fccbe333a8e9e33fa"
+                "reference": "2f015f252f16e05ff9693378b45c15a734b7f4b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mkioschi/enums/zipball/1b8670ecc45ebd50583e196fccbe333a8e9e33fa",
-                "reference": "1b8670ecc45ebd50583e196fccbe333a8e9e33fa",
+                "url": "https://api.github.com/repos/mkioschi/enums/zipball/2f015f252f16e05ff9693378b45c15a734b7f4b2",
+                "reference": "2f015f252f16e05ff9693378b45c15a734b7f4b2",
                 "shasum": ""
             },
             "require": {
@@ -46,9 +46,9 @@
             "homepage": "https://github.com/mkioschi/enums",
             "support": {
                 "issues": "https://github.com/mkioschi/enums/issues",
-                "source": "https://github.com/mkioschi/enums/tree/v1.0.1"
+                "source": "https://github.com/mkioschi/enums/tree/v1.0.3"
             },
-            "time": "2022-09-18T23:57:33+00:00"
+            "time": "2022-10-04T02:59:28+00:00"
         },
         {
             "name": "mkioschi/exceptions",

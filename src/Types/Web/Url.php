@@ -2,6 +2,7 @@
 
 namespace Mkioschi\Types\Web;
 
+use Mkioschi\Enums\UriScheme;
 use Mkioschi\Exceptions\Http\InvalidTypeHttpException;
 use Mkioschi\Types\Str;
 
@@ -108,6 +109,6 @@ final class Url extends Str
      */
     public function isSecure(): bool
     {
-        return parse_url($this->value, PHP_URL_SCHEME) === 'https';
+        return strtolower(parse_url($this->value, PHP_URL_SCHEME)) === UriScheme::HTTPS->value;
     }
 }
