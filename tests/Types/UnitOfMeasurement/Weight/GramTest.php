@@ -2,7 +2,6 @@
 
 namespace Mkioschi\Tests\Types\UnitOfMeasurement\Weight;
 
-use Mkioschi\Types\UnitOfMeasurement\Length\Centimeter;
 use Mkioschi\Types\UnitOfMeasurement\Weight\Gram;
 use PHPUnit\Framework\TestCase;
 
