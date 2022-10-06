@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\Tests\Types;
+namespace Ecode\Tests\Types;
 
-use Mkioschi\Types\Numeric;
+use Ecode\Types\Numeric;
 use PHPUnit\Framework\TestCase;
 
 class NumericTest extends TestCase

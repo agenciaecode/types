@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\Tests\Types\Web;
+namespace Ecode\Tests\Types\Web;
 
-use Mkioschi\Types\Web\Email;
+use Ecode\Types\Web\Email;
 use PHPUnit\Framework\TestCase;
 
 class EmailTest extends TestCase

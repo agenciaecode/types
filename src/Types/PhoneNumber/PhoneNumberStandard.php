@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\Types\PhoneNumber;
+namespace Ecode\Types\PhoneNumber;
 
 interface PhoneNumberStandard
 {

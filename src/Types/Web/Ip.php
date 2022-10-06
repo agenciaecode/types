@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\Types\Web;
+namespace Ecode\Types\Web;
 
-use Mkioschi\Exceptions\Http\InvalidTypeHttpException;
-use Mkioschi\Types\Str;
+use Ecode\Exceptions\Http\InvalidTypeHttpException;
+use Ecode\Types\Str;
 
 final class Ip extends Str
 {

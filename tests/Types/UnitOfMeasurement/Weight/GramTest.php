@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\Tests\Types\UnitOfMeasurement\Weight;
+namespace Ecode\Tests\Types\UnitOfMeasurement\Weight;
 
-use Mkioschi\Types\UnitOfMeasurement\Weight\Gram;
+use Ecode\Types\UnitOfMeasurement\Weight\Gram;
 use PHPUnit\Framework\TestCase;
 
 class GramTest extends TestCase

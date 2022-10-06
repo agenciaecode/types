@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\Tests\Types\UnitOfMeasurement\Length;
+namespace Ecode\Tests\Types\UnitOfMeasurement\Length;
 
-use Mkioschi\Types\UnitOfMeasurement\Length\Centimeter;
+use Ecode\Types\UnitOfMeasurement\Length\Centimeter;
 use PHPUnit\Framework\TestCase;
 
 class CentimeterTest extends TestCase

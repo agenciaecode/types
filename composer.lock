@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "94d4c28fb30bee4fb14447b80a7f65d4",
+    "content-hash": "bd17a89d72acde9d4d4d9e95589e2d55",
     "packages": [
         {
-            "name": "mkioschi/enums",
-            "version": "v1.0.3",
+            "name": "agenciaecode/enums",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/mkioschi/enums.git",
-                "reference": "2f015f252f16e05ff9693378b45c15a734b7f4b2"
+                "url": "https://github.com/agenciaecode/enums.git",
+                "reference": "d5a7cc6293ee3704696f010b9b6686ec43391133"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mkioschi/enums/zipball/2f015f252f16e05ff9693378b45c15a734b7f4b2",
-                "reference": "2f015f252f16e05ff9693378b45c15a734b7f4b2",
+                "url": "https://api.github.com/repos/agenciaecode/enums/zipball/d5a7cc6293ee3704696f010b9b6686ec43391133",
+                "reference": "d5a7cc6293ee3704696f010b9b6686ec43391133",
                 "shasum": ""
             },
             "require": {
@@ -29,7 +29,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Mkioschi\\": "src/"
+                    "Ecode\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -43,29 +43,29 @@
                 }
             ],
             "description": "Common enums for clean code PHP projects.",
-            "homepage": "https://github.com/mkioschi/enums",
+            "homepage": "https://github.com/agenciaecode/enums",
             "support": {
-                "issues": "https://github.com/mkioschi/enums/issues",
-                "source": "https://github.com/mkioschi/enums/tree/v1.0.3"
+                "issues": "https://github.com/agenciaecode/enums/issues",
+                "source": "https://github.com/agenciaecode/enums/tree/v1.0.0"
             },
-            "time": "2022-10-04T02:59:28+00:00"
+            "time": "2022-10-06T15:44:06+00:00"
         },
         {
-            "name": "mkioschi/exceptions",
-            "version": "v1.0.2",
+            "name": "agenciaecode/exceptions",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/mkioschi/exceptions.git",
-                "reference": "9b09bd95ffcc4e940440d3f37798d7a9def78bee"
+                "url": "https://github.com/agenciaecode/exceptions.git",
+                "reference": "c6cdf3adfd6758d60e1877ae2c19e1d904c8d261"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mkioschi/exceptions/zipball/9b09bd95ffcc4e940440d3f37798d7a9def78bee",
-                "reference": "9b09bd95ffcc4e940440d3f37798d7a9def78bee",
+                "url": "https://api.github.com/repos/agenciaecode/exceptions/zipball/c6cdf3adfd6758d60e1877ae2c19e1d904c8d261",
+                "reference": "c6cdf3adfd6758d60e1877ae2c19e1d904c8d261",
                 "shasum": ""
             },
             "require": {
-                "mkioschi/enums": "^1.0",
+                "agenciaecode/enums": "^1.0",
                 "php": ">=8.1"
             },
             "require-dev": {
@@ -74,7 +74,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Mkioschi\\": "src/"
+                    "Ecode\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -88,12 +88,12 @@
                 }
             ],
             "description": "Common exceptions for clean code PHP projects.",
-            "homepage": "https://github.com/mkioschi/exceptions",
+            "homepage": "https://github.com/agenciaecode/exceptions",
             "support": {
-                "issues": "https://github.com/mkioschi/exceptions/issues",
-                "source": "https://github.com/mkioschi/exceptions/tree/v1.0.2"
+                "issues": "https://github.com/agenciaecode/exceptions/issues",
+                "source": "https://github.com/agenciaecode/exceptions/tree/v1.0.0"
             },
-            "time": "2022-09-28T00:43:27+00:00"
+            "time": "2022-10-06T15:51:52+00:00"
         }
     ],
     "packages-dev": [
@@ -713,16 +713,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "9.5.24",
+            "version": "9.5.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "d0aa6097bef9fd42458a9b3c49da32c6ce6129c5"
+                "reference": "3e6f90ca7e3d02025b1d147bd8d4a89fd4ca8a1d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/d0aa6097bef9fd42458a9b3c49da32c6ce6129c5",
-                "reference": "d0aa6097bef9fd42458a9b3c49da32c6ce6129c5",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/3e6f90ca7e3d02025b1d147bd8d4a89fd4ca8a1d",
+                "reference": "3e6f90ca7e3d02025b1d147bd8d4a89fd4ca8a1d",
                 "shasum": ""
             },
             "require": {
@@ -744,14 +744,14 @@
                 "phpunit/php-timer": "^5.0.2",
                 "sebastian/cli-parser": "^1.0.1",
                 "sebastian/code-unit": "^1.0.6",
-                "sebastian/comparator": "^4.0.5",
+                "sebastian/comparator": "^4.0.8",
                 "sebastian/diff": "^4.0.3",
                 "sebastian/environment": "^5.1.3",
-                "sebastian/exporter": "^4.0.3",
+                "sebastian/exporter": "^4.0.5",
                 "sebastian/global-state": "^5.0.1",
                 "sebastian/object-enumerator": "^4.0.3",
                 "sebastian/resource-operations": "^3.0.3",
-                "sebastian/type": "^3.1",
+                "sebastian/type": "^3.2",
                 "sebastian/version": "^3.0.2"
             },
             "suggest": {
@@ -795,7 +795,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.5.24"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.5.25"
             },
             "funding": [
                 {
@@ -805,9 +805,13 @@
                 {
                     "url": "https://github.com/sebastianbergmann",
                     "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/phpunit/phpunit",
+                    "type": "tidelift"
                 }
             ],
-            "time": "2022-08-30T07:42:16+00:00"
+            "time": "2022-09-25T03:44:45+00:00"
         },
         {
             "name": "sebastian/cli-parser",

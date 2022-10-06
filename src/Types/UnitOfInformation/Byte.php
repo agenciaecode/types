@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\Types\UnitOfInformation;
+namespace Ecode\Types\UnitOfInformation;
 
 final class Byte extends UnitOfInformation
 {

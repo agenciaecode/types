@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\Tests\Types\National\Brazil;
+namespace Ecode\Tests\Types\National\Brazil;
 
-use Mkioschi\Exceptions\Http\InvalidTypeHttpException;
-use Mkioschi\Types\National\Brazil\Cpf;
+use Ecode\Exceptions\Http\InvalidTypeHttpException;
+use Ecode\Types\National\Brazil\Cpf;
 use PHPUnit\Framework\TestCase;
 
 class CpfTest extends TestCase

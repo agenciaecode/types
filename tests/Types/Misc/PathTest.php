@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\Tests\Types\Misc;
+namespace Ecode\Tests\Types\Misc;
 
 use Exception;
-use Mkioschi\Types\Misc\Path;
+use Ecode\Types\Misc\Path;
 use PHPUnit\Framework\TestCase;
 
 class PathTest extends TestCase

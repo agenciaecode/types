@@ -6,7 +6,7 @@
 ## Installation
 To install this module, run the following command in your terminal:
 ```bash
-composer require mkioschi/types
+composer require agenciaecode/types
 ```
 
 ## Basic usage

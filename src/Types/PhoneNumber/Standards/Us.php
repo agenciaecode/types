@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\Types\PhoneNumber\Standards;
+namespace Ecode\Types\PhoneNumber\Standards;
 
-use Mkioschi\Types\PhoneNumber\PhoneNumberStandard;
+use Ecode\Types\PhoneNumber\PhoneNumberStandard;
 
 class Us implements PhoneNumberStandard
 {

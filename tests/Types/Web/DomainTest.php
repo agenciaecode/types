@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\Tests\Types\Web;
+namespace Ecode\Tests\Types\Web;
 
-use Mkioschi\Types\Web\Domain;
+use Ecode\Types\Web\Domain;
 use PHPUnit\Framework\TestCase;
 
 class DomainTest extends TestCase

@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\Types\UnitOfInformation;
+namespace Ecode\Types\UnitOfInformation;
 
-use Mkioschi\Types\Numeric;
+use Ecode\Types\Numeric;
 
 abstract class UnitOfInformation extends Numeric
 {

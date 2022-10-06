@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\Types\UnitOfMeasurement\Length;
+namespace Ecode\Types\UnitOfMeasurement\Length;
 
-use Mkioschi\Types\UnitOfMeasurement\UnitOfMeasurement;
+use Ecode\Types\UnitOfMeasurement\UnitOfMeasurement;
 
 final class Centimeter extends UnitOfMeasurement
 {

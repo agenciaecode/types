@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\Types;
+namespace Ecode\Types;
 
-use Mkioschi\Exceptions\Http\InvalidTypeHttpException;
+use Ecode\Exceptions\Http\InvalidTypeHttpException;
 use Throwable;
 
 class Boolean

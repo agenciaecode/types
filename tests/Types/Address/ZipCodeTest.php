@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\Tests\Types\Address;
+namespace Ecode\Tests\Types\Address;
 
-use Mkioschi\Exceptions\Http\InvalidTypeHttpException;
-use Mkioschi\Types\Address\ZipCode;
+use Ecode\Exceptions\Http\InvalidTypeHttpException;
+use Ecode\Types\Address\ZipCode;
 use PHPUnit\Framework\TestCase;
 
 class ZipCodeTest extends TestCase

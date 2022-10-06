@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\Types\PhoneNumber;
+namespace Ecode\Types\PhoneNumber;
 
 use Exception;
-use Mkioschi\Exceptions\Http\InvalidTypeHttpException;
-use Mkioschi\Types\PhoneNumber\Standards\Br;
-use Mkioschi\Types\PhoneNumber\Standards\Generic;
-use Mkioschi\Types\PhoneNumber\Standards\Us;
-use Mkioschi\Types\Str;
+use Ecode\Exceptions\Http\InvalidTypeHttpException;
+use Ecode\Types\PhoneNumber\Standards\Br;
+use Ecode\Types\PhoneNumber\Standards\Generic;
+use Ecode\Types\PhoneNumber\Standards\Us;
+use Ecode\Types\Str;
 
 /**
  * Phone Number

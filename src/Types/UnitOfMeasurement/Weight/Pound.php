@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\Types\UnitOfMeasurement\Weight;
+namespace Ecode\Types\UnitOfMeasurement\Weight;
 
-use Mkioschi\Types\UnitOfMeasurement\UnitOfMeasurement;
+use Ecode\Types\UnitOfMeasurement\UnitOfMeasurement;
 
 final class Pound extends UnitOfMeasurement
 {

@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\Tests\Types\UnitOfInformation;
+namespace Ecode\Tests\Types\UnitOfInformation;
 
-use Mkioschi\Types\UnitOfInformation\Byte;
+use Ecode\Types\UnitOfInformation\Byte;
 use PHPUnit\Framework\TestCase;
 
 class ByteTest extends TestCase

@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\Types\Misc;
+namespace Ecode\Types\Misc;
 
 use Exception;
-use Mkioschi\Exceptions\Http\InvalidTypeHttpException;
-use Mkioschi\Types\Str;
+use Ecode\Exceptions\Http\InvalidTypeHttpException;
+use Ecode\Types\Str;
 
 final class Path extends Str
 {

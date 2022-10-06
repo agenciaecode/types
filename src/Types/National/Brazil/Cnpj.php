@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\Types\National\Brazil;
+namespace Ecode\Types\National\Brazil;
 
-use Mkioschi\Exceptions\Http\InvalidTypeHttpException;
-use Mkioschi\Types\Str;
+use Ecode\Exceptions\Http\InvalidTypeHttpException;
+use Ecode\Types\Str;
 
 final class Cnpj extends Str
 {

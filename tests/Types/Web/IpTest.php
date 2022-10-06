@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\Tests\Types\Web;
+namespace Ecode\Tests\Types\Web;
 
-use Mkioschi\Types\Web\Ip;
+use Ecode\Types\Web\Ip;
 use PHPUnit\Framework\TestCase;
 
 class IpTest extends TestCase

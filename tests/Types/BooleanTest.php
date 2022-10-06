@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\Tests\Types;
+namespace Ecode\Tests\Types;
 
-use Mkioschi\Exceptions\Http\InvalidTypeHttpException;
-use Mkioschi\Types\Boolean;
+use Ecode\Exceptions\Http\InvalidTypeHttpException;
+use Ecode\Types\Boolean;
 use PHPUnit\Framework\TestCase;
 
 class BooleanTest extends TestCase

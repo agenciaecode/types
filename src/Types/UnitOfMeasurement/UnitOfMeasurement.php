@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\Types\UnitOfMeasurement;
+namespace Ecode\Types\UnitOfMeasurement;
 
-use Mkioschi\Types\Numeric;
+use Ecode\Types\Numeric;
 
 abstract class UnitOfMeasurement extends Numeric
 {

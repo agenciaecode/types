@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\Tests\Types\PhoneNumbers;
+namespace Ecode\Tests\Types\PhoneNumbers;
 
-use Mkioschi\Exceptions\Http\InvalidTypeHttpException;
-use Mkioschi\Types\PhoneNumber\PhoneNumber;
+use Ecode\Exceptions\Http\InvalidTypeHttpException;
+use Ecode\Types\PhoneNumber\PhoneNumber;
 use PHPUnit\Framework\TestCase;
 
 class PhoneNumberTest extends TestCase

@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Mkioschi\Tests\Types;
+namespace Ecode\Tests\Types;
 
-use Mkioschi\Types\Str;
+use Ecode\Types\Str;
 use PHPUnit\Framework\TestCase;
 
 class StrTest extends TestCase
