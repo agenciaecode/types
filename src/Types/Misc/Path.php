@@ -26,7 +26,7 @@ final class Path extends Str
     public static function isValid(mixed $value): bool
     {
         if (!is_string($value)) return false;
-        return !preg_match("/[^a-zA-ZÀ-ú \/).(+_-]/", $value);
+        return !preg_match("/[^0-9a-zA-ZÀ-ú \/).(+_-]/", $value);
     }
 
     /**
@@ -52,6 +52,7 @@ final class Path extends Str
      */
     private function mergePath(string $path): void
     {
+        $path = str_starts_with($path, '/') ? substr($path, 1) : $path;
         $this->value .= str_ends_with($this->value, '/') ? $path : sprintf('/%s', $path);
     }
 
