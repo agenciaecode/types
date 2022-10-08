@@ -8,15 +8,25 @@ abstract class UnitOfMeasurement extends Numeric
 {
     /**
      * @param bool $abbreviated
-     * @param int $decimalPlaces
+     * @param int $maxDecimalPlaces
      * @return string
      */
-    public function getHumansFormat(bool $abbreviated = true, int $decimalPlaces = 2): string
+    public function getHumansFormat(bool $abbreviated = true, int $maxDecimalPlaces = 2): string
     {
-        $formattedValue = is_float($this->value) ? number_format($this->value, $decimalPlaces, '.', '') : $this->value;
-        if ($abbreviated) return sprintf('%s %s', $formattedValue, $this->getSymbol());
-        if ($formattedValue === 1) return sprintf('%s %s', $formattedValue, strtolower($this->getName()));
-        return sprintf('%s %s', $formattedValue, strtolower($this->getPlural()));
+        $handledValue = $this->handleValue($this->value, $maxDecimalPlaces);
+        if ($abbreviated) return sprintf('%s %s', $handledValue, $this->getSymbol());
+        if ($handledValue == 1) return sprintf('%s %s', $handledValue, strtolower($this->getName()));
+        return sprintf('%s %s', $handledValue, strtolower($this->getPlural()));
+    }
+
+    /**
+     * @param float|int $value
+     * @param int $maxDecimalPlaces
+     * @return float
+     */
+    public static function handleValue(float|int $value, int $maxDecimalPlaces): float
+    {
+        return (float)number_format($value, $maxDecimalPlaces, '.', '');
     }
 
     /**

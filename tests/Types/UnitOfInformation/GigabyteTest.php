@@ -12,8 +12,8 @@ class GigabyteTest extends TestCase
         $this->assertInstanceOf(Gigabyte::class, Gigabyte::from(2.6));
         $this->assertEquals(2.6, Gigabyte::from(2.6)->getValue());
         $this->assertEquals('2.6', (string)Gigabyte::from(2.6));
-        $this->assertEquals('2.6 GB', Gigabyte::from(2.6)->getHumansFormat(decimalPlaces: 1));
-        $this->assertEquals('2.6 gigabytes', Gigabyte::from(2.6)->getHumansFormat(abbreviated: false, decimalPlaces: 1));
+        $this->assertEquals('2.6 GB', Gigabyte::from(2.6)->getHumansFormat(maxDecimalPlaces: 1));
+        $this->assertEquals('2.6 gigabytes', Gigabyte::from(2.6)->getHumansFormat(abbreviated: false, maxDecimalPlaces: 1));
         $this->assertEquals('1 gigabyte', Gigabyte::from(1)->getHumansFormat(false));
         $this->assertEquals(null, Gigabyte::innFrom(null));
     }

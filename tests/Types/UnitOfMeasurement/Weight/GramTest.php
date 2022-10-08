@@ -32,7 +32,7 @@ class GramTest extends TestCase
         $this->assertInstanceOf(Gram::class, Gram::fromPounds(1));
         $this->assertEquals(null, Gram::innFromPounds(null));
         $this->assertEquals(453.59237, Gram::fromPounds(1)->getValue());
-        $this->assertEquals('1.00 lbs', Gram::fromPounds(1)->toPounds()->getHumansFormat());
+        $this->assertEquals(1, Gram::fromPounds(1)->toPounds()->getValue());
     }
 
     public function test_should_be_able_to_create_a_valid_gram_from_ounces()

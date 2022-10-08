@@ -32,7 +32,7 @@ class PoundTest extends TestCase
         $this->assertInstanceOf(Pound::class, Pound::fromGrams(1));
         $this->assertEquals(null, Pound::innFromGrams(null));
         $this->assertEquals(275.577827731097, Pound::fromGrams(125000)->getValue());
-        $this->assertEquals('275.58 g', Pound::fromGrams(275.577827731097)->toGrams()->getHumansFormat());
+        $this->assertEquals(275, Pound::fromGrams(275)->toGrams()->getValue());
     }
 
     public function test_should_be_able_to_create_a_valid_pound_from_ounces()

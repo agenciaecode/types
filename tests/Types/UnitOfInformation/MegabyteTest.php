@@ -12,8 +12,8 @@ class MegabyteTest extends TestCase
         $this->assertInstanceOf(Megabyte::class, Megabyte::from(6.5));
         $this->assertEquals(6.5, Megabyte::from(6.5)->getValue());
         $this->assertEquals('6.5', (string)Megabyte::from(6.5));
-        $this->assertEquals('6.5 MB', Megabyte::from(6.5)->getHumansFormat(decimalPlaces: 1));
-        $this->assertEquals('6.5 megabytes', Megabyte::from(6.5)->getHumansFormat(abbreviated: false, decimalPlaces: 1));
+        $this->assertEquals('6.5 MB', Megabyte::from(6.5)->getHumansFormat(maxDecimalPlaces: 1));
+        $this->assertEquals('6.5 megabytes', Megabyte::from(6.5)->getHumansFormat(abbreviated: false, maxDecimalPlaces: 1));
         $this->assertEquals('1 megabyte', Megabyte::from(1)->getHumansFormat(false));
         $this->assertEquals(null, Megabyte::innFrom(null));
     }
