@@ -21,21 +21,21 @@ class MegabyteTest extends TestCase
     public function test_should_be_able_to_create_a_valid_megabyte_from_bytes()
     {
         $this->assertEquals(6, Megabyte::fromBytes(6291456)->getValue());
-        $this->assertEquals(6291456, Megabyte::fromBytes(6291456)->toBytes());
+        $this->assertEquals(6291456, Megabyte::fromBytes(6291456)->toBytes()->getValue());
         $this->assertEquals(null, Megabyte::innFromBytes(null));
     }
 
     public function test_should_be_able_to_create_a_valid_megabyte_from_kilobytes()
     {
         $this->assertEquals(6, Megabyte::fromKilobytes(6144)->getValue());
-        $this->assertEquals(6144, Megabyte::fromKilobytes(6144)->toKilobytes());
+        $this->assertEquals(6144, Megabyte::fromKilobytes(6144)->toKilobytes()->getValue());
         $this->assertEquals(null, Megabyte::innFromKilobytes(null));
     }
 
     public function test_should_be_able_to_create_a_valid_megabyte_from_gigabytes()
     {
         $this->assertEquals(1259.52, Megabyte::fromGigabytes(1.23)->getValue());
-        $this->assertEquals(1.23, Megabyte::fromGigabytes(1.23)->toGigabytes());
+        $this->assertEquals(1.23, Megabyte::fromGigabytes(1.23)->toGigabytes()->getValue());
         $this->assertEquals(null, Megabyte::innFromGigabytes(null));
     }
 }

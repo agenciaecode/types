@@ -28,11 +28,11 @@ final class Gigabyte extends UnitOfInformation
     }
 
     /**
-     * @return int|float
+     * @return Byte
      */
-    public function toBytes(): int|float
+    public function toBytes(): Byte
     {
-        return $this->value * 1024 * 1024 * 1024;
+        return Byte::fromGigabytes($this->value);
     }
 
     /**
@@ -55,11 +55,11 @@ final class Gigabyte extends UnitOfInformation
     }
 
     /**
-     * @return int|float
+     * @return Kilobyte
      */
-    public function toKilobytes(): int|float
+    public function toKilobytes(): Kilobyte
     {
-        return $this->value * 1024 * 1024;
+        return Kilobyte::fromGigabytes($this->value);
     }
 
     /**
@@ -82,11 +82,11 @@ final class Gigabyte extends UnitOfInformation
     }
 
     /**
-     * @return int|float
+     * @return Megabyte
      */
-    public function toMegabytes(): int|float
+    public function toMegabytes(): Megabyte
     {
-        return $this->value * 1024;
+        return Megabyte::fromGigabytes($this->value);
     }
 
     /**
