@@ -57,11 +57,11 @@ final class Gram extends UnitOfMeasurement
     }
 
     /**
-     * @return float|int
+     * @return Pound
      */
-    public function toPounds(): float|int
+    public function toPounds(): Pound
     {
-        return $this->value / 453.59237;
+        return Pound::fromGrams($this->value);
     }
 
     /**
