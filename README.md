@@ -47,6 +47,7 @@ Every type have at least the following common methods:
 - Path
 - PhoneNumber
 - Pound
+- Slug
 - Str
 - Url
 - Uuid
