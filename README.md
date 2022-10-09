@@ -28,36 +28,41 @@ Every type have at least the following common methods:
 ```
 
 ## Available Types
+- Arr
 - Boolean
 - Byte
 - Centimeter
-- CreditCard (coming soon)
 - Cnpj
-- Country (coming soon)
 - Cpf
-- Currency (coming soon)
-- Duration (coming soon) Input: 25:35:12
+- Domain
 - Email
-- Foot (coming soon)
 - Gram
 - Gigabyte
-- Hour (coming soon)
-- Integer (coming soon)
-- Ip (coming soon)
+- Ip
 - Kilobyte
-- Kilogram (coming soon)
-- Kilometer (coming soon)
-- Meter (coming soon)
+- Kilogram
 - Megabyte
-- Minute (coming soon)
-- Password (coming soon)
-- Path (coming soon)
-- Percent (coming soon)
+- Numeric
+- Ounce
+- Path
 - PhoneNumber
-- Pound (coming soon)
-- Second (coming soon)
+- Pound
 - Str
-- Temperature (coming soon)
 - Url
-- Uuid (coming soon)
 - ZipCode
+
+## Coming soon
+- CreditCard
+- Country
+- Currency
+- Duration
+- Foot
+- Hour
+- Kilometer
+- Meter
+- Minute
+- Password
+- Percent
+- Second
+- Temperature
+- Uuid
