@@ -27,4 +27,19 @@ class ArrTest extends TestCase
         $this->assertEquals(true, Arr::isValidJsonString('{"host":"github.com"}'));
         $this->assertEquals(false, Arr::isValidJsonString('"host":"github.com"'));
     }
+
+    public function test_should_be_able_to_count_arr()
+    {
+        $this->assertEquals(3, Arr::from(['GitHub', 'GitLab', 'Bitbucket'])->count());
+        $this->assertEquals(0, Arr::init()->count());
+    }
+
+    public function test_should_be_able_to_iterate_arr()
+    {
+        $gitRepositoriesArr = ['GitHub', 'GitLab', 'Bitbucket'];
+        $gitRepositories = Arr::from($gitRepositoriesArr);
+        foreach ($gitRepositories as $gitRepository) {
+            $this->assertEquals($gitRepositoriesArr[$gitRepositories->key()], $gitRepository);
+        }
+    }
 }

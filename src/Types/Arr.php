@@ -2,15 +2,22 @@
 
 namespace Ecode\Types;
 
+use Countable;
 use Exception;
 use Ecode\Exceptions\Http\InvalidTypeHttpException;
+use Iterator;
 
-class Arr
+class Arr implements Countable, Iterator
 {
     /**
      * @var array
      */
-    protected array $value;
+    protected array $value = [];
+
+    /**
+     * @var int
+     */
+    protected int $index;
 
     /**
      * @param array $value
@@ -125,5 +132,68 @@ class Arr
     public static function isValidJsonString(string $value): bool
     {
         return is_array(json_decode($value, true)) && json_last_error() === JSON_ERROR_NONE;
+    }
+
+    /**
+     * @return static
+     */
+    public static function init(): static
+    {
+        return new static([]);
+    }
+
+    /**
+     * @return int
+     */
+    public function count(): int
+    {
+        return count($this->value);
+    }
+
+    /**
+     * @param mixed $value
+     * @return $this
+     */
+    public function push(mixed $value): static
+    {
+        $this->value[] = $value;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function current(): mixed
+    {
+        return $this->value[$this->index];
+    }
+
+    /**
+     * @return void
+     */
+    public function next(): void
+    {
+        ++$this->index;
+    }
+
+    /**
+     * @return int
+     */
+    public function key(): int
+    {
+        return $this->index;
+    }
+
+    /**
+     * @return bool
+     */
+    public function valid(): bool
+    {
+        return isset($this->value[$this->index]);
+    }
+
+    public function rewind(): void
+    {
+        $this->index = 0;
     }
 }
