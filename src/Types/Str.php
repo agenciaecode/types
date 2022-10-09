@@ -2,6 +2,7 @@
 
 namespace Ecode\Types;
 
+use Cocur\Slugify\Slugify;
 use Exception;
 
 class Str
@@ -92,5 +93,15 @@ class Str
     public static function extractNumbers(string $value): string
     {
         return preg_replace(pattern: '/\D/i', replacement: '', subject: trim($value));
+    }
+
+    /**
+     * @param string $text
+     * @return string
+     */
+    public static function slugify(string $text): string
+    {
+        $slugify = new Slugify();
+        return $slugify->slugify($text);
     }
 }

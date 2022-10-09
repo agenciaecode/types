@@ -21,4 +21,9 @@ class StrTest extends TestCase
         $this->assertEquals(true, Str::isValid('Some string'));
         $this->assertEquals('1123', Str::extractNumbers('Some string 1: 123'));
     }
+
+    public function test_should_be_able_to_slugify_a_string()
+    {
+        $this->assertEquals('some-string', Str::slugify('Some string'));
+    }
 }
