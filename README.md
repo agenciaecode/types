@@ -49,6 +49,7 @@ Every type have at least the following common methods:
 - Pound
 - Str
 - Url
+- Uuid
 - ZipCode
 
 ## Coming soon
@@ -65,4 +66,3 @@ Every type have at least the following common methods:
 - Percent
 - Second
 - Temperature
-- Uuid
