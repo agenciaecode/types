@@ -192,6 +192,9 @@ class Arr implements Countable, Iterator
         return isset($this->value[$this->index]);
     }
 
+    /**
+     * @return void
+     */
     public function rewind(): void
     {
         $this->index = 0;
