@@ -5,6 +5,13 @@ namespace Ecode\Types\Misc;
 use Ecode\Exceptions\Http\InvalidTypeHttpException;
 use Exception;
 
+/**
+ * By default, the password must meet the following conditions:
+ * - Must be at least 6 characters in length;
+ * - Must include at least one upper case letter;
+ * - Must include at least one lower case letter;
+ * - Must include at least one number.
+ */
 final class Password
 {
     /**
