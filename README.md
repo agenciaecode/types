@@ -44,6 +44,7 @@ Every type have at least the following common methods:
 - Megabyte
 - Numeric
 - Ounce
+- Password
 - Path
 - PhoneNumber
 - Pound
@@ -63,7 +64,6 @@ Every type have at least the following common methods:
 - Kilometer
 - Meter
 - Minute
-- Password
 - Percent
 - Second
 - Temperature
