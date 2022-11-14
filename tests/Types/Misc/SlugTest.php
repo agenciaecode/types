@@ -17,7 +17,7 @@ class SlugTest extends TestCase
         $this->assertEquals('some-string', Slug::from('some-string')->getValue());
         $this->assertEquals('some-string', Slug::fromText('Some string')->getValue());
         $this->assertEquals(false, Slug::isValid(' '));
-        $this->assertEquals(false, Slug::isValid('a'));
+        $this->assertEquals(true, Slug::isValid('a'));
         $this->assertEquals(false, Slug::isValid(''));
     }
 }
