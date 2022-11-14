@@ -25,7 +25,7 @@ final class Slug extends Str
     public static function isValid(mixed $value): bool
     {
         if (!is_string($value)) return false;
-        if (strlen($value) < 2) return false;
+        if (strlen($value) < 1) return false;
         return !preg_match("/[^0-9a-z-]/", $value);
     }
 
