@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "agenciaecode/enums",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/agenciaecode/enums.git",
-                "reference": "d5a7cc6293ee3704696f010b9b6686ec43391133"
+                "reference": "491b19afc35390e83b9890a0f8a96386eafd23e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agenciaecode/enums/zipball/d5a7cc6293ee3704696f010b9b6686ec43391133",
-                "reference": "d5a7cc6293ee3704696f010b9b6686ec43391133",
+                "url": "https://api.github.com/repos/agenciaecode/enums/zipball/491b19afc35390e83b9890a0f8a96386eafd23e6",
+                "reference": "491b19afc35390e83b9890a0f8a96386eafd23e6",
                 "shasum": ""
             },
             "require": {
@@ -46,9 +46,9 @@
             "homepage": "https://github.com/agenciaecode/enums",
             "support": {
                 "issues": "https://github.com/agenciaecode/enums/issues",
-                "source": "https://github.com/agenciaecode/enums/tree/v1.0.0"
+                "source": "https://github.com/agenciaecode/enums/tree/v1.0.1"
             },
-            "time": "2022-10-06T15:44:06+00:00"
+            "time": "2022-12-01T00:09:04+00:00"
         },
         {
             "name": "agenciaecode/exceptions",
