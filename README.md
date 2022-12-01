@@ -16,7 +16,7 @@ echo $email->getHiddenFormat(); // Output: e***l@d********m
 ```
 
 ## Common methods
-Every type have at least the following common methods:
+Most type have at least the following common methods:
 ```php
  - public static function from(...$args)
  - public static function tryFrom(...$args)
@@ -42,6 +42,7 @@ Every type have at least the following common methods:
 - Kilobyte
 - Kilogram
 - Megabyte
+- Money
 - Numeric
 - Ounce
 - Password
@@ -56,8 +57,6 @@ Every type have at least the following common methods:
 
 ## Coming soon
 - CreditCard
-- Country
-- Currency
 - Duration
 - Foot
 - Hour
