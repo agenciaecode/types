@@ -104,4 +104,12 @@ class Str
         $slugify = new Slugify();
         return $slugify->slugify($text);
     }
+
+    /**
+     * @return int
+     */
+    public function length(): int
+    {
+        return strlen($this->value);
+    }
 }

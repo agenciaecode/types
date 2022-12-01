@@ -20,6 +20,7 @@ class StrTest extends TestCase
         $this->assertEquals(false, Str::isValid(['host' => 'github.com']));
         $this->assertEquals(true, Str::isValid('Some string'));
         $this->assertEquals('1123', Str::extractNumbers('Some string 1: 123'));
+        $this->assertEquals(11, Str::from('Some string')->length());
     }
 
     public function test_should_be_able_to_slugify_a_string()
