@@ -4,6 +4,7 @@ namespace Ecode\Types\Misc;
 
 use Ecode\Enums\Currency;
 use Ecode\Enums\Locale;
+use Exception;
 use NumberFormatter;
 
 final class Money
@@ -46,16 +47,34 @@ final class Money
     }
 
     /**
+     * @param string $string
+     * @param Currency $currency
+     * @param Locale $locale
+     * @return Money
+     * @throws Exception
+     */
+    public static function fromString(
+        string $string,
+        Currency $currency,
+        Locale $locale
+    ): Money
+    {
+        $currencyString = $currency->value;
+        $formatter = new NumberFormatter($locale->value, NumberFormatter::CURRENCY);
+        $amount = $formatter->parseCurrency($string, $currencyString);
+        if (! $amount) throw new Exception("Invalid money string.");
+        return new Money($amount, $currency);
+    }
+
+    /**
      * @param Locale $locale
      * @return string
      */
     public function getHumansFormat(Locale $locale = Locale::EN_US): string
     {
         $formatter = new NumberFormatter($locale->value, NumberFormatter::CURRENCY);
-        $formatter->setAttribute(NumberFormatter::FRACTION_DIGITS, 2);
-        $formatter->setAttribute(NumberFormatter::GROUPING_USED, 1);
-        $formatter->setTextAttribute(NumberFormatter::CURRENCY_CODE, $this->currency->value);
-        return str_replace("\xc2\xa0", " ", $formatter->format($this->amount));
+        $formattedString = $formatter->formatCurrency($this->amount, $this->getCurrency()->value);
+        return str_replace("\xc2\xa0", " ", $formattedString);
     }
 
     /**
@@ -80,5 +99,29 @@ final class Money
     public function getCurrency(): Currency
     {
         return $this->currency;
+    }
+
+    /**
+     * @param Locale $locale
+     * @return string
+     */
+    public function getSymbol(Locale $locale = Locale::EN_US): string
+    {
+        return self::getSymbolByCurrency($this->currency, $locale);
+    }
+
+    /**
+     * @param Currency $currency
+     * @param Locale $locale
+     * @return string
+     */
+    public static function getSymbolByCurrency(Currency $currency, Locale $locale = Locale::EN_US): string
+    {
+        $formatter = new NumberFormatter(
+            "$locale->value@currency=$currency->value",
+            NumberFormatter::CURRENCY
+        );
+        $symbol = $formatter->getSymbol(NumberFormatter::CURRENCY_SYMBOL);
+        return str_replace("\xc2\xa0", " ", $symbol);
     }
 }
