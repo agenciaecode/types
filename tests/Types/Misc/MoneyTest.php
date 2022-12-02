@@ -3,6 +3,7 @@
 namespace Ecode\Tests\Types\Misc;
 
 use Ecode\Enums\Currency;
+use Ecode\Enums\Locale;
 use Ecode\Types\Misc\Money;
 use Exception;
 use PHPUnit\Framework\TestCase;
@@ -22,6 +23,11 @@ class MoneyTest extends TestCase
         );
 
         $this->assertEquals(
+            'US$ 2.199,98',
+            Money::fromString('$2,199.98', Currency::USD, Locale::EN_US)->getHumansFormat(Locale::PT_BR)
+        );
+
+        $this->assertEquals(
             2199,
             Money::from(2199, Currency::USD)->getAmount()
         );
@@ -29,6 +35,16 @@ class MoneyTest extends TestCase
         $this->assertEquals(
             Currency::USD,
             Money::from(2199, Currency::USD)->getCurrency()
+        );
+
+        $this->assertEquals(
+            "$",
+            Money::from(2199, Currency::USD)->getSymbol()
+        );
+
+        $this->assertEquals(
+            "R$",
+            Money::getSymbolByCurrency(Currency::BRL)
         );
     }
 }
