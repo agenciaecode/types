@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Ecode\Tests\Types\PhoneNumbers;
+namespace Ecode\Tests\Types\PhoneNumber;
 
 use Ecode\Exceptions\Http\InvalidTypeHttpException;
 use Ecode\Types\PhoneNumber\PhoneNumber;
@@ -15,6 +15,8 @@ class PhoneNumberTest extends TestCase
     {
         $phoneNumber = PhoneNumber::from('55 41 991618888');
         $this->assertInstanceOf(PhoneNumber::class, $phoneNumber);
+        $this->assertEquals(true, PhoneNumber::isValid('55 41 991618888'));
+        $this->assertEquals(false, PhoneNumber::isValid('5541991618888'));
         $this->assertEquals('55 41 991618888', $phoneNumber->getValue());
         $this->assertEquals('55 41 991618888', (string)$phoneNumber);
         $this->assertEquals('+55 (41) 99161-8888', $phoneNumber->getHumansFormat());
