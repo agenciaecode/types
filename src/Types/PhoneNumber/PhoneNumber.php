@@ -62,10 +62,28 @@ final class PhoneNumber
     }
 
     /**
+     * @param string $value
+     * @return bool
+     */
+    public static function isValid(string $value): bool
+    {
+        $valueExploded = explode(' ', $value);
+
+        if (count($valueExploded) < 3) return false;
+
+        $countryCode = Str::extractNumbers(array_shift($valueExploded));
+        $areaCode = Str::extractNumbers(array_shift($valueExploded));
+        $localNumber = Str::extractNumbers(join($valueExploded));
+
+        $standardPhoneNumber = self::buildStandardPhoneNumber($countryCode);
+        return $standardPhoneNumber->isValid($countryCode, $areaCode, $localNumber);
+    }
+
+    /**
      * @param string $countryCode
      * @return PhoneNumberStandard
      */
-    private function buildStandardPhoneNumber(string $countryCode): PhoneNumberStandard
+    private static function buildStandardPhoneNumber(string $countryCode): PhoneNumberStandard
     {
         return match ($countryCode) {
             '1' => new Us,
@@ -171,6 +189,30 @@ final class PhoneNumber
             $this->areaCode,
             $this->localNumber
         );
+    }
+
+    /**
+     * @return string
+     */
+    public function getCountryCode(): string
+    {
+        return $this->countryCode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAreaCode(): string
+    {
+        return $this->areaCode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLocalNumber(): string
+    {
+        return $this->localNumber;
     }
 
     /**
