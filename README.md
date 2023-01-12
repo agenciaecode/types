@@ -28,6 +28,7 @@ Most type have at least the following common methods:
 ```
 
 ## Available Types
+- Address
 - Arr
 - Boolean
 - Byte
@@ -49,11 +50,11 @@ Most type have at least the following common methods:
 - Path
 - PhoneNumber
 - Pound
+- PostalCode
 - Slug
 - Str
 - Url
 - Uuid
-- ZipCode
 
 ## Coming soon
 - CreditCard
