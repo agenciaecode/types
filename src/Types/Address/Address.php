@@ -4,9 +4,12 @@ namespace Ecode\Types\Address;
 
 use Ecode\Enums\Country;
 use Ecode\Exceptions\Http\InvalidTypeHttpException;
+use Ecode\Types\ErrorsTrait;
 
 final class Address
 {
+    use ErrorsTrait;
+
     /** @var Country */
     protected Country $country;
 
@@ -31,15 +34,10 @@ final class Address
     /** @var ?string */
     protected ?string $poBox;
 
+    /** @var AddressStandard  */
+    protected AddressStandard $addressStandard;
+
     /**
-     * @param Country $country
-     * @param string $addressLine1
-     * @param ?string $addressLine2
-     * @param ?string $dependentLocality
-     * @param ?string $locality
-     * @param ?string $adminArea
-     * @param ?string $postalCode
-     * @param ?string $poBox
      * @throws InvalidTypeHttpException
      */
     protected function __construct(
@@ -53,17 +51,34 @@ final class Address
         ?string $poBox = null,
     )
     {
-        if (!$this->isValid(
-            $country,
-            $addressLine1,
-            $addressLine2,
-            $dependentLocality,
-            $locality,
-            $adminArea,
-            $postalCode,
-            $poBox
-        ))
-            throw new InvalidTypeHttpException('Invalid Address type.');
+        $this->addressStandard = self::buildStandardByCountry($country);
+
+        if (!$this->addressStandard->isAddressLine1Valid($addressLine1))
+            $this->addError('Invalid address line 1.');
+
+        if (!$this->addressStandard->isAddressLine2Valid($addressLine2))
+            $this->addError('Invalid address line 2.');
+
+        if (!$this->addressStandard->isDependentLocalityValid($dependentLocality))
+            $this->addError('Invalid dependent locality.');
+
+        if (!$this->addressStandard->isLocalityValid($locality))
+            $this->addError('Invalid locality.');
+
+        if (!$this->addressStandard->isAdminAreaValid($adminArea))
+            $this->addError('Invalid admin area.');
+
+        if (!$this->addressStandard->isPostalCodeValid($postalCode))
+            $this->addError('Invalid postal code.');
+
+        if (!$this->addressStandard->isPoBoxValid($poBox))
+            $this->addError('Invalid P.O. Box.');
+
+        if ($this->hasErrors())
+            throw new InvalidTypeHttpException(
+                message: sprintf('Invalid %s type.', self::class),
+                errors: $this->getErrors()
+            );
 
         $this->country = $country;
         $this->addressLine1 = $addressLine1;
@@ -97,8 +112,8 @@ final class Address
         ?string $poBox = null,
     ): bool
     {
-        $standard = self::buildStandardByCountry($country);
-        return $standard->isValid(
+        $addressStandard = self::buildStandardByCountry($country);
+        return $addressStandard->isValid(
             $addressLine1,
             $addressLine2,
             $dependentLocality,
