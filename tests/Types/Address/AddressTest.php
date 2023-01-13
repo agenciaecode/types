@@ -21,7 +21,7 @@ class AddressTest extends TestCase
             dependentLocality: 'Zona 3',
             locality: 'Umuarama',
             adminArea: 'Paraná',
-            postalCode: '87502070',
+            postalCode: '87502-070',
             poBox: '12'
         );
         $this->assertInstanceOf(Address::class, $address);
