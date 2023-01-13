@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a4ea1f36e34c359b27283b8682591cdf",
+    "content-hash": "87599ad69faafc41578026673ed0fffb",
     "packages": [
         {
             "name": "agenciaecode/enums",
@@ -52,16 +52,16 @@
         },
         {
             "name": "agenciaecode/exceptions",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/agenciaecode/exceptions.git",
-                "reference": "c6cdf3adfd6758d60e1877ae2c19e1d904c8d261"
+                "reference": "877f8b9b413ade9189ed228f805d36f42532a545"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agenciaecode/exceptions/zipball/c6cdf3adfd6758d60e1877ae2c19e1d904c8d261",
-                "reference": "c6cdf3adfd6758d60e1877ae2c19e1d904c8d261",
+                "url": "https://api.github.com/repos/agenciaecode/exceptions/zipball/877f8b9b413ade9189ed228f805d36f42532a545",
+                "reference": "877f8b9b413ade9189ed228f805d36f42532a545",
                 "shasum": ""
             },
             "require": {
@@ -91,9 +91,9 @@
             "homepage": "https://github.com/agenciaecode/exceptions",
             "support": {
                 "issues": "https://github.com/agenciaecode/exceptions/issues",
-                "source": "https://github.com/agenciaecode/exceptions/tree/v1.0.0"
+                "source": "https://github.com/agenciaecode/exceptions/tree/v1.0.1"
             },
-            "time": "2022-10-06T15:51:52+00:00"
+            "time": "2023-01-13T03:24:36+00:00"
         },
         {
             "name": "brick/math",
@@ -2220,7 +2220,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=8.1"
+        "php": ">=8.1",
+        "ext-intl": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.2.0"
