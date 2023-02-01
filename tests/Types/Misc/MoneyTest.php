@@ -46,5 +46,114 @@ class MoneyTest extends TestCase
             "R$",
             Money::getSymbolByCurrency(Currency::BRL)
         );
+
+        $this->assertEquals(
+            200.56,
+            Money::from(100, Currency::USD)->sum(
+                Money::from(100.56, Currency::USD)
+            )->getAmount()
+        );
+
+        $this->assertEquals(
+            2250,
+            Money::from(2500, Currency::USD)->minus(
+                Money::from(250, Currency::USD)
+            )->getAmount()
+        );
+
+        $this->assertEquals(
+            false,
+            Money::from(2500, Currency::USD)->lessThan(
+                Money::from(250, Currency::USD)
+            )
+        );
+
+        $this->assertEquals(
+            true,
+            Money::from(987, Currency::USD)->lessThanOrEqualTo(
+                Money::from(987, Currency::USD)
+            )
+        );
+
+        $this->assertEquals(
+            true,
+            Money::from(1274, Currency::USD)->greaterThan(
+                Money::from(987, Currency::USD)
+            )
+        );
+
+        $this->assertEquals(
+            true,
+            Money::from(894, Currency::USD)->greaterThanOrEqualTo(
+                Money::from(894, Currency::USD)
+            )
+        );
+
+        $this->assertEquals(
+            false,
+            Money::from(321, Currency::USD)->equalTo(
+                Money::from(123, Currency::USD)
+            )
+        );
+
+        $this->assertEquals(
+            true,
+            Money::from(321, Currency::USD)->notEqualTo(
+                Money::from(123, Currency::USD)
+            )
+        );
+
+        $this->assertEquals(
+            true,
+            Money::from(321, Currency::USD)->between(
+                Money::from(12, Currency::USD),
+                Money::from(556, Currency::USD),
+            )
+        );
+
+        $this->assertEquals(
+            true,
+            Money::from(321, Currency::USD)->betweenOrEqualThen(
+                Money::from(12, Currency::USD),
+                Money::from(321, Currency::USD),
+            )
+        );
+
+        $this->assertEquals(
+            311.25,
+            Money::avg(
+                Money::from(321, Currency::USD),
+                Money::from(456, Currency::USD),
+                Money::from(12, Currency::USD),
+                Money::from(456, Currency::USD)
+            )->getAmount()
+        );
+
+        $this->assertEquals(
+            100,
+            Money::from(400, Currency::USD)
+                ->percentage(25)
+                ->getAmount()
+        );
+
+        $this->assertEquals(
+            500,
+            Money::from(400, Currency::USD)
+                ->sumPercentage(25)
+                ->getAmount()
+        );
+
+        $this->assertEquals(
+            300,
+            Money::from(400, Currency::USD)
+                ->minusPercentage(25)
+                ->getAmount()
+        );
+
+        $this->assertEquals(
+            20,
+            Money::from(500, Currency::USD)
+                ->percentageRatio(Money::from(100, Currency::USD))
+        );
     }
 }
