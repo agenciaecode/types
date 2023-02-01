@@ -130,7 +130,7 @@ final class Money
      * @return bool
      * @throws Exception
      */
-    private static function currenciesAreTheSame(Currency ...$currencies): bool
+    public static function currenciesAreTheSame(Currency ...$currencies): bool
     {
         if (count($currencies) < 2) throw new Exception('At least two currencies are required.');
 
