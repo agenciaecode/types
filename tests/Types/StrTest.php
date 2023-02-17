@@ -26,5 +26,6 @@ class StrTest extends TestCase
     public function test_should_be_able_to_slugify_a_string()
     {
         $this->assertEquals('some-string', Str::slugify('Some string'));
+        $this->assertEquals('some-string', Str::from('Some string')->getSlugFormat());
     }
 }

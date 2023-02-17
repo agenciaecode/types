@@ -155,5 +155,9 @@ class MoneyTest extends TestCase
             Money::from(500, Currency::USD)
                 ->percentageRatio(Money::from(100, Currency::USD))
         );
+
+        $this->assertEquals(null, Money::innFrom(null, Currency::USD));
+        $this->assertEquals(null, Money::innFrom(500, null));
+        $this->assertEquals(null, Money::innFrom(null, null));
     }
 }

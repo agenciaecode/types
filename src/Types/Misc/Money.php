@@ -47,6 +47,20 @@ final class Money
     }
 
     /**
+     * @param float|int|null $amount
+     * @param ?Currency $currency
+     * @return ?Money
+     */
+    public static function innFrom(null|float|int $amount, ?Currency $currency): ?Money
+    {
+        if (is_null($amount) || is_null($currency)) {
+            return null;
+        }
+
+        return new Money($amount, $currency);
+    }
+
+    /**
      * @param string $string
      * @param Currency $currency
      * @param Locale $locale

@@ -106,6 +106,14 @@ class Str
     }
 
     /**
+     * @return string
+     */
+    public function getSlugFormat(): string
+    {
+        return self::slugify($this->value);
+    }
+
+    /**
      * @return int
      */
     public function length(): int
