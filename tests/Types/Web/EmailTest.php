@@ -10,7 +10,7 @@ class EmailTest extends TestCase
     public function test_should_be_able_to_create_a_valid_email()
     {
         $this->assertInstanceOf(Email::class, Email::from('email@domain.com'));
-        $this->assertEquals('email@domain.com', Email::from('email@domain.com')->getValue());
+        $this->assertEquals('email@domain.com', Email::from('email@domain.com')->value);
         $this->assertEquals('email@domain.com', (string)Email::from('EMAIL@DOMAIN.COM'));
         $this->assertEquals('email@domain.com', (string)Email::innFrom('email@domain.com'));
         $this->assertEquals(true, Email::from('email@domain.com')->equals(Email::from('EMAIL@DOMAIN.COM')));

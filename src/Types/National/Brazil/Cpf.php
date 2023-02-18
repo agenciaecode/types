@@ -13,8 +13,10 @@ final class Cpf extends Str
      */
     protected function __construct(string $value)
     {
-        if (!self::isValid($value))
+        if (!self::isValid($value)) {
             throw new InvalidTypeHttpException(sprintf('%s is an invalid Cpf type.', $value));
+        }
+
         parent::__construct(Str::extractNumbers($value));
     }
 
@@ -24,7 +26,10 @@ final class Cpf extends Str
      */
     public static function isValid(mixed $value): bool
     {
-        if (!is_string($value)) return false;
+        if (!is_string($value)) {
+            return false;
+        }
+
         $cpf = Str::extractNumbers($value);
 
         if (strlen($cpf) != 11) return false;

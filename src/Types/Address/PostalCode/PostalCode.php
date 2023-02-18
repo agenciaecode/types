@@ -9,10 +9,10 @@ use Exception;
 final class PostalCode
 {
     /** @var string */
-    private string $value;
+    public readonly string $value;
 
     /** @var Country  */
-    private Country $country;
+    public readonly Country $country;
 
     /** @var PostalCodeStandard */
     private PostalCodeStandard $postalCodeStandard;
@@ -96,22 +96,6 @@ final class PostalCode
      */
     public function __toString(): string
     {
-        return $this->getValue();
-    }
-
-    /**
-     * @return string
-     */
-    public function getValue(): string
-    {
         return $this->value;
-    }
-
-    /**
-     * @return Country
-     */
-    public function getCountry(): Country
-    {
-        return $this->country;
     }
 }

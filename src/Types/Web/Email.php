@@ -13,8 +13,10 @@ final class Email extends Str
      */
     protected function __construct(string $value)
     {
-        if (!self::isValid($value))
+        if (!self::isValid($value)) {
             throw new InvalidTypeHttpException(sprintf('%s is an invalid Email type.', $value));
+        }
+
         parent::__construct(strtolower($value));
     }
 
@@ -24,7 +26,10 @@ final class Email extends Str
      */
     public static function isValid(mixed $value): bool
     {
-        if (!is_string($value)) return false;
+        if (!is_string($value)) {
+            return false;
+        }
+
         return filter_var($value, FILTER_VALIDATE_EMAIL) !== false;
     }
 

@@ -10,7 +10,7 @@ class Str
     /**
      * @var string
      */
-    protected string $value;
+    public readonly string $value;
 
     /**
      * @param string $value
@@ -66,14 +66,6 @@ class Str
      */
     public function __toString(): string
     {
-        return $this->getValue();
-    }
-
-    /**
-     * @return string
-     */
-    public function getValue(): string
-    {
         return $this->value;
     }
 
@@ -83,7 +75,7 @@ class Str
      */
     public function equals(self $value): bool
     {
-        return $this->getValue() === $value->getValue();
+        return $this->value === $value->value;
     }
 
     /**

@@ -12,7 +12,7 @@ class CnpjTest extends TestCase
     {
         $cnpj = Cnpj::from('67.947.309/0001-64');
         $this->assertInstanceOf(Cnpj::class, $cnpj);
-        $this->assertEquals('67947309000164', $cnpj->getValue());
+        $this->assertEquals('67947309000164', $cnpj->value);
         $this->assertEquals('67947309000164', (string)$cnpj);
 
         $cnpj = Cnpj::from('67947309000164');

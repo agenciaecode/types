@@ -13,8 +13,8 @@ class StrTest extends TestCase
         $this->assertEquals('Some string', (string)Str::from('Some string'));
         $this->assertEquals(true, Str::from('Some string')->equals(Str::from('Some string')));
         $this->assertEquals(false, Str::from('Some string')->equals(Str::from('Another string')));
-        $this->assertEquals('Some string', Str::tryFrom('Some string')->getValue());
-        $this->assertEquals('Some string', Str::innFrom('Some string')->getValue());
+        $this->assertEquals('Some string', Str::tryFrom('Some string')->value);
+        $this->assertEquals('Some string', Str::innFrom('Some string')->value);
         $this->assertEquals(null, Str::innFrom(null));
         $this->assertEquals(false, Str::isValid(123));
         $this->assertEquals(false, Str::isValid(['host' => 'github.com']));

@@ -13,8 +13,10 @@ final class Slug extends Str
      */
     protected function __construct(string $value)
     {
-        if (!self::isValid($value))
+        if (!self::isValid($value)) {
             throw new InvalidTypeHttpException(sprintf('%s is an invalid Slug type.', $value));
+        }
+
         parent::__construct($value);
     }
 
@@ -24,8 +26,14 @@ final class Slug extends Str
      */
     public static function isValid(mixed $value): bool
     {
-        if (!is_string($value)) return false;
-        if (strlen($value) < 1) return false;
+        if (!is_string($value)) {
+            return false;
+        }
+
+        if (strlen($value) < 1) {
+            return false;
+        }
+
         return !preg_match("/[^0-9a-z-]/", $value);
     }
 

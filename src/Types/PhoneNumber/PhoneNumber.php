@@ -17,25 +17,20 @@ use Exception;
  */
 final class PhoneNumber
 {
-    /**
-     * @var PhoneNumberStandard
-     */
+    /** @var string */
+    public readonly string $value;
+
+    /** @var string  */
+    public readonly string $countryCode;
+
+    /** @var string */
+    public readonly string $areaCode;
+
+    /** @var string */
+    public readonly string $localNumber;
+
+    /** @var PhoneNumberStandard  */
     private PhoneNumberStandard $standardPhoneNumber;
-
-    /**
-     * @var string
-     */
-    private string $countryCode;
-
-    /**
-     * @var string
-     */
-    private string $areaCode;
-
-    /**
-     * @var string
-     */
-    private string $localNumber;
 
     /**
      * @param string $value
@@ -45,17 +40,25 @@ final class PhoneNumber
     {
         $valueExploded = explode(' ', $value);
 
-        if (count($valueExploded) < 3)
+        if (count($valueExploded) < 3) {
             throw new InvalidTypeHttpException(sprintf('%s is an invalid Phone Number.', $value));
+        }
 
         $this->countryCode = Str::extractNumbers(array_shift($valueExploded));
         $this->areaCode = Str::extractNumbers(array_shift($valueExploded));
         $this->localNumber = Str::extractNumbers(join($valueExploded));
-
         $this->standardPhoneNumber = $this->buildStandardPhoneNumber($this->countryCode);
 
-        if (!$this->standardPhoneNumber->isValid($this->countryCode, $this->areaCode, $this->localNumber))
+        if (!$this->standardPhoneNumber->isValid($this->countryCode, $this->areaCode, $this->localNumber)) {
             throw new InvalidTypeHttpException(sprintf('%s is an invalid Phone Number.', $value));
+        }
+
+        $this->value = sprintf(
+            '%s %s %s',
+            $this->countryCode,
+            $this->areaCode,
+            $this->localNumber
+        );
     }
 
     /**
@@ -66,13 +69,15 @@ final class PhoneNumber
     {
         $valueExploded = explode(' ', $value);
 
-        if (count($valueExploded) < 3) return false;
+        if (count($valueExploded) < 3) {
+            return false;
+        }
 
         $countryCode = Str::extractNumbers(array_shift($valueExploded));
         $areaCode = Str::extractNumbers(array_shift($valueExploded));
         $localNumber = Str::extractNumbers(join($valueExploded));
-
         $standardPhoneNumber = self::buildStandardPhoneNumber($countryCode);
+
         return $standardPhoneNumber->isValid($countryCode, $areaCode, $localNumber);
     }
 
@@ -178,45 +183,8 @@ final class PhoneNumber
     /**
      * @return string
      */
-    public function getValue(): string
-    {
-        return sprintf(
-            '%s %s %s',
-            $this->countryCode,
-            $this->areaCode,
-            $this->localNumber
-        );
-    }
-
-    /**
-     * @return string
-     */
-    public function getCountryCode(): string
-    {
-        return $this->countryCode;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAreaCode(): string
-    {
-        return $this->areaCode;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLocalNumber(): string
-    {
-        return $this->localNumber;
-    }
-
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
-        return $this->getValue();
+        return $this->value;
     }
 }

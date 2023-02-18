@@ -11,9 +11,9 @@ class UrlTest extends TestCase
     {
         $this->assertInstanceOf(Url::class, Url::from('https://github.com'));
         $this->assertEquals(true, Url::from('https://github.com')->isSecure());
-        $this->assertEquals('https://github.com', Url::from('https://github.com')->getValue());
-        $this->assertEquals('https://github.com', Url::innFrom('https://github.com')->getValue());
-        $this->assertEquals('https://github.com', Url::tryFrom('https://github.com')->getValue());
+        $this->assertEquals('https://github.com', Url::from('https://github.com')->value);
+        $this->assertEquals('https://github.com', Url::innFrom('https://github.com')->value);
+        $this->assertEquals('https://github.com', Url::tryFrom('https://github.com')->value);
         $this->assertEquals(null, Url::innFrom(null));
         $this->assertEquals(null, Url::tryFrom('github.com'));
     }

@@ -14,8 +14,10 @@ final class Uuid extends Str
      */
     protected function __construct(string $value)
     {
-        if (!self::isValid($value))
+        if (!self::isValid($value)) {
             throw new InvalidTypeHttpException(sprintf('%s is an invalid Uuid type.', $value));
+        }
+
         parent::__construct(strtolower($value));
     }
 
@@ -25,7 +27,10 @@ final class Uuid extends Str
      */
     public static function isValid(mixed $value): bool
     {
-        if (!is_string($value)) return false;
+        if (!is_string($value)) {
+            return false;
+        }
+
         return ThirdPartyUuid::isValid($value);
     }
 

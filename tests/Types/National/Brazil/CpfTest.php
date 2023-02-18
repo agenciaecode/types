@@ -12,7 +12,7 @@ class CpfTest extends TestCase
     {
         $cpf = Cpf::from('732.376.660-50');
         $this->assertInstanceOf(Cpf::class, $cpf);
-        $this->assertEquals('73237666050', $cpf->getValue());
+        $this->assertEquals('73237666050', $cpf->value);
         $this->assertEquals('73237666050', (string)$cpf);
 
         $cpf = Cpf::from('36749457037');

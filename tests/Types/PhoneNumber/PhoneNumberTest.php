@@ -17,7 +17,7 @@ class PhoneNumberTest extends TestCase
         $this->assertInstanceOf(PhoneNumber::class, $phoneNumber);
         $this->assertEquals(true, PhoneNumber::isValid('55 41 991618888'));
         $this->assertEquals(false, PhoneNumber::isValid('5541991618888'));
-        $this->assertEquals('55 41 991618888', $phoneNumber->getValue());
+        $this->assertEquals('55 41 991618888', $phoneNumber->value);
         $this->assertEquals('55 41 991618888', (string)$phoneNumber);
         $this->assertEquals('+55 (41) 99161-8888', $phoneNumber->getHumansFormat());
         $this->assertEquals('+5541991618888', $phoneNumber->getE164Format());
@@ -35,7 +35,7 @@ class PhoneNumberTest extends TestCase
     {
         $phoneNumber = PhoneNumber::from('1 978 5965351');
         $this->assertInstanceOf(PhoneNumber::class, $phoneNumber);
-        $this->assertEquals('1 978 5965351', $phoneNumber->getValue());
+        $this->assertEquals('1 978 5965351', $phoneNumber->value);
         $this->assertEquals('1 978 5965351', (string)$phoneNumber);
         $this->assertEquals('+1 978 596-5351', $phoneNumber->getHumansFormat());
         $this->assertEquals('+19785965351', $phoneNumber->getE164Format());

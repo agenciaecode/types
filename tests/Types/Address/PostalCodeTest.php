@@ -16,9 +16,9 @@ class PostalCodeTest extends TestCase
     {
         $postalCode = PostalCode::from('87209-010', Country::BRAZIL);
         $this->assertInstanceOf(PostalCode::class, $postalCode);
-        $this->assertEquals('87209-010', $postalCode->getValue());
+        $this->assertEquals('87209-010', $postalCode->value);
         $this->assertEquals('87209-010', (string)$postalCode);
-        $this->assertEquals(Country::BRAZIL, $postalCode->getCountry());
+        $this->assertEquals(Country::BRAZIL, $postalCode->country);
         $this->assertEquals(true, PostalCode::isValid('87209-010', Country::BRAZIL));
     }
 

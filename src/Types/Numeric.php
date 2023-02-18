@@ -9,7 +9,7 @@ class Numeric
     /**
      * @var float|int
      */
-    protected float|int $value;
+    public readonly float|int $value;
 
     /**
      * @param float|int $value
@@ -65,15 +65,7 @@ class Numeric
      */
     public function __toString(): string
     {
-        return (string)$this->getValue();
-    }
-
-    /**
-     * @return float|int
-     */
-    public function getValue(): float|int
-    {
-        return $this->value;
+        return (string)$this->value;
     }
 
     /**
@@ -82,6 +74,6 @@ class Numeric
      */
     public function equals(self $value): bool
     {
-        return $this->getValue() === $value->getValue();
+        return $this->value === $value->value;
     }
 }

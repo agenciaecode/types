@@ -6,36 +6,48 @@ use Ecode\Enums\Country;
 use Ecode\Exceptions\Http\InvalidTypeHttpException;
 use Ecode\Types\ErrorsTrait;
 
+/**
+ * Fields of Address class:
+ * - country: "<Country>"
+ * - address_line_1: "<Street Type> <Street Name>, <House Number>"
+ * - address_line_2: "<Building/Floor/Apartment>"
+ * - dependent_locality: "<Dependent Locality/District>"
+ * - locality: "<Locality/City/Town>"
+ * - admin_area: "<State/Province/Region>"
+ * - postal_code: "<Postal/Zip Code>"
+ * - po_box: "<P.O. Box>"
+ */
+
 final class Address
 {
     use ErrorsTrait;
 
     /** @var Country */
-    protected Country $country;
+    public readonly Country $country;
 
     /** @var string */
-    protected string $addressLine1;
+    public readonly string $addressLine1;
 
     /** @var ?string */
-    protected ?string $addressLine2;
+    public readonly ?string $addressLine2;
 
     /** @var ?string */
-    protected ?string $dependentLocality;
+    public readonly ?string $dependentLocality;
 
     /** @var ?string */
-    protected ?string $locality;
+    public readonly ?string $locality;
 
     /** @var ?string */
-    protected ?string $adminArea;
+    public readonly ?string $adminArea;
 
     /** @var ?string */
-    protected ?string $postalCode;
+    public readonly ?string $postalCode;
 
     /** @var ?string */
-    protected ?string $poBox;
+    public readonly ?string $poBox;
 
     /** @var AddressStandard  */
-    protected AddressStandard $addressStandard;
+    public readonly AddressStandard $addressStandard;
 
     /**
      * @throws InvalidTypeHttpException
@@ -169,69 +181,5 @@ final class Address
             $postalCode,
             $poBox
         );
-    }
-
-    /**
-     * @return Country
-     */
-    public function getCountry(): Country
-    {
-        return $this->country;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAddressLine1(): string
-    {
-        return $this->addressLine1;
-    }
-
-    /**
-     * @return ?string
-     */
-    public function getAddressLine2(): ?string
-    {
-        return $this->addressLine2;
-    }
-
-    /**
-     * @return ?string
-     */
-    public function getDependentLocality(): ?string
-    {
-        return $this->dependentLocality;
-    }
-
-    /**
-     * @return ?string
-     */
-    public function getLocality(): ?string
-    {
-        return $this->locality;
-    }
-
-    /**
-     * @return ?string
-     */
-    public function getAdminArea(): ?string
-    {
-        return $this->adminArea;
-    }
-
-    /**
-     * @return ?string
-     */
-    public function getPostalCode(): ?string
-    {
-        return $this->postalCode;
-    }
-
-    /**
-     * @return ?string
-     */
-    public function getPoBox(): ?string
-    {
-        return $this->poBox;
     }
 }
