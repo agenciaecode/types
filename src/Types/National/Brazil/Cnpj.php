@@ -13,8 +13,10 @@ final class Cnpj extends Str
      */
     protected function __construct(string $value)
     {
-        if (!self::isValid($value))
+        if (!self::isValid($value)) {
             throw new InvalidTypeHttpException(sprintf('%s is an invalid Cnpj type.', $value));
+        }
+
         parent::__construct(Str::extractNumbers($value));
     }
 
@@ -24,7 +26,10 @@ final class Cnpj extends Str
      */
     public static function isValid(mixed $value): bool
     {
-        if (!is_string($value)) return false;
+        if (!is_string($value)) {
+            return false;
+        }
+
         $cnpj = Str::extractNumbers($value);
 
         if (strlen($cnpj) !== 14) return false;

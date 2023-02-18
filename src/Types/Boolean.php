@@ -10,7 +10,7 @@ class Boolean
     /**
      * @var bool
      */
-    protected bool $value;
+    public readonly bool $value;
 
     /**
      * @param bool $value
@@ -69,7 +69,11 @@ class Boolean
     public static function fromString(string $value): static
     {
         $filteredValue = filter_var($value, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
-        if (!static::isValid($filteredValue)) throw new InvalidTypeHttpException("Invalid truthy or falsy string.");
+
+        if (!static::isValid($filteredValue)) {
+            throw new InvalidTypeHttpException("Invalid truthy or falsy string.");
+        }
+
         return new static($filteredValue);
     }
 
@@ -93,19 +97,11 @@ class Boolean
     }
 
     /**
-     * @return bool
-     */
-    public function getValue(): bool
-    {
-        return $this->value;
-    }
-
-    /**
      * @param self $value
      * @return bool
      */
     public function equals(self $value): bool
     {
-        return $this->getValue() === $value->getValue();
+        return $this->value === $value->value;
     }
 }

@@ -14,8 +14,10 @@ final class Url extends Str
      */
     protected function __construct(string $value)
     {
-        if (!self::isValid($value))
+        if (!self::isValid($value)) {
             throw new InvalidTypeHttpException(sprintf('%s is an invalid Url type.', $value));
+        }
+
         parent::__construct(strtolower($value));
     }
 
@@ -25,7 +27,10 @@ final class Url extends Str
      */
     public static function isValid(mixed $value): bool
     {
-        if (!is_string($value)) return false;
+        if (!is_string($value)) {
+            return false;
+        }
+
         return filter_var($value, FILTER_VALIDATE_URL) !== false;
     }
 
@@ -91,8 +96,13 @@ final class Url extends Str
     public function getQueryAsArray(): ?array
     {
         $query = parse_url($this->value, PHP_URL_QUERY);
-        if (is_null($query)) return null;
+
+        if (is_null($query)) {
+            return null;
+        }
+
         parse_str($query, $result);
+
         return $result;
     }
 

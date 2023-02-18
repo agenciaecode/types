@@ -14,8 +14,15 @@ abstract class UnitOfInformation extends Numeric
     public function getHumansFormat(bool $abbreviated = true, int $maxDecimalPlaces = 2): string
     {
         $handledValue = $this->handleValue($this->value, $maxDecimalPlaces);
-        if ($abbreviated) return sprintf('%s %s', $handledValue, $this->getSymbol());
-        if ($handledValue == 1) return sprintf('%s %s', $handledValue, strtolower($this->getName()));
+
+        if ($abbreviated) {
+            return sprintf('%s %s', $handledValue, $this->getSymbol());
+        }
+
+        if ($handledValue == 1) {
+            return sprintf('%s %s', $handledValue, strtolower($this->getName()));
+        }
+
         return sprintf('%s %s', $handledValue, strtolower($this->getPlural()));
     }
 

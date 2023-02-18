@@ -10,10 +10,10 @@ use NumberFormatter;
 final class Money
 {
     /** @var float|int */
-    private float|int $amount;
+    public readonly float|int $amount;
 
     /** @var Currency */
-    private Currency $currency;
+    public readonly Currency $currency;
 
     /**
      * @param float|int $amount
@@ -87,7 +87,7 @@ final class Money
     public function getHumansFormat(Locale $locale = Locale::EN_US): string
     {
         $formatter = new NumberFormatter($locale->value, NumberFormatter::CURRENCY);
-        $formattedString = $formatter->formatCurrency($this->amount, $this->getCurrency()->value);
+        $formattedString = $formatter->formatCurrency($this->amount, $this->currency->value);
         return str_replace("\xc2\xa0", " ", $formattedString);
     }
 
@@ -97,22 +97,6 @@ final class Money
     public function __toString(): string
     {
         return $this->getHumansFormat();
-    }
-
-    /**
-     * @return float|int
-     */
-    public function getAmount(): float|int
-    {
-        return $this->amount;
-    }
-
-    /**
-     * @return Currency
-     */
-    public function getCurrency(): Currency
-    {
-        return $this->currency;
     }
 
     /**
@@ -175,8 +159,8 @@ final class Money
      */
     public function sum(Money $value): Money
     {
-        $this->validateCurrencies($value->getCurrency());
-        $result = $this->amount + $value->getAmount();
+        $this->validateCurrencies($value->currency);
+        $result = $this->amount + $value->amount;
         return Money::from($result, $this->currency);
     }
 
@@ -187,8 +171,8 @@ final class Money
      */
     public function minus(Money $value): Money
     {
-        $this->validateCurrencies($value->getCurrency());
-        $result = $this->amount - $value->getAmount();
+        $this->validateCurrencies($value->currency);
+        $result = $this->amount - $value->amount;
         return Money::from($result, $this->currency);
     }
 
@@ -199,8 +183,8 @@ final class Money
      */
     public function lessThan(Money $value): bool
     {
-        $this->validateCurrencies($value->getCurrency());
-        return $this->amount < $value->getAmount();
+        $this->validateCurrencies($value->currency);
+        return $this->amount < $value->amount;
     }
 
     /**
@@ -210,8 +194,8 @@ final class Money
      */
     public function lessThanOrEqualTo(Money $value): bool
     {
-        $this->validateCurrencies($value->getCurrency());
-        return $this->amount <= $value->getAmount();
+        $this->validateCurrencies($value->currency);
+        return $this->amount <= $value->amount;
     }
 
     /**
@@ -221,8 +205,8 @@ final class Money
      */
     public function greaterThan(Money $value): bool
     {
-        $this->validateCurrencies($value->getCurrency());
-        return $this->amount > $value->getAmount();
+        $this->validateCurrencies($value->currency);
+        return $this->amount > $value->amount;
     }
 
     /**
@@ -232,8 +216,8 @@ final class Money
      */
     public function greaterThanOrEqualTo(Money $value): bool
     {
-        $this->validateCurrencies($value->getCurrency());
-        return $this->amount >= $value->getAmount();
+        $this->validateCurrencies($value->currency);
+        return $this->amount >= $value->amount;
     }
 
     /**
@@ -243,8 +227,8 @@ final class Money
      */
     public function equalTo(Money $value): bool
     {
-        $this->validateCurrencies($value->getCurrency());
-        return $this->amount === $value->getAmount();
+        $this->validateCurrencies($value->currency);
+        return $this->amount === $value->amount;
     }
 
     /**
@@ -254,8 +238,8 @@ final class Money
      */
     public function notEqualTo(Money $value): bool
     {
-        $this->validateCurrencies($value->getCurrency());
-        return $this->amount !== $value->getAmount();
+        $this->validateCurrencies($value->currency);
+        return $this->amount !== $value->amount;
     }
 
     /**
@@ -266,8 +250,8 @@ final class Money
      */
     public function between(Money $minValue, Money $maxValue): bool
     {
-        $this->validateCurrencies($minValue->getCurrency(), $maxValue->getCurrency());
-        return $this->amount > $minValue->getAmount() && $this->amount < $maxValue->getAmount();
+        $this->validateCurrencies($minValue->currency, $maxValue->currency);
+        return $this->amount > $minValue->amount && $this->amount < $maxValue->amount;
     }
 
     /**
@@ -278,8 +262,8 @@ final class Money
      */
     public function betweenOrEqualThen(Money $minValue, Money $maxValue): bool
     {
-        $this->validateCurrencies($minValue->getCurrency(), $maxValue->getCurrency());
-        return $this->amount >= $minValue->getAmount() && $this->amount <= $maxValue->getAmount();
+        $this->validateCurrencies($minValue->currency, $maxValue->currency);
+        return $this->amount >= $minValue->amount && $this->amount <= $maxValue->amount;
     }
 
     /**
@@ -297,8 +281,8 @@ final class Money
             throw new Exception('At least two currencies are required to calculate average.');
 
         foreach ($values as $value) {
-            $currencies[] = $value->getCurrency();
-            $sum += $value->getAmount();
+            $currencies[] = $value->currency;
+            $sum += $value->amount;
         }
 
         if (!self::currenciesAreTheSame(...$currencies))
@@ -351,6 +335,6 @@ final class Money
      */
     public function percentageRatio(Money $value): int|float
     {
-        return $value->getAmount() / $this->amount * 100;
+        return $value->amount / $this->amount * 100;
     }
 }

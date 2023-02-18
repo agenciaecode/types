@@ -12,7 +12,7 @@ class Arr implements Countable, Iterator
     /**
      * @var array
      */
-    protected array $value = [];
+    public readonly array $value;
 
     /**
      * @var int
@@ -76,8 +76,11 @@ class Arr implements Countable, Iterator
     public static function fromJson(string $value): static
     {
         $parsedValue = json_decode($value, true);
-        if (!is_array($parsedValue) || json_last_error() !== JSON_ERROR_NONE)
+
+        if (!is_array($parsedValue) || json_last_error() !== JSON_ERROR_NONE) {
             throw new InvalidTypeHttpException(sprintf('\'%s\' is a invalid json string.', $value));
+        }
+
         return new static($parsedValue);
     }
 
@@ -88,7 +91,10 @@ class Arr implements Countable, Iterator
      */
     public static function innFromJson(?string $value): ?static
     {
-        if (is_null($value)) return null;
+        if (is_null($value)) {
+            return null;
+        }
+
         return static::fromJson($value);
     }
 
@@ -105,15 +111,7 @@ class Arr implements Countable, Iterator
      */
     public function __toString(): string
     {
-        return static::toJson();
-    }
-
-    /**
-     * @return array
-     */
-    public function getValue(): array
-    {
-        return $this->value;
+        return $this->toJson();
     }
 
     /**
@@ -122,7 +120,7 @@ class Arr implements Countable, Iterator
      */
     public function equals(self $value): bool
     {
-        return $this->getValue() === $value->getValue();
+        return $this->value === $value->value;
     }
 
     /**
@@ -135,29 +133,11 @@ class Arr implements Countable, Iterator
     }
 
     /**
-     * @return static
-     */
-    public static function init(): static
-    {
-        return new static([]);
-    }
-
-    /**
      * @return int
      */
     public function count(): int
     {
         return count($this->value);
-    }
-
-    /**
-     * @param mixed $value
-     * @return $this
-     */
-    public function push(mixed $value): static
-    {
-        $this->value[] = $value;
-        return $this;
     }
 
     /**

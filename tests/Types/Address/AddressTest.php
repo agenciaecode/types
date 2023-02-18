@@ -25,13 +25,13 @@ class AddressTest extends TestCase
             poBox: '12'
         );
         $this->assertInstanceOf(Address::class, $address);
-        $this->assertEquals('Rua Ministro Oliveira Salazar, 5159', $address->getAddressLine1());
-        $this->assertEquals(Country::BRAZIL, $address->getCountry());
-        $this->assertEquals('12', $address->getPoBox());
-        $this->assertEquals('Sala 01', $address->getAddressLine2());
-        $this->assertEquals('Zona 3', $address->getDependentLocality());
-        $this->assertEquals('Umuarama', $address->getLocality());
-        $this->assertEquals('Paraná', $address->getAdminArea());
-        $this->assertEquals('87502-070', $address->getPostalCode());
+        $this->assertEquals('Rua Ministro Oliveira Salazar, 5159', $address->addressLine1);
+        $this->assertEquals(Country::BRAZIL, $address->country);
+        $this->assertEquals('12', $address->poBox);
+        $this->assertEquals('Sala 01', $address->addressLine2);
+        $this->assertEquals('Zona 3', $address->dependentLocality);
+        $this->assertEquals('Umuarama', $address->locality);
+        $this->assertEquals('Paraná', $address->adminArea);
+        $this->assertEquals('87502-070', $address->postalCode);
     }
 }

@@ -23,7 +23,10 @@ trait ErrorsTrait
      */
     protected function getErrors(): ?array
     {
-        if (count($this->errors) === 0) return null;
+        if (count($this->errors) === 0) {
+            return null;
+        }
+
         return $this->errors;
     }
 

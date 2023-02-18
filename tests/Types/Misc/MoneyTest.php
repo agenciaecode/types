@@ -29,12 +29,12 @@ class MoneyTest extends TestCase
 
         $this->assertEquals(
             2199,
-            Money::from(2199, Currency::USD)->getAmount()
+            Money::from(2199, Currency::USD)->amount
         );
 
         $this->assertEquals(
             Currency::USD,
-            Money::from(2199, Currency::USD)->getCurrency()
+            Money::from(2199, Currency::USD)->currency
         );
 
         $this->assertEquals(
@@ -51,14 +51,14 @@ class MoneyTest extends TestCase
             200.56,
             Money::from(100, Currency::USD)->sum(
                 Money::from(100.56, Currency::USD)
-            )->getAmount()
+            )->amount
         );
 
         $this->assertEquals(
             2250,
             Money::from(2500, Currency::USD)->minus(
                 Money::from(250, Currency::USD)
-            )->getAmount()
+            )->amount
         );
 
         $this->assertEquals(
@@ -126,28 +126,28 @@ class MoneyTest extends TestCase
                 Money::from(456, Currency::USD),
                 Money::from(12, Currency::USD),
                 Money::from(456, Currency::USD)
-            )->getAmount()
+            )->amount
         );
 
         $this->assertEquals(
             100,
             Money::from(400, Currency::USD)
                 ->percentage(25)
-                ->getAmount()
+                ->amount
         );
 
         $this->assertEquals(
             500,
             Money::from(400, Currency::USD)
                 ->sumPercentage(25)
-                ->getAmount()
+                ->amount
         );
 
         $this->assertEquals(
             300,
             Money::from(400, Currency::USD)
                 ->minusPercentage(25)
-                ->getAmount()
+                ->amount
         );
 
         $this->assertEquals(

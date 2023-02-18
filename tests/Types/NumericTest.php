@@ -13,8 +13,8 @@ class NumericTest extends TestCase
         $this->assertEquals('123', (string)Numeric::from(123));
         $this->assertEquals(true, Numeric::from(123)->equals(Numeric::from(123)));
         $this->assertEquals(false, Numeric::from(123)->equals(Numeric::from(321)));
-        $this->assertEquals(123, Numeric::tryFrom(123)->getValue());
-        $this->assertEquals(123, Numeric::innFrom(123)->getValue());
+        $this->assertEquals(123, Numeric::tryFrom(123)->value);
+        $this->assertEquals(123, Numeric::innFrom(123)->value);
         $this->assertEquals(null, Numeric::innFrom(null));
         $this->assertEquals(true, Numeric::isValid(123));
         $this->assertEquals(true, Numeric::isValid(123.45));

@@ -13,8 +13,8 @@ class IntegerTest extends TestCase
         $this->assertEquals('123', (string)Integer::from(123));
         $this->assertEquals(true, Integer::from(123)->equals(Integer::from(123)));
         $this->assertEquals(false, Integer::from(123)->equals(Integer::from(321)));
-        $this->assertEquals(123, Integer::tryFrom(123)->getValue());
-        $this->assertEquals(123, Integer::innFrom(123)->getValue());
+        $this->assertEquals(123, Integer::tryFrom(123)->value);
+        $this->assertEquals(123, Integer::innFrom(123)->value);
         $this->assertEquals(null, Integer::innFrom(null));
         $this->assertEquals(true, Integer::isValid(123));
         $this->assertEquals(false, Integer::isValid(123.45));

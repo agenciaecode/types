@@ -17,7 +17,7 @@ final class Password
     /**
      * @var string
      */
-    private string $value;
+    public readonly string $value;
 
     /**
      * @param string $value
@@ -144,14 +144,6 @@ final class Password
      */
     public function __toString(): string
     {
-        return $this->getValue();
-    }
-
-    /**
-     * @return string
-     */
-    public function getValue(): string
-    {
         return $this->value;
     }
 
@@ -161,6 +153,6 @@ final class Password
      */
     public function equals(Password $value): bool
     {
-        return $this->getValue() === $value->getValue();
+        return $this->value === $value->value;
     }
 }
