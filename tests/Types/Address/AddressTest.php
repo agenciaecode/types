@@ -34,4 +34,25 @@ class AddressTest extends TestCase
         $this->assertEquals('Paraná', $address->adminArea);
         $this->assertEquals('87502-070', $address->postalCode);
     }
+
+    /**
+     * @throws InvalidTypeHttpException
+     */
+    public function test_should_be_able_to_create_a_valid_address_from_array()
+    {
+        $addressArray = [
+            'country' => 'BR',
+            'address_line_1' => 'Rua Ministro Oliveira Salazar, 5159',
+            'address_line_2' => 'Sala 01',
+            'dependent_locality' => 'Zona 3',
+            'locality' => 'Umuarama',
+            'admin_area' => 'Paraná',
+            'postal_code' => '87502-070',
+            'po_box' =>  null,
+        ];
+
+        $address = Address::fromArray($addressArray);
+        $this->assertInstanceOf(Address::class, $address);
+        $this->assertEquals($addressArray, $address->toArray());
+    }
 }
