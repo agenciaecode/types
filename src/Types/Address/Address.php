@@ -17,7 +17,6 @@ use Ecode\Types\ErrorsTrait;
  * - postal_code: "<Postal/Zip Code>"
  * - po_box: "<P.O. Box>"
  */
-
 final class Address
 {
     use ErrorsTrait;
@@ -181,5 +180,41 @@ final class Address
             $postalCode,
             $poBox
         );
+    }
+
+    /**
+     * @param array $addressArray
+     * @return Address
+     * @throws InvalidTypeHttpException
+     */
+    public static function fromArray(array $addressArray): Address
+    {
+        return new Address(
+            Country::from($addressArray['country']),
+            $addressArray['address_line_1'],
+            $addressArray['address_line_2'],
+            $addressArray['dependent_locality'],
+            $addressArray['locality'],
+            $addressArray['admin_area'],
+            $addressArray['postal_code'],
+            $addressArray['po_box']
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return [
+            'country' => $this->country->value,
+            'address_line_1' => $this->addressLine1,
+            'address_line_2' => $this->addressLine2,
+            'dependent_locality' => $this->dependentLocality,
+            'locality' => $this->locality,
+            'admin_area' => $this->adminArea,
+            'postal_code' => $this->postalCode,
+            'po_box' => $this->poBox,
+        ];
     }
 }
