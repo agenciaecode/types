@@ -179,4 +179,37 @@ class Arr implements Countable, Iterator
     {
         $this->index = 0;
     }
+
+    /**
+     * @param array $array
+     * @return array
+     */
+    public static function trimNulls(array $array): array
+    {
+        foreach ($array as $value) {
+            if (!is_null($value)) {
+                $newArray[] = $value;
+            }
+        }
+
+        return $newArray ?? [];
+    }
+
+    /**
+     * @param array $array
+     * @param string $keyName
+     * @param string $valueName
+     * @return array
+     */
+    public static function toKeyValue(array $array, string $keyName = 'key', string $valueName = 'value'): array
+    {
+        foreach ($array as $key => $value) {
+            $keyValueArr[] = [
+                $keyName => $key,
+                $valueName => $value,
+            ];
+        }
+
+        return $keyValueArr ?? [];
+    }
 }
