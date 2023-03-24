@@ -42,4 +42,43 @@ class ArrTest extends TestCase
             $this->assertEquals($gitRepositoriesArr[$gitRepositories->key()], $gitRepository);
         }
     }
+
+    public function test_should_be_able_to_trim_nulls_positions()
+    {
+        $inputArray = ['GitHub', null, 'GitLab', 'Bitbucket'];
+        $expectedArray = ['GitHub', 'GitLab', 'Bitbucket'];
+
+        $this->assertEquals($expectedArray, Arr::trimNulls($inputArray));
+    }
+
+    public function test_should_be_able_to_transform_on_key_value_format()
+    {
+        $inputArray = [
+            'first_name' => 'John',
+            'last_name' => 'Doe',
+            'email' => 'johndoe@email.com',
+            'birthdate' => '1989-05-10'
+        ];
+
+        $expectedArray = [
+            [
+                'key' => 'first_name',
+                'value' => 'John',
+            ],
+            [
+                'key' => 'last_name',
+                'value' => 'Doe',
+            ],
+            [
+                'key' => 'email',
+                'value' => 'johndoe@email.com',
+            ],
+            [
+                'key' => 'birthdate',
+                'value' => '1989-05-10',
+            ]
+        ];
+
+        $this->assertEquals($expectedArray, Arr::toKeyValue($inputArray));
+    }
 }
