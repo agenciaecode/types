@@ -216,9 +216,9 @@ class Arr implements Countable, Iterator
     /**
      * @return bool
      */
-    public function isSequencial(): bool
+    public function isSequential(): bool
     {
-        return self::isSequencialArray($this->value);
+        return self::isSequentialArray($this->value);
     }
 
     /**
@@ -233,7 +233,7 @@ class Arr implements Countable, Iterator
      * @param array $array
      * @return bool
      */
-    public static function isSequencialArray(array $array): bool
+    public static function isSequentialArray(array $array): bool
     {
         return array_values($array) === $array;
     }
