@@ -212,4 +212,38 @@ class Arr implements Countable, Iterator
 
         return $keyValueArr ?? [];
     }
+
+    /**
+     * @return bool
+     */
+    public function isSequencial(): bool
+    {
+        return self::isSequencialArray($this->value);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAssociative(): bool
+    {
+        return self::isAssociativeArray($this->value);
+    }
+
+    /**
+     * @param array $array
+     * @return bool
+     */
+    public static function isSequencialArray(array $array): bool
+    {
+        return array_values($array) === $array;
+    }
+
+    /**
+     * @param array $array
+     * @return bool
+     */
+    public static function isAssociativeArray(array $array): bool
+    {
+        return array_values($array) !== $array;
+    }
 }

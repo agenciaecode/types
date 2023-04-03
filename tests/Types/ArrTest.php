@@ -81,4 +81,15 @@ class ArrTest extends TestCase
 
         $this->assertEquals($expectedArray, Arr::toKeyValue($inputArray));
     }
+
+    public function test_array_types()
+    {
+        $fruits = ['apple', 'orange', 'banana'];
+        $this->assertEquals(true, Arr::isSequencialArray($fruits));
+        $this->assertEquals(false, Arr::isAssociativeArray($fruits));
+
+        $person = Arr::from(['name' => 'John Doe', 'email' => 'johndoe@email.com']);
+        $this->assertEquals(false, $person->isSequencial());
+        $this->assertEquals(true, $person->isAssociative());
+    }
 }
