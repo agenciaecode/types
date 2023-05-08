@@ -7,14 +7,14 @@ use Exception;
 class Numeric
 {
     /**
-     * @var float|int
+     * @var float
      */
-    public readonly float|int $value;
+    public readonly float $value;
 
     /**
-     * @param float|int $value
+     * @param float $value
      */
-    protected function __construct(float|int $value)
+    protected function __construct(float $value)
     {
         $this->value = $value;
     }
@@ -75,5 +75,47 @@ class Numeric
     public function equals(self $value): bool
     {
         return $this->value === $value->value;
+    }
+
+    /**
+     * @param float $value
+     * @param int $decimalPlaces
+     * @param string $decimalSeparator
+     * @param string $thousandsSeparator
+     * @return string
+     */
+    public static function numberFormat(
+        float $value,
+        int $decimalPlaces = 2,
+        string $decimalSeparator = '.',
+        string $thousandsSeparator = '',
+    ): string
+    {
+        return number_format(
+            num: $value,
+            decimals: $decimalPlaces,
+            decimal_separator: $decimalSeparator,
+            thousands_separator: $thousandsSeparator
+        );
+    }
+
+    /**
+     * @param int $decimalPlaces
+     * @param string $decimalSeparator
+     * @param string $thousandsSeparator
+     * @return string
+     */
+    public function format(
+        int $decimalPlaces = 2,
+        string $decimalSeparator = '.',
+        string $thousandsSeparator = '',
+    ): string
+    {
+        return self::numberFormat(
+            value: $this->value,
+            decimalPlaces: $decimalPlaces,
+            decimalSeparator: $decimalSeparator,
+            thousandsSeparator: $thousandsSeparator
+        );
     }
 }

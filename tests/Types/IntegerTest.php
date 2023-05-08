@@ -11,14 +11,14 @@ class IntegerTest extends TestCase
     {
         $this->assertInstanceOf(Integer::class, Integer::from(123));
         $this->assertEquals('123', (string)Integer::from(123));
-        $this->assertEquals(true, Integer::from(123)->equals(Integer::from(123)));
-        $this->assertEquals(false, Integer::from(123)->equals(Integer::from(321)));
+        $this->assertTrue(Integer::from(123)->equals(Integer::from(123)));
+        $this->assertFalse(Integer::from(123)->equals(Integer::from(321)));
         $this->assertEquals(123, Integer::tryFrom(123)->value);
         $this->assertEquals(123, Integer::innFrom(123)->value);
         $this->assertEquals(null, Integer::innFrom(null));
-        $this->assertEquals(true, Integer::isValid(123));
-        $this->assertEquals(false, Integer::isValid(123.45));
-        $this->assertEquals(false, Integer::isValid('123'));
-        $this->assertEquals(false, Integer::isValid(['host' => 'github.com']));
+        $this->assertTrue(Integer::isValid(123));
+        $this->assertFalse(Integer::isValid(123.45));
+        $this->assertFalse(Integer::isValid('123'));
+        $this->assertFalse(Integer::isValid(['host' => 'github.com']));
     }
 }

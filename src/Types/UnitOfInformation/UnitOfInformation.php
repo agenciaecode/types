@@ -13,7 +13,7 @@ abstract class UnitOfInformation extends Numeric
      */
     public function getHumansFormat(bool $abbreviated = true, int $maxDecimalPlaces = 2): string
     {
-        $handledValue = $this->handleValue($this->value, $maxDecimalPlaces);
+        $handledValue = (float)self::numberFormat($this->value, $maxDecimalPlaces);
 
         if ($abbreviated) {
             return sprintf('%s %s', $handledValue, $this->getSymbol());
@@ -24,16 +24,6 @@ abstract class UnitOfInformation extends Numeric
         }
 
         return sprintf('%s %s', $handledValue, strtolower($this->getPlural()));
-    }
-
-    /**
-     * @param float|int $value
-     * @param int $maxDecimalPlaces
-     * @return float
-     */
-    public static function handleValue(float|int $value, int $maxDecimalPlaces): float
-    {
-        return (float)number_format($value, $maxDecimalPlaces, '.', '');
     }
 
     /**

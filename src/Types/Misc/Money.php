@@ -9,17 +9,17 @@ use NumberFormatter;
 
 final class Money
 {
-    /** @var float|int */
-    public readonly float|int $amount;
+    /** @var float */
+    public readonly float $amount;
 
     /** @var Currency */
     public readonly Currency $currency;
 
     /**
-     * @param float|int $amount
+     * @param float $amount
      * @param Currency $currency
      */
-    private function __construct(float|int $amount, Currency $currency)
+    private function __construct(float $amount, Currency $currency)
     {
         $this->amount = $amount;
         $this->currency = $currency;
@@ -37,21 +37,21 @@ final class Money
     }
 
     /**
-     * @param float|int $amount
+     * @param float $amount
      * @param Currency $currency
      * @return Money
      */
-    public static function from(float|int $amount, Currency $currency): Money
+    public static function from(float $amount, Currency $currency): Money
     {
         return new Money($amount, $currency);
     }
 
     /**
-     * @param float|int|null $amount
+     * @param ?float $amount
      * @param ?Currency $currency
      * @return ?Money
      */
-    public static function innFrom(null|float|int $amount, ?Currency $currency): ?Money
+    public static function innFrom(?float $amount, ?Currency $currency): ?Money
     {
         if (is_null($amount) || is_null($currency)) {
             return null;
@@ -336,5 +336,21 @@ final class Money
     public function percentageRatio(Money $value): int|float
     {
         return $value->amount / $this->amount * 100;
+    }
+
+    /**
+     * @param float $amount
+     * @return float
+     */
+    public static function roundAmount(float $amount): float
+    {
+        return round(num: $amount, precision: 2, mode: PHP_ROUND_HALF_UP);
+    }
+
+    /**
+     * @return float
+     */
+    public function round(): float {
+        return self::roundAmount(amount: $this->amount);
     }
 }
