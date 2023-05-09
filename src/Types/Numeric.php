@@ -7,14 +7,14 @@ use Exception;
 class Numeric
 {
     /**
-     * @var float
+     * @var float|int
      */
-    public readonly float $value;
+    public readonly float|int $value;
 
     /**
-     * @param float $value
+     * @param float|int $value
      */
-    protected function __construct(float $value)
+    protected function __construct(float|int $value)
     {
         $this->value = $value;
     }
