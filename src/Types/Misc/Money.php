@@ -164,6 +164,22 @@ final class Money
         return Money::from($result, $this->currency);
     }
 
+    public function multiply(int|float $multiplier): Money
+    {
+        return new Money(
+            amount: $this->amount * $multiplier,
+            currency: $this->currency
+        );
+    }
+
+    public function divide(int|float $divisor): Money
+    {
+        return new Money(
+            amount: $this->amount / $divisor,
+            currency: $this->currency
+        );
+    }
+
     /**
      * @param Money $value
      * @return Money
