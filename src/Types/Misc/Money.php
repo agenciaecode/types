@@ -353,4 +353,12 @@ final class Money
     public function round(): float {
         return self::roundAmount(amount: $this->amount);
     }
+
+    public function toArray(): array
+    {
+        return [
+            'amount' => $this->amount,
+            'currency' => $this->currency->value,
+        ];
+    }
 }
