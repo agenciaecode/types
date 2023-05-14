@@ -153,6 +153,12 @@ class MoneyTest extends TestCase
             actual: Money::from(20, Currency::USD)->toArray()
         );
 
+        $moneyType = Money::from(20, Currency::USD);
+        $this->assertEquals(
+            expected: $moneyType,
+            actual: $moneyType->clone()
+        );
+
         $this->assertEquals(20.1, Money::from(20.1, Currency::USD)->round());
         $this->assertEquals(20.16, Money::from(20.15562938, Currency::USD)->round());
         $this->assertEquals(null, Money::innFrom(null, Currency::USD));

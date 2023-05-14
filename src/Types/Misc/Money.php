@@ -361,4 +361,9 @@ final class Money
             'currency' => $this->currency->value,
         ];
     }
+
+    public function clone(): self
+    {
+        return new Money($this->amount, $this->currency);
+    }
 }
