@@ -30,7 +30,7 @@ final class Money
      * @param Currency $currency
      * @return bool
      */
-    public static function isValid(mixed $amount, Currency $currency): bool
+    public static function isValid(mixed $amount, Currency $currency = Currency::USD): bool
     {
         if (!is_int($amount) && !is_float($amount)) return false;
         return true;
@@ -41,9 +41,14 @@ final class Money
      * @param Currency $currency
      * @return Money
      */
-    public static function from(float $amount, Currency $currency): Money
+    public static function from(float $amount, Currency $currency = Currency::USD): Money
     {
         return new Money($amount, $currency);
+    }
+
+    public static function fromZero(Currency $currency = Currency::USD): Money
+    {
+        return new Money(0, $currency);
     }
 
     /**
@@ -51,7 +56,7 @@ final class Money
      * @param ?Currency $currency
      * @return ?Money
      */
-    public static function innFrom(?float $amount, ?Currency $currency): ?Money
+    public static function innFrom(?float $amount, ?Currency $currency = Currency::USD): ?Money
     {
         if (is_null($amount) || is_null($currency)) {
             return null;
