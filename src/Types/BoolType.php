@@ -104,4 +104,14 @@ class BoolType
     {
         return $this->value === $value->value;
     }
+
+    public function isTrue(): bool
+    {
+        return $this->value === true;
+    }
+
+    public function isFalse(): bool
+    {
+        return $this->value === false;
+    }
 }

@@ -12,10 +12,14 @@ class BoolTypeTest extends TestCase
     {
         $this->assertInstanceOf(BoolType::class, BoolType::from(true));
         $this->assertEquals('true', (string)BoolType::from(true));
-        $this->assertEquals(false, BoolType::tryFrom(false)->value);
-        $this->assertEquals(true, BoolType::innFrom(true)->value);
+        $this->assertFalse(BoolType::tryFrom(false)->value);
+        $this->assertTrue(BoolType::innFrom(true)->value);
         $this->assertEquals(null, BoolType::tryFrom('true'));
         $this->assertEquals(null, BoolType::innFrom(null));
+        $this->assertTrue(BoolType::from(true)->isTrue());
+        $this->assertFalse(BoolType::from(false)->isTrue());
+        $this->assertTrue(BoolType::from(false)->isFalse());
+        $this->assertFalse(BoolType::from(true)->isFalse());
     }
 
     /**
@@ -24,11 +28,11 @@ class BoolTypeTest extends TestCase
     public function test_should_be_able_to_create_a_valid_boolean_from_a_truthy_string()
     {
         $this->assertEquals(null, BoolType::innFromString(null));
-        $this->assertEquals(true, BoolType::innFromString('true')->value);
-        $this->assertEquals(true, BoolType::fromString('true')->value);
-        $this->assertEquals(true, BoolType::fromString('yes')->value);
-        $this->assertEquals(true, BoolType::fromString('on')->value);
-        $this->assertEquals(true, BoolType::fromString('1')->value);
+        $this->assertTrue(BoolType::innFromString('true')->value);
+        $this->assertTrue(BoolType::fromString('true')->value);
+        $this->assertTrue(BoolType::fromString('yes')->value);
+        $this->assertTrue(BoolType::fromString('on')->value);
+        $this->assertTrue(BoolType::fromString('1')->value);
     }
 
     /**
@@ -37,10 +41,10 @@ class BoolTypeTest extends TestCase
     public function test_should_be_able_to_create_a_valid_boolean_from_a_falsy_string()
     {
         $this->assertEquals(null, BoolType::innFromString(null));
-        $this->assertEquals(false, BoolType::innFromString('false')->value);
-        $this->assertEquals(false, BoolType::fromString('false')->value);
-        $this->assertEquals(false, BoolType::fromString('no')->value);
-        $this->assertEquals(false, BoolType::fromString('off')->value);
-        $this->assertEquals(false, BoolType::fromString('0')->value);
+        $this->assertFalse(BoolType::innFromString('false')->value);
+        $this->assertFalse(BoolType::fromString('false')->value);
+        $this->assertFalse(BoolType::fromString('no')->value);
+        $this->assertFalse(BoolType::fromString('off')->value);
+        $this->assertFalse(BoolType::fromString('0')->value);
     }
 }
