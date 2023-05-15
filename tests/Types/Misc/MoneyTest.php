@@ -15,11 +15,11 @@ class MoneyTest extends TestCase
      */
     public function test_should_be_able_to_create_a_valid_money()
     {
-        $this->assertInstanceOf(Money::class, Money::from(200, Currency::USD));
+        $this->assertInstanceOf(Money::class, Money::from(200));
 
         $this->assertEquals(
             '$2,199.98',
-            Money::from(2199.981234, Currency::USD)->getHumansFormat()
+            Money::from(2199.981234)->getHumansFormat()
         );
 
         $this->assertEquals(
@@ -29,17 +29,17 @@ class MoneyTest extends TestCase
 
         $this->assertEquals(
             2199,
-            Money::from(2199, Currency::USD)->amount
+            Money::from(2199)->amount
         );
 
         $this->assertEquals(
             Currency::USD,
-            Money::from(2199, Currency::USD)->currency
+            Money::from(2199)->currency
         );
 
         $this->assertEquals(
             "$",
-            Money::from(2199, Currency::USD)->getSymbol()
+            Money::from(2199)->getSymbol()
         );
 
         $this->assertEquals(
@@ -49,129 +49,129 @@ class MoneyTest extends TestCase
 
         $this->assertEquals(
             200.56,
-            Money::from(100, Currency::USD)->sum(
-                Money::from(100.56, Currency::USD)
+            Money::from(100)->sum(
+                Money::from(100.56)
             )->amount
         );
 
         $this->assertEquals(
             2250,
-            Money::from(2500, Currency::USD)->minus(
-                Money::from(250, Currency::USD)
+            Money::from(2500)->minus(
+                Money::from(250)
             )->amount
         );
 
         $this->assertFalse(
-            Money::from(2500, Currency::USD)->lessThan(
-                Money::from(250, Currency::USD)
+            Money::from(2500)->lessThan(
+                Money::from(250)
             )
         );
 
         $this->assertTrue(
-            Money::from(987, Currency::USD)->lessThanOrEqualTo(
-                Money::from(987, Currency::USD)
+            Money::from(987)->lessThanOrEqualTo(
+                Money::from(987)
             )
         );
 
         $this->assertTrue(
-            Money::from(1274, Currency::USD)->greaterThan(
-                Money::from(987, Currency::USD)
+            Money::from(1274)->greaterThan(
+                Money::from(987)
             )
         );
 
         $this->assertTrue(
-            Money::from(894, Currency::USD)->greaterThanOrEqualTo(
-                Money::from(894, Currency::USD)
+            Money::from(894)->greaterThanOrEqualTo(
+                Money::from(894)
             )
         );
 
         $this->assertFalse(
-            Money::from(321, Currency::USD)->equalTo(
-                Money::from(123, Currency::USD)
+            Money::from(321)->equalTo(
+                Money::from(123)
             )
         );
 
         $this->assertTrue(
-            Money::from(321, Currency::USD)->notEqualTo(
-                Money::from(123, Currency::USD)
+            Money::from(321)->notEqualTo(
+                Money::from(123)
             )
         );
 
         $this->assertTrue(
-            Money::from(321, Currency::USD)->between(
-                Money::from(12, Currency::USD),
-                Money::from(556, Currency::USD),
+            Money::from(321)->between(
+                Money::from(12),
+                Money::from(556),
             )
         );
 
         $this->assertTrue(
-            Money::from(321, Currency::USD)->betweenOrEqualThen(
-                Money::from(12, Currency::USD),
-                Money::from(321, Currency::USD),
+            Money::from(321)->betweenOrEqualThen(
+                Money::from(12),
+                Money::from(321),
             )
         );
 
         $this->assertEquals(
             311.25,
             Money::avg(
-                Money::from(321, Currency::USD),
-                Money::from(456, Currency::USD),
-                Money::from(12, Currency::USD),
-                Money::from(456, Currency::USD)
+                Money::from(321),
+                Money::from(456),
+                Money::from(12),
+                Money::from(456)
             )->amount
         );
 
         $this->assertEquals(
             100,
-            Money::from(400, Currency::USD)
+            Money::from(400)
                 ->percentage(25)
                 ->amount
         );
 
         $this->assertEquals(
             500,
-            Money::from(400, Currency::USD)
+            Money::from(400)
                 ->sumPercentage(25)
                 ->amount
         );
 
         $this->assertEquals(
             300,
-            Money::from(400, Currency::USD)
+            Money::from(400)
                 ->minusPercentage(25)
                 ->amount
         );
 
         $this->assertEquals(
             20,
-            Money::from(500, Currency::USD)
-                ->percentageRatio(Money::from(100, Currency::USD))
+            Money::from(500)
+                ->percentageRatio(Money::from(100))
         );
 
         $this->assertEquals(
             expected: ['amount' => 20, 'currency' => 'USD'],
-            actual: Money::from(20, Currency::USD)->toArray()
+            actual: Money::from(20)->toArray()
         );
 
-        $moneyType = Money::from(20, Currency::USD);
+        $moneyType = Money::from(20);
         $this->assertEquals(
             expected: $moneyType,
             actual: $moneyType->clone()
         );
 
         $this->assertEquals(
-            expected: Money::from(amount: 20, currency: Currency::USD),
-            actual: Money::from(amount: 40, currency: Currency::USD)->divide(divisor: 2)
+            expected: Money::from(amount: 20),
+            actual: Money::from(amount: 40)->divide(divisor: 2)
         );
 
         $this->assertEquals(
-            expected: Money::from(amount: 40, currency: Currency::USD),
-            actual: Money::from(amount: 10, currency: Currency::USD)->multiply(multiplier: 4)
+            expected: Money::from(amount: 40),
+            actual: Money::from(amount: 10)->multiply(multiplier: 4)
         );
 
-        $this->assertEquals(20.1, Money::from(20.1, Currency::USD)->round());
-        $this->assertEquals(20.16, Money::from(20.15562938, Currency::USD)->round());
-        $this->assertEquals(null, Money::innFrom(null, Currency::USD));
+        $this->assertEquals(20.1, Money::from(20.1)->round());
+        $this->assertEquals(20.16, Money::from(20.15562938)->round());
+        $this->assertEquals(null, Money::innFrom(null));
         $this->assertEquals(null, Money::innFrom(500, null));
         $this->assertEquals(null, Money::innFrom(null, null));
     }

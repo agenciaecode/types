@@ -5,7 +5,7 @@ namespace Ecode\Types;
 use Ecode\Exceptions\Http\InvalidTypeHttpException;
 use Throwable;
 
-class Boolean
+class BoolType
 {
     /**
      * @var bool
@@ -103,5 +103,15 @@ class Boolean
     public function equals(self $value): bool
     {
         return $this->value === $value->value;
+    }
+
+    public function isTrue(): bool
+    {
+        return $this->value === true;
+    }
+
+    public function isFalse(): bool
+    {
+        return $this->value === false;
     }
 }

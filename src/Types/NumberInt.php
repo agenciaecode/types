@@ -2,7 +2,7 @@
 
 namespace Ecode\Types;
 
-final class Integer extends Numeric
+final class NumberInt extends Numeric
 {
     /**
      * @param int $value
