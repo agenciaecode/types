@@ -5,7 +5,7 @@ namespace Ecode\Types;
 use Ecode\Exceptions\Http\InvalidTypeHttpException;
 use Throwable;
 
-class Boolean
+class BoolType
 {
     /**
      * @var bool
