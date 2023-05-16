@@ -8,7 +8,6 @@ use Ecode\Types\Str;
 final class Cpf extends Str
 {
     /**
-     * @param string $value
      * @throws InvalidTypeHttpException
      */
     protected function __construct(string $value)
@@ -20,10 +19,6 @@ final class Cpf extends Str
         parent::__construct(Str::extractNumbers($value));
     }
 
-    /**
-     * @param mixed $value
-     * @return bool
-     */
     public static function isValid(mixed $value): bool
     {
         if (!is_string($value)) {
@@ -32,8 +27,13 @@ final class Cpf extends Str
 
         $cpf = Str::extractNumbers($value);
 
-        if (strlen($cpf) != 11) return false;
-        if (preg_match(pattern: '/(\d)\1{10}/', subject: $cpf)) return false;
+        if (strlen($cpf) != 11) {
+            return false;
+        }
+
+        if (preg_match(pattern: '/(\d)\1{10}/', subject: $cpf)) {
+            return false;
+        }
 
         for ($t = 9; $t < 11; $t++) {
             for ($d = 0, $c = 0; $c < $t; $c++) {
@@ -42,15 +42,14 @@ final class Cpf extends Str
 
             $d = ((10 * $d) % 11) % 10;
 
-            if ($cpf[$c] != $d) return false;
+            if ($cpf[$c] != $d) {
+                return false;
+            }
         }
 
         return true;
     }
 
-    /**
-     * @return string
-     */
     public function getHumansFormat(): string
     {
         return sprintf(
