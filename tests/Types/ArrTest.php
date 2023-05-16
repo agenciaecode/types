@@ -24,8 +24,8 @@ class ArrTest extends TestCase
         $this->assertEquals(['host' => 'github.com'], Arr::fromJson('{"host":"github.com"}')->value);
         $this->assertEquals('{"host":"github.com"}', Arr::fromJson('{"host":"github.com"}')->toJson());
         $this->assertEquals(null, Arr::innFromJson(null));
-        $this->assertEquals(true, Arr::isValidJsonString('{"host":"github.com"}'));
-        $this->assertEquals(false, Arr::isValidJsonString('"host":"github.com"'));
+        $this->assertTrue(Arr::isValidJsonString('{"host":"github.com"}'));
+        $this->assertFalse(Arr::isValidJsonString('"host":"github.com"'));
     }
 
     public function test_should_be_able_to_count_arr()
@@ -85,11 +85,11 @@ class ArrTest extends TestCase
     public function test_array_types()
     {
         $fruits = ['apple', 'orange', 'banana'];
-        $this->assertEquals(true, Arr::isSequentialArray($fruits));
-        $this->assertEquals(false, Arr::isAssociativeArray($fruits));
+        $this->assertTrue(Arr::isSequentialArray($fruits));
+        $this->assertFalse(Arr::isAssociativeArray($fruits));
 
         $person = Arr::from(['name' => 'John Doe', 'email' => 'johndoe@email.com']);
-        $this->assertEquals(false, $person->isSequential());
-        $this->assertEquals(true, $person->isAssociative());
+        $this->assertFalse($person->isSequential());
+        $this->assertTrue($person->isAssociative());
     }
 }
