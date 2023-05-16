@@ -8,7 +8,6 @@ use Ecode\Types\Str;
 final class Slug extends Str
 {
     /**
-     * @param string $value
      * @throws InvalidTypeHttpException
      */
     protected function __construct(string $value)
@@ -20,10 +19,6 @@ final class Slug extends Str
         parent::__construct($value);
     }
 
-    /**
-     * @param mixed $value
-     * @return bool
-     */
     public static function isValid(mixed $value): bool
     {
         if (!is_string($value)) {
@@ -38,8 +33,6 @@ final class Slug extends Str
     }
 
     /**
-     * @param string $text
-     * @return Slug
      * @throws InvalidTypeHttpException
      */
     public static function fromText(string $text): Slug

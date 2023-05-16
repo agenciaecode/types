@@ -14,8 +14,8 @@ class PathTest extends TestCase
     public function test_should_be_able_to_create_a_valid_path()
     {
         $this->assertInstanceOf(Path::class, Path::from('/var/www'));
-        $this->assertEquals(true, Path::from('./var/www/')->isRelativePath());
-        $this->assertEquals(true, Path::from('/var/www/')->isAbsolutePath());
+        $this->assertTrue(Path::from('./var/www/')->isRelativePath());
+        $this->assertTrue(Path::from('/var/www/')->isAbsolutePath());
         $this->assertEquals('/var/www/../www/html', Path::from('/var/www/')->back()->join('www', 'html')->value);
         $this->assertEquals('/var/www/', Path::from('var/www/')->getAsAbsolutePath());
         $this->assertEquals('/var/www/', Path::from('/var/www/')->getAsAbsolutePath());

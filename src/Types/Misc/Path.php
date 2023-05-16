@@ -9,7 +9,6 @@ use Ecode\Types\Str;
 final class Path extends Str
 {
     /**
-     * @param string $value
      * @throws InvalidTypeHttpException
      */
     protected function __construct(string $value)
@@ -21,10 +20,6 @@ final class Path extends Str
         parent::__construct($value);
     }
 
-    /**
-     * @param mixed $value
-     * @return bool
-     */
     public static function isValid(mixed $value): bool
     {
         if (!is_string($value)) {
@@ -35,8 +30,6 @@ final class Path extends Str
     }
 
     /**
-     * @param ...$paths
-     * @return $this
      * @throws Exception
      */
     public function join(...$paths): Path
@@ -58,46 +51,31 @@ final class Path extends Str
         return Path::from($newPath);
     }
 
-    /**
-     * @param string $firstPath
-     * @param string $secondPath
-     * @return string
-     */
     private function mergePath(string $firstPath, string $secondPath): string
     {
         return sprintf(
             '%s/%s',
             str_ends_with($firstPath, '/') ? substr($firstPath, 0, -1) : $firstPath,
-            str_starts_with($secondPath, '/') ? substr($secondPath, 1) : $secondPath);
+            str_starts_with($secondPath, '/') ? substr($secondPath, 1) : $secondPath
+        );
     }
 
-    /**
-     * @return $this
-     */
-    public function back(): Path {
+    public function back(): Path
+    {
         return Path::from(value: sprintf(
             '%s/../',
             str_ends_with($this->value, '/') ? substr($this->value, 0, -1) : $this->value
         ));
     }
 
-    /**
-     * @return bool
-     */
     public function isAbsolutePath(): bool {
         return str_starts_with($this->value, '/');
     }
 
-    /**
-     * @return bool
-     */
     public function isRelativePath(): bool {
         return !str_starts_with($this->value, '/');
     }
 
-    /**
-     * @return string
-     */
     public function getAsAbsolutePath(): string
     {
         if (str_starts_with($this->value, '/')) {
@@ -107,9 +85,6 @@ final class Path extends Str
         return sprintf('/%s', $this->value);
     }
 
-    /**
-     * @return string
-     */
     public function getAsRelativePath(): string
     {
         if (!str_starts_with($this->value, '/')) {
