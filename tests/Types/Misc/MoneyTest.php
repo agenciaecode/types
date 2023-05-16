@@ -169,6 +169,7 @@ class MoneyTest extends TestCase
             actual: Money::from(amount: 10)->multiply(multiplier: 4)
         );
 
+        $this->assertEquals(0, Money::fromZero()->amount);
         $this->assertEquals(20.1, Money::from(20.1)->round());
         $this->assertEquals(20.16, Money::from(20.15562938)->round());
         $this->assertEquals(null, Money::innFrom(null));

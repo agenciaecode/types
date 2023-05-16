@@ -9,38 +9,21 @@ use NumberFormatter;
 
 final class Money
 {
-    /** @var float */
     public readonly float $amount;
-
-    /** @var Currency */
     public readonly Currency $currency;
 
-    /**
-     * @param float $amount
-     * @param Currency $currency
-     */
     private function __construct(float $amount, Currency $currency)
     {
         $this->amount = $amount;
         $this->currency = $currency;
     }
 
-    /**
-     * @param mixed $amount
-     * @param Currency $currency
-     * @return bool
-     */
     public static function isValid(mixed $amount, Currency $currency = Currency::USD): bool
     {
         if (!is_int($amount) && !is_float($amount)) return false;
         return true;
     }
 
-    /**
-     * @param float $amount
-     * @param Currency $currency
-     * @return Money
-     */
     public static function from(float $amount, Currency $currency = Currency::USD): Money
     {
         return new Money($amount, $currency);
@@ -51,11 +34,6 @@ final class Money
         return new Money(0, $currency);
     }
 
-    /**
-     * @param ?float $amount
-     * @param ?Currency $currency
-     * @return ?Money
-     */
     public static function innFrom(?float $amount, ?Currency $currency = Currency::USD): ?Money
     {
         if (is_null($amount) || is_null($currency)) {
@@ -66,10 +44,6 @@ final class Money
     }
 
     /**
-     * @param string $string
-     * @param Currency $currency
-     * @param Locale $locale
-     * @return Money
      * @throws Exception
      */
     public static function fromString(
@@ -85,10 +59,6 @@ final class Money
         return new Money($amount, $currency);
     }
 
-    /**
-     * @param Locale $locale
-     * @return string
-     */
     public function getHumansFormat(Locale $locale = Locale::EN_US): string
     {
         $formatter = new NumberFormatter($locale->value, NumberFormatter::CURRENCY);
@@ -96,28 +66,16 @@ final class Money
         return str_replace("\xc2\xa0", " ", $formattedString);
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         return $this->getHumansFormat();
     }
 
-    /**
-     * @param Locale $locale
-     * @return string
-     */
     public function getSymbol(Locale $locale = Locale::EN_US): string
     {
         return self::getSymbolByCurrency($this->currency, $locale);
     }
 
-    /**
-     * @param Currency $currency
-     * @param Locale $locale
-     * @return string
-     */
     public static function getSymbolByCurrency(Currency $currency, Locale $locale = Locale::EN_US): string
     {
         $formatter = new NumberFormatter(
@@ -129,8 +87,6 @@ final class Money
     }
 
     /**
-     * @param Currency ...$currencies
-     * @return bool
      * @throws Exception
      */
     public static function currenciesAreTheSame(Currency ...$currencies): bool
@@ -147,8 +103,6 @@ final class Money
     }
 
     /**
-     * @param Currency ...$currencies
-     * @return void
      * @throws Exception
      */
     private function validateCurrencies(Currency ...$currencies): void
@@ -158,8 +112,6 @@ final class Money
     }
 
     /**
-     * @param Money $value
-     * @return Money
      * @throws Exception
      */
     public function sum(Money $value): Money
@@ -186,8 +138,6 @@ final class Money
     }
 
     /**
-     * @param Money $value
-     * @return Money
      * @throws Exception
      */
     public function minus(Money $value): Money
@@ -198,8 +148,6 @@ final class Money
     }
 
     /**
-     * @param Money $value
-     * @return bool
      * @throws Exception
      */
     public function lessThan(Money $value): bool
@@ -209,8 +157,6 @@ final class Money
     }
 
     /**
-     * @param Money $value
-     * @return bool
      * @throws Exception
      */
     public function lessThanOrEqualTo(Money $value): bool
@@ -220,8 +166,6 @@ final class Money
     }
 
     /**
-     * @param Money $value
-     * @return bool
      * @throws Exception
      */
     public function greaterThan(Money $value): bool
@@ -231,8 +175,6 @@ final class Money
     }
 
     /**
-     * @param Money $value
-     * @return bool
      * @throws Exception
      */
     public function greaterThanOrEqualTo(Money $value): bool
@@ -242,8 +184,6 @@ final class Money
     }
 
     /**
-     * @param Money $value
-     * @return bool
      * @throws Exception
      */
     public function equalTo(Money $value): bool
@@ -253,8 +193,6 @@ final class Money
     }
 
     /**
-     * @param Money $value
-     * @return bool
      * @throws Exception
      */
     public function notEqualTo(Money $value): bool
@@ -264,9 +202,6 @@ final class Money
     }
 
     /**
-     * @param Money $minValue
-     * @param Money $maxValue
-     * @return bool
      * @throws Exception
      */
     public function between(Money $minValue, Money $maxValue): bool
@@ -276,9 +211,6 @@ final class Money
     }
 
     /**
-     * @param Money $minValue
-     * @param Money $maxValue
-     * @return bool
      * @throws Exception
      */
     public function betweenOrEqualThen(Money $minValue, Money $maxValue): bool
@@ -288,8 +220,6 @@ final class Money
     }
 
     /**
-     * @param Money ...$values
-     * @return Money
      * @throws Exception
      */
     public static function avg(Money ...$values): Money
@@ -314,10 +244,6 @@ final class Money
         return Money::from($avg, array_shift($currencies));
     }
 
-    /**
-     * @param int|float $ratio
-     * @return Money
-     */
     public function percentage(int|float $ratio): Money
     {
         return Money::from(
@@ -326,10 +252,6 @@ final class Money
         );
     }
 
-    /**
-     * @param int|float $ratio
-     * @return Money
-     */
     public function sumPercentage(int|float $ratio): Money
     {
         return Money::from(
@@ -338,10 +260,6 @@ final class Money
         );
     }
 
-    /**
-     * @param int|float $ratio
-     * @return Money
-     */
     public function minusPercentage(int|float $ratio): Money
     {
         return Money::from(
@@ -350,27 +268,16 @@ final class Money
         );
     }
 
-    /**
-     * @param Money $value
-     * @return int|float
-     */
     public function percentageRatio(Money $value): int|float
     {
         return $value->amount / $this->amount * 100;
     }
 
-    /**
-     * @param float $amount
-     * @return float
-     */
     public static function roundAmount(float $amount): float
     {
         return round(num: $amount, precision: 2, mode: PHP_ROUND_HALF_UP);
     }
 
-    /**
-     * @return float
-     */
     public function round(): float {
         return self::roundAmount(amount: $this->amount);
     }
