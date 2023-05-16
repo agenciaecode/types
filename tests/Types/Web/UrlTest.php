@@ -10,7 +10,7 @@ class UrlTest extends TestCase
     public function test_should_be_able_to_create_a_valid_url()
     {
         $this->assertInstanceOf(Url::class, Url::from('https://github.com'));
-        $this->assertEquals(true, Url::from('https://github.com')->isSecure());
+        $this->assertTrue(Url::from('https://github.com')->isSecure());
         $this->assertEquals('https://github.com', Url::from('https://github.com')->value);
         $this->assertEquals('https://github.com', Url::innFrom('https://github.com')->value);
         $this->assertEquals('https://github.com', Url::tryFrom('https://github.com')->value);

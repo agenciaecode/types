@@ -13,7 +13,7 @@ class EmailTest extends TestCase
         $this->assertEquals('email@domain.com', Email::from('email@domain.com')->value);
         $this->assertEquals('email@domain.com', (string)Email::from('EMAIL@DOMAIN.COM'));
         $this->assertEquals('email@domain.com', (string)Email::innFrom('email@domain.com'));
-        $this->assertEquals(true, Email::from('email@domain.com')->equals(Email::from('EMAIL@DOMAIN.COM')));
+        $this->assertTrue(Email::from('email@domain.com')->equals(Email::from('EMAIL@DOMAIN.COM')));
         $this->assertEquals(null, Email::tryFrom('lorem_ipsum'));
         $this->assertEquals(null, Email::innFrom(null));
     }
