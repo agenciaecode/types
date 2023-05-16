@@ -20,6 +20,8 @@ class BoolTypeTest extends TestCase
         $this->assertFalse(BoolType::from(false)->isTrue());
         $this->assertTrue(BoolType::from(false)->isFalse());
         $this->assertFalse(BoolType::from(true)->isFalse());
+        $this->assertTrue(BoolType::fromTrue()->value);
+        $this->assertFalse(BoolType::fromFalse()->value);
     }
 
     /**
