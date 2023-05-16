@@ -7,41 +7,23 @@ use Exception;
 
 class Str
 {
-    /**
-     * @var string
-     */
     public readonly string $value;
 
-    /**
-     * @param string $value
-     */
     protected function __construct(string $value)
     {
         $this->value = $value;
     }
 
-    /**
-     * @param mixed $value
-     * @return bool
-     */
     public static function isValid(mixed $value): bool
     {
         return is_string($value);
     }
 
-    /**
-     * @param string $value
-     * @return static
-     */
     public static function from(string $value): static
     {
         return new static($value);
     }
 
-    /**
-     * @param string $value
-     * @return ?static
-     */
     public static function tryFrom(string $value): ?static
     {
         try {
@@ -51,63 +33,38 @@ class Str
         }
     }
 
-    /**
-     * @param ?string $value
-     * @return ?static
-     */
     public static function innFrom(?string $value): ?static
     {
         if (is_null($value)) return null;
         return new static($value);
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         return $this->value;
     }
 
-    /**
-     * @param self $value
-     * @return bool
-     */
     public function equals(self $value): bool
     {
         return $this->value === $value->value;
     }
 
-    /**
-     * @param string $value
-     * @return string
-     */
     public static function extractNumbers(string $value): string
     {
         return preg_replace(pattern: '/\D/i', replacement: '', subject: trim($value));
     }
 
-    /**
-     * @param string $text
-     * @return string
-     */
     public static function slugify(string $text): string
     {
         $slugify = new Slugify();
         return $slugify->slugify($text);
     }
 
-    /**
-     * @return string
-     */
     public function getSlugFormat(): string
     {
         return self::slugify($this->value);
     }
 
-    /**
-     * @return int
-     */
     public function length(): int
     {
         return strlen($this->value);

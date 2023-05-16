@@ -11,14 +11,14 @@ class StrTest extends TestCase
     {
         $this->assertInstanceOf(Str::class, Str::from('Some string'));
         $this->assertEquals('Some string', (string)Str::from('Some string'));
-        $this->assertEquals(true, Str::from('Some string')->equals(Str::from('Some string')));
-        $this->assertEquals(false, Str::from('Some string')->equals(Str::from('Another string')));
+        $this->assertTrue(Str::from('Some string')->equals(Str::from('Some string')));
+        $this->assertFalse(Str::from('Some string')->equals(Str::from('Another string')));
         $this->assertEquals('Some string', Str::tryFrom('Some string')->value);
         $this->assertEquals('Some string', Str::innFrom('Some string')->value);
         $this->assertEquals(null, Str::innFrom(null));
-        $this->assertEquals(false, Str::isValid(123));
-        $this->assertEquals(false, Str::isValid(['host' => 'github.com']));
-        $this->assertEquals(true, Str::isValid('Some string'));
+        $this->assertFalse(Str::isValid(123));
+        $this->assertFalse(Str::isValid(['host' => 'github.com']));
+        $this->assertTrue(Str::isValid('Some string'));
         $this->assertEquals('1123', Str::extractNumbers('Some string 1: 123'));
         $this->assertEquals(11, Str::from('Some string')->length());
     }
