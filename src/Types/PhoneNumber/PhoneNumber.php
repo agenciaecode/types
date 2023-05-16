@@ -17,23 +17,13 @@ use Exception;
  */
 final class PhoneNumber
 {
-    /** @var string */
     public readonly string $value;
-
-    /** @var string  */
     public readonly string $countryCode;
-
-    /** @var string */
     public readonly string $areaCode;
-
-    /** @var string */
     public readonly string $localNumber;
-
-    /** @var PhoneNumberStandard  */
     private PhoneNumberStandard $standardPhoneNumber;
 
     /**
-     * @param string $value
      * @throws InvalidTypeHttpException
      */
     protected function __construct(string $value)
@@ -61,10 +51,6 @@ final class PhoneNumber
         );
     }
 
-    /**
-     * @param string $value
-     * @return bool
-     */
     public static function isValid(string $value): bool
     {
         $valueExploded = explode(' ', $value);
@@ -81,10 +67,6 @@ final class PhoneNumber
         return $standardPhoneNumber->isValid($countryCode, $areaCode, $localNumber);
     }
 
-    /**
-     * @param string $countryCode
-     * @return PhoneNumberStandard
-     */
     private static function buildStandardPhoneNumber(string $countryCode): PhoneNumberStandard
     {
         return match ($countryCode) {
@@ -95,8 +77,6 @@ final class PhoneNumber
     }
 
     /**
-     * @param string $value
-     * @return PhoneNumber
      * @throws InvalidTypeHttpException
      */
     public static function from(string $value): PhoneNumber
@@ -104,10 +84,6 @@ final class PhoneNumber
         return new PhoneNumber($value);
     }
 
-    /**
-     * @param string $value
-     * @return ?PhoneNumber
-     */
     public static function tryFrom(string $value): ?PhoneNumber
     {
         try {
@@ -118,8 +94,6 @@ final class PhoneNumber
     }
 
     /**
-     * @param ?string $value
-     * @return ?PhoneNumber
      * @throws InvalidTypeHttpException
      */
     public static function innFrom(?string $value): ?PhoneNumber
@@ -128,9 +102,6 @@ final class PhoneNumber
         return new PhoneNumber($value);
     }
 
-    /**
-     * @return string
-     */
     public function getWhatsAppFormat(): string
     {
         return sprintf(
@@ -141,9 +112,6 @@ final class PhoneNumber
         );
     }
 
-    /**
-     * @return string
-     */
     public function getHumansFormat(): string
     {
         return $this->standardPhoneNumber->makeHumansFormat(
@@ -153,9 +121,6 @@ final class PhoneNumber
         );
     }
 
-    /**
-     * @return string
-     */
     public function getE164Format(): string
     {
         return sprintf(
@@ -166,10 +131,6 @@ final class PhoneNumber
         );
     }
 
-    /**
-     * @param string $maskCharacter
-     * @return string
-     */
     public function getHiddenFormat(string $maskCharacter = '*'): string
     {
         return $this->standardPhoneNumber->makeHiddenFormat(
@@ -180,9 +141,6 @@ final class PhoneNumber
         );
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         return $this->value;
