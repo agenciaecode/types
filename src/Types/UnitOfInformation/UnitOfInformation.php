@@ -6,11 +6,6 @@ use Ecode\Types\Numeric;
 
 abstract class UnitOfInformation extends Numeric
 {
-    /**
-     * @param bool $abbreviated
-     * @param int $maxDecimalPlaces
-     * @return string
-     */
     public function getHumansFormat(bool $abbreviated = true, int $maxDecimalPlaces = 2): string
     {
         $handledValue = (float)self::numberFormat($this->value, $maxDecimalPlaces);
@@ -26,18 +21,9 @@ abstract class UnitOfInformation extends Numeric
         return sprintf('%s %s', $handledValue, strtolower($this->getPlural()));
     }
 
-    /**
-     * @return string
-     */
     abstract public static function getSymbol(): string;
 
-    /**
-     * @return string
-     */
     abstract public static function getName(): string;
 
-    /**
-     * @return string
-     */
     abstract public static function getPlural(): string;
 }
