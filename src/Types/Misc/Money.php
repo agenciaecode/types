@@ -34,28 +34,17 @@ final class Money
         return new Money(0, $currency);
     }
 
+    public static function init(Currency $currency = Currency::USD): Money
+    {
+        return self::fromZero($currency);
+    }
+
     public static function innFrom(?float $amount, ?Currency $currency = Currency::USD): ?Money
     {
         if (is_null($amount) || is_null($currency)) {
             return null;
         }
 
-        return new Money($amount, $currency);
-    }
-
-    /**
-     * @throws Exception
-     */
-    public static function fromString(
-        string $string,
-        Currency $currency,
-        Locale $locale
-    ): Money
-    {
-        $currencyString = $currency->value;
-        $formatter = new NumberFormatter($locale->value, NumberFormatter::CURRENCY);
-        $amount = $formatter->parseCurrency($string, $currencyString);
-        if (! $amount) throw new Exception("Invalid money string.");
         return new Money($amount, $currency);
     }
 
@@ -105,19 +94,34 @@ final class Money
     /**
      * @throws Exception
      */
-    private function validateCurrencies(Currency ...$currencies): void
+    private function normalize(float|int|Money $value): float|int
     {
-        if (!self::currenciesAreTheSame($this->currency, ...$currencies))
+        if (is_int($value) || is_float($value)) {
+            return $value;
+        }
+
+        if ($this->currency !== $value->currency) {
             throw new Exception('The currencies are not the same.');
+        }
+
+        return $value->amount;
     }
 
     /**
      * @throws Exception
      */
-    public function sum(Money $value): Money
+    public function sum(float|int|Money $value): Money
     {
-        $this->validateCurrencies($value->currency);
-        $result = $this->amount + $value->amount;
+        $result = $this->amount + $this->normalize($value);
+        return Money::from($result, $this->currency);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function minus(float|int|Money $value): Money
+    {
+        $result = $this->amount - $this->normalize($value);
         return Money::from($result, $this->currency);
     }
 
@@ -140,83 +144,65 @@ final class Money
     /**
      * @throws Exception
      */
-    public function minus(Money $value): Money
+    public function lessThan(float|int|Money $value): bool
     {
-        $this->validateCurrencies($value->currency);
-        $result = $this->amount - $value->amount;
-        return Money::from($result, $this->currency);
+        return $this->amount < $this->normalize($value);
     }
 
     /**
      * @throws Exception
      */
-    public function lessThan(Money $value): bool
+    public function lessThanOrEqualTo(float|int|Money $value): bool
     {
-        $this->validateCurrencies($value->currency);
-        return $this->amount < $value->amount;
+        return $this->amount <= $this->normalize($value);
     }
 
     /**
      * @throws Exception
      */
-    public function lessThanOrEqualTo(Money $value): bool
+    public function greaterThan(float|int|Money $value): bool
     {
-        $this->validateCurrencies($value->currency);
-        return $this->amount <= $value->amount;
+        return $this->amount > $this->normalize($value);
     }
 
     /**
      * @throws Exception
      */
-    public function greaterThan(Money $value): bool
+    public function greaterThanOrEqualTo(float|int|Money $value): bool
     {
-        $this->validateCurrencies($value->currency);
-        return $this->amount > $value->amount;
+        return $this->amount >= $this->normalize($value);
     }
 
     /**
      * @throws Exception
      */
-    public function greaterThanOrEqualTo(Money $value): bool
+    public function equalTo(float|int|Money $value): bool
     {
-        $this->validateCurrencies($value->currency);
-        return $this->amount >= $value->amount;
+        return $this->amount === $this->normalize($value);
     }
 
     /**
      * @throws Exception
      */
-    public function equalTo(Money $value): bool
+    public function notEqualTo(float|int|Money $value): bool
     {
-        $this->validateCurrencies($value->currency);
-        return $this->amount === $value->amount;
+        return $this->amount !== $this->normalize($value);
     }
 
     /**
      * @throws Exception
      */
-    public function notEqualTo(Money $value): bool
+    public function between(float|int|Money $minValue, float|int|Money $maxValue): bool
     {
-        $this->validateCurrencies($value->currency);
-        return $this->amount !== $value->amount;
+        return $this->amount > $this->normalize($minValue) && $this->amount < $this->normalize($maxValue);
     }
 
     /**
      * @throws Exception
      */
-    public function between(Money $minValue, Money $maxValue): bool
+    public function betweenOrEqualThen(float|int|Money $minValue, float|int|Money $maxValue): bool
     {
-        $this->validateCurrencies($minValue->currency, $maxValue->currency);
-        return $this->amount > $minValue->amount && $this->amount < $maxValue->amount;
-    }
-
-    /**
-     * @throws Exception
-     */
-    public function betweenOrEqualThen(Money $minValue, Money $maxValue): bool
-    {
-        $this->validateCurrencies($minValue->currency, $maxValue->currency);
-        return $this->amount >= $minValue->amount && $this->amount <= $maxValue->amount;
+        return $this->amount >= $this->normalize($minValue) && $this->amount <= $this->normalize($maxValue);
     }
 
     /**
@@ -268,14 +254,17 @@ final class Money
         );
     }
 
-    public function percentageRatio(Money $value): int|float
+    /**
+     * @throws Exception
+     */
+    public function percentageRatio(float|int|Money $value): int|float
     {
-        return $value->amount / $this->amount * 100;
+        return $this->normalize($value) / $this->amount * 100;
     }
 
     public static function roundAmount(float $amount): float
     {
-        return round(num: $amount, precision: 2, mode: PHP_ROUND_HALF_UP);
+        return round(num: $amount, precision: 2);
     }
 
     public function round(): float {
