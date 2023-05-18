@@ -94,7 +94,7 @@ class Numeric
     /**
      * @throws Exception
      */
-    private static function normalize(float|int|self $value): int|null
+    private function normalize(float|int|self $value): float|int
     {
         if (is_int($value) || is_float($value)) {
             return $value;
