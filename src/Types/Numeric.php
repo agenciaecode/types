@@ -2,45 +2,28 @@
 
 namespace Ecode\Types;
 
+use Ecode\Exceptions\Http\InvalidTypeHttpException;
 use Exception;
 
 class Numeric
 {
-    /**
-     * @var float|int
-     */
     public readonly float|int $value;
 
-    /**
-     * @param float|int $value
-     */
     protected function __construct(float|int $value)
     {
         $this->value = $value;
     }
 
-    /**
-     * @param mixed $value
-     * @return bool
-     */
     public static function isValid(mixed $value): bool
     {
         return is_float($value) || is_int($value);
     }
 
-    /**
-     * @param float|int $value
-     * @return static
-     */
     public static function from(float|int $value): static
     {
         return new static($value);
     }
 
-    /**
-     * @param float|int $value
-     * @return ?static
-     */
     public static function tryFrom(float|int $value): ?static
     {
         try {
@@ -50,40 +33,25 @@ class Numeric
         }
     }
 
-    /**
-     * @param float|int|null $value
-     * @return ?static
-     */
     public static function innFrom(float|int|null $value): ?static
     {
-        if (is_null($value)) return null;
+        if (is_null($value)) {
+            return null;
+        }
+
         return new static($value);
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         return (string)$this->value;
     }
 
-    /**
-     * @param self $value
-     * @return bool
-     */
     public function equals(self $value): bool
     {
         return $this->value === $value->value;
     }
 
-    /**
-     * @param float $value
-     * @param int $decimalPlaces
-     * @param string $decimalSeparator
-     * @param string $thousandsSeparator
-     * @return string
-     */
     public static function numberFormat(
         float $value,
         int $decimalPlaces = 2,
@@ -99,12 +67,6 @@ class Numeric
         );
     }
 
-    /**
-     * @param int $decimalPlaces
-     * @param string $decimalSeparator
-     * @param string $thousandsSeparator
-     * @return string
-     */
     public function format(
         int $decimalPlaces = 2,
         string $decimalSeparator = '.',
@@ -117,5 +79,153 @@ class Numeric
             decimalSeparator: $decimalSeparator,
             thousandsSeparator: $thousandsSeparator
         );
+    }
+
+    public static function fromZero(): static
+    {
+        return new static(0);
+    }
+
+    public static function init(): static
+    {
+        return self::fromZero();
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function normalize(float|int|self $value): float|int
+    {
+        if (is_int($value) || is_float($value)) {
+            return $value;
+        }
+
+        if (get_class($value) === static::class) {
+            return $value->value;
+        }
+
+        throw new InvalidTypeHttpException(message: sprintf(
+            'Only int, float and %s are accepted in this operation.',
+            static::class
+        ));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function sum(float|int|self $value): static
+    {
+        return new static($this->value + self::normalize($value));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function minus(float|int|self $value): static
+    {
+        return new static($this->value - self::normalize($value));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function multiply(float|int|self $multiplier): static
+    {
+        return new static($this->value * self::normalize($multiplier));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function divide(float|int|self $divisor): static
+    {
+        return new static($this->value / self::normalize($divisor));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function lessThan(float|int|self $value): bool
+    {
+        return $this->value < self::normalize($value);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function lessThanOrEqualTo(float|int|self $value): bool
+    {
+        return $this->value <= self::normalize($value);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function greaterThan(float|int|self $value): bool
+    {
+        return $this->value > self::normalize($value);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function greaterThanOrEqualTo(float|int|self $value): bool
+    {
+        return $this->value >= self::normalize($value);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function equalTo(float|int|self $value): bool
+    {
+        return $this->value === self::normalize($value);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function notEqualTo(float|int|self $value): bool
+    {
+        return $this->value !== self::normalize($value);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function between(float|int|self $minValue, float|int|self $maxValue): bool
+    {
+        return $this->value > self::normalize($minValue) && $this->value < self::normalize($maxValue);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function betweenOrEqualThen(float|int|self $minValue, float|int|self $maxValue): bool
+    {
+        return $this->value >= self::normalize($minValue) && $this->value <= self::normalize($maxValue);
+    }
+
+    public function percentage(float|int $ratio): static
+    {
+        return new static($this->value / 100 * $ratio);
+    }
+
+    public function sumPercentage(float|int $ratio): static
+    {
+        return new static($this->value + ($this->value / 100 * $ratio));
+    }
+
+    public function minusPercentage(float|int $ratio): static
+    {
+        return new static($this->value - ($this->value / 100 * $ratio));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function percentageRatio(float|int|self $value): float|int
+    {
+        return self::normalize($value) / $this->value * 100;
     }
 }

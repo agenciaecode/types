@@ -9,7 +9,6 @@ use Ramsey\Uuid\Uuid as ThirdPartyUuid;
 final class Uuid extends Str
 {
     /**
-     * @param string $value
      * @throws InvalidTypeHttpException
      */
     protected function __construct(string $value)
@@ -21,10 +20,6 @@ final class Uuid extends Str
         parent::__construct(strtolower($value));
     }
 
-    /**
-     * @param mixed $value
-     * @return bool
-     */
     public static function isValid(mixed $value): bool
     {
         if (!is_string($value)) {
@@ -35,17 +30,13 @@ final class Uuid extends Str
     }
 
     /**
-     * Returns an instance of Uuid type with version 4.
-     * @return Uuid
+     * Returns an instance of Uuid type with version 4 by default.
      */
     public static function generate(): Uuid
     {
         return Uuid::generateV4();
     }
 
-    /**
-     * @return Uuid
-     */
     public static function generateV4(): Uuid
     {
         return Uuid::from(ThirdPartyUuid::uuid4()->toString());

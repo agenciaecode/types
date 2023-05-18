@@ -5,101 +5,81 @@ namespace Ecode\Types;
 use Ecode\Exceptions\Http\InvalidTypeHttpException;
 use Throwable;
 
-class BoolType
+final class BoolType
 {
-    /**
-     * @var bool
-     */
     public readonly bool $value;
 
-    /**
-     * @param bool $value
-     */
     protected function __construct(bool $value)
     {
         $this->value = $value;
     }
 
-    /**
-     * @param mixed $value
-     * @return bool
-     */
     public static function isValid(mixed $value): bool
     {
         return is_bool($value);
     }
 
-    /**
-     * @param bool $value
-     * @return static
-     */
-    public static function from(bool $value): static
+    public static function from(bool $value): BoolType
     {
-        return new static($value);
+        return new BoolType($value);
     }
 
-    /**
-     * @param mixed $value
-     * @return ?static
-     */
-    public static function tryFrom(mixed $value): ?static
+    public static function fromTrue(): BoolType
+    {
+        return new BoolType(true);
+    }
+
+    public static function fromFalse(): BoolType
+    {
+        return new BoolType(false);
+    }
+
+    public static function tryFrom(mixed $value): ?BoolType
     {
         try {
-            return new static($value);
+            return new BoolType($value);
         } catch (Throwable) {
             return null;
         }
     }
 
-    /**
-     * @param mixed $value
-     * @return ?static
-     */
-    public static function innFrom(mixed $value): ?static
+    public static function innFrom(mixed $value): ?BoolType
     {
-        if (is_null($value)) return null;
-        return new static($value);
+        if (is_null($value)) {
+            return null;
+        }
+
+        return new BoolType($value);
     }
 
     /**
-     * @param string $value
-     * @return static
      * @throws InvalidTypeHttpException
      */
-    public static function fromString(string $value): static
+    public static function fromString(string $value): BoolType
     {
         $filteredValue = filter_var($value, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
 
-        if (!static::isValid($filteredValue)) {
+        if (!BoolType::isValid($filteredValue)) {
             throw new InvalidTypeHttpException("Invalid truthy or falsy string.");
         }
 
-        return new static($filteredValue);
+        return new BoolType($filteredValue);
     }
 
     /**
-     * @param ?string $value
-     * @return ?static
      * @throws InvalidTypeHttpException
      */
-    public static function innFromString(?string $value): ?static
+    public static function innFromString(?string $value): ?BoolType
     {
         if (is_null($value)) return null;
-        return static::fromString($value);
+        return BoolType::fromString($value);
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         return $this->value ? 'true' : 'false';
     }
 
-    /**
-     * @param self $value
-     * @return bool
-     */
     public function equals(self $value): bool
     {
         return $this->value === $value->value;

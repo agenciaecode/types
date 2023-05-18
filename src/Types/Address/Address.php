@@ -21,31 +21,14 @@ final class Address
 {
     use ErrorsTrait;
 
-    /** @var Country */
     public readonly Country $country;
-
-    /** @var string */
     public readonly string $addressLine1;
-
-    /** @var ?string */
     public readonly ?string $addressLine2;
-
-    /** @var ?string */
     public readonly ?string $dependentLocality;
-
-    /** @var ?string */
     public readonly ?string $locality;
-
-    /** @var ?string */
     public readonly ?string $adminArea;
-
-    /** @var ?string */
     public readonly ?string $postalCode;
-
-    /** @var ?string */
     public readonly ?string $poBox;
-
-    /** @var AddressStandard  */
     public readonly AddressStandard $addressStandard;
 
     /**
@@ -64,32 +47,40 @@ final class Address
     {
         $this->addressStandard = self::buildStandardByCountry($country);
 
-        if (!$this->addressStandard->isAddressLine1Valid($addressLine1))
+        if (!$this->addressStandard->isAddressLine1Valid($addressLine1)) {
             $this->addError('Invalid address line 1.');
+        }
 
-        if (!$this->addressStandard->isAddressLine2Valid($addressLine2))
+        if (!$this->addressStandard->isAddressLine2Valid($addressLine2)) {
             $this->addError('Invalid address line 2.');
+        }
 
-        if (!$this->addressStandard->isDependentLocalityValid($dependentLocality))
+        if (!$this->addressStandard->isDependentLocalityValid($dependentLocality)) {
             $this->addError('Invalid dependent locality.');
+        }
 
-        if (!$this->addressStandard->isLocalityValid($locality))
+        if (!$this->addressStandard->isLocalityValid($locality)) {
             $this->addError('Invalid locality.');
+        }
 
-        if (!$this->addressStandard->isAdminAreaValid($adminArea))
+        if (!$this->addressStandard->isAdminAreaValid($adminArea)) {
             $this->addError('Invalid admin area.');
+        }
 
-        if (!$this->addressStandard->isPostalCodeValid($postalCode))
+        if (!$this->addressStandard->isPostalCodeValid($postalCode)) {
             $this->addError('Invalid postal code.');
+        }
 
-        if (!$this->addressStandard->isPoBoxValid($poBox))
+        if (!$this->addressStandard->isPoBoxValid($poBox)) {
             $this->addError('Invalid P.O. Box.');
+        }
 
-        if ($this->hasErrors())
+        if ($this->hasErrors()) {
             throw new InvalidTypeHttpException(
                 message: sprintf('Invalid %s type.', self::class),
                 errors: $this->getErrors()
             );
+        }
 
         $this->country = $country;
         $this->addressLine1 = $addressLine1;
@@ -101,17 +92,6 @@ final class Address
         $this->poBox = $poBox;
     }
 
-    /**
-     * @param Country $country
-     * @param string $addressLine1
-     * @param ?string $addressLine2
-     * @param ?string $dependentLocality
-     * @param ?string $locality
-     * @param ?string $adminArea
-     * @param ?string $postalCode
-     * @param ?string $poBox
-     * @return bool
-     */
     public static function isValid(
         Country $country,
         string $addressLine1,
@@ -135,10 +115,6 @@ final class Address
         );
     }
 
-    /**
-     * @param Country $country
-     * @return AddressStandard
-     */
     private static function buildStandardByCountry(Country $country): AddressStandard
     {
         return match ($country) {
@@ -148,15 +124,6 @@ final class Address
     }
 
     /**
-     * @param Country $country
-     * @param string $addressLine1
-     * @param ?string $addressLine2
-     * @param ?string $dependentLocality
-     * @param ?string $locality
-     * @param ?string $adminArea
-     * @param ?string $postalCode
-     * @param ?string $poBox
-     * @return Address
      * @throws InvalidTypeHttpException
      */
     public static function from(
@@ -183,8 +150,6 @@ final class Address
     }
 
     /**
-     * @param array $addressArray
-     * @return Address
      * @throws InvalidTypeHttpException
      */
     public static function fromArray(array $addressArray): Address
@@ -201,9 +166,6 @@ final class Address
         );
     }
 
-    /**
-     * @return array
-     */
     public function toArray(): array
     {
         return [

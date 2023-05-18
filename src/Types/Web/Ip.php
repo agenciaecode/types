@@ -8,7 +8,6 @@ use Ecode\Types\Str;
 final class Ip extends Str
 {
     /**
-     * @param string $value
      * @throws InvalidTypeHttpException
      */
     protected function __construct(string $value)
@@ -20,10 +19,6 @@ final class Ip extends Str
         parent::__construct(strtolower($value));
     }
 
-    /**
-     * @param mixed $value
-     * @return bool
-     */
     public static function isValid(mixed $value): bool
     {
         if (!is_string($value)) {

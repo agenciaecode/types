@@ -8,7 +8,6 @@ use Ecode\Types\Str;
 final class Email extends Str
 {
     /**
-     * @param string $value
      * @throws InvalidTypeHttpException
      */
     protected function __construct(string $value)
@@ -20,10 +19,6 @@ final class Email extends Str
         parent::__construct(strtolower($value));
     }
 
-    /**
-     * @param mixed $value
-     * @return bool
-     */
     public static function isValid(mixed $value): bool
     {
         if (!is_string($value)) {
@@ -33,10 +28,6 @@ final class Email extends Str
         return filter_var($value, FILTER_VALIDATE_EMAIL) !== false;
     }
 
-    /**
-     * @param string $maskCharacter
-     * @return string
-     */
     public function getHiddenFormat(string $maskCharacter = '*'): string
     {
         $emailExploded = explode('@', $this->value);
@@ -50,11 +41,6 @@ final class Email extends Str
         );
     }
 
-    /**
-     * @param string $value
-     * @param string $maskCharacter
-     * @return string
-     */
     private function mask(string $value, string $maskCharacter): string
     {
         if (strlen($value) === 2) return sprintf(

@@ -4,9 +4,5 @@ namespace Ecode\Types\Address\PostalCode;
 
 interface PostalCodeStandard
 {
-    /**
-     * @param string $value
-     * @return bool
-     */
     public static function isValid(string $value): bool;
 }

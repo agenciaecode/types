@@ -19,7 +19,7 @@ class PostalCodeTest extends TestCase
         $this->assertEquals('87209-010', $postalCode->value);
         $this->assertEquals('87209-010', (string)$postalCode);
         $this->assertEquals(Country::BRAZIL, $postalCode->country);
-        $this->assertEquals(true, PostalCode::isValid('87209-010', Country::BRAZIL));
+        $this->assertTrue(PostalCode::isValid('87209-010', Country::BRAZIL));
     }
 
     public function test_should_not_be_able_to_create_a_postal_code_with_alpha_numeric()
