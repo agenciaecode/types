@@ -5,7 +5,7 @@ namespace Ecode\Types;
 use Ecode\Exceptions\Http\InvalidTypeHttpException;
 use Throwable;
 
-class BoolType
+final class BoolType
 {
     public readonly bool $value;
 

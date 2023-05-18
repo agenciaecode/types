@@ -4,7 +4,7 @@ namespace Ecode\Types;
 
 use Exception;
 
-class IncrementalId
+final class IncrementalId
 {
     public readonly int $value;
 
