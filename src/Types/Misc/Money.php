@@ -18,12 +18,6 @@ final class Money
         $this->currency = $currency;
     }
 
-    public static function isValid(mixed $amount, Currency $currency = Currency::USD): bool
-    {
-        if (!is_int($amount) && !is_float($amount)) return false;
-        return true;
-    }
-
     public static function from(float $amount, Currency $currency = Currency::USD): Money
     {
         return new Money($amount, $currency);
