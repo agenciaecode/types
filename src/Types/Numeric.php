@@ -261,7 +261,7 @@ class Numeric
 
     public static function valueIsNeutral(float|int $value): bool
     {
-        return $value === 0;
+        return $value == 0;
     }
 
     public static function valueIsPositive(float|int $value): bool
