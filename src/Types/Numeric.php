@@ -228,4 +228,64 @@ class Numeric
     {
         return self::normalize($value) / $this->value * 100;
     }
+
+    public static function convertToPositive(float|int $value): float|int
+    {
+        return abs($value);
+    }
+
+    public static function convertToNegative(float|int $value): float|int
+    {
+        return -abs($value);
+    }
+
+    public static function convertToInverse(float|int $value): float|int
+    {
+        return $value * (-1);
+    }
+
+    public function toPositive(): static
+    {
+        return new static(self::convertToPositive($this->value));
+    }
+
+    public function toNegative(): static
+    {
+        return new static(self::convertToNegative($this->value));
+    }
+
+    public function toInverse(): static
+    {
+        return new static(self::convertToInverse($this->value));
+    }
+
+    public static function valueIsNeutral(float|int $value): bool
+    {
+        return $value === 0;
+    }
+
+    public static function valueIsPositive(float|int $value): bool
+    {
+        return $value > 0;
+    }
+
+    public static function valueIsNegative(float|int $value): bool
+    {
+        return $value < 0;
+    }
+
+    public function isNeutral(): bool
+    {
+        return self::valueIsNeutral($this->value);
+    }
+
+    public function isPositive(): bool
+    {
+        return self::valueIsPositive($this->value);
+    }
+
+    public function isNegative(): bool
+    {
+        return self::valueIsNegative($this->value);
+    }
 }
