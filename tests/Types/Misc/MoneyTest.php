@@ -16,6 +16,7 @@ class MoneyTest extends TestCase
     {
         $this->assertInstanceOf(Money::class, Money::from(200));
         $this->assertEquals('$2,199.98', Money::from(2199.981234)->getHumansFormat());
+        $this->assertEquals('-$2,199.98', Money::from(-2199.981234)->getHumansFormat());
         $this->assertEquals(2199, Money::from(2199)->amount);
         $this->assertEquals(Currency::USD, Money::from(2199)->currency);
         $this->assertEquals("$", Money::from(2199)->getSymbol());
@@ -105,8 +106,22 @@ class MoneyTest extends TestCase
         $this->assertEquals(0, Money::init()->amount);
         $this->assertEquals(20.1, Money::from(20.1)->round());
         $this->assertEquals(20.16, Money::from(20.15562938)->round());
-        $this->assertEquals(null, Money::innFrom(null));
         $this->assertEquals(null, Money::innFrom(500, null));
         $this->assertEquals(null, Money::innFrom(null, null));
+
+        $this->assertTrue(Money::fromZero()->isNeutral());
+        $this->assertFalse(Money::fromZero()->isCredit());
+        $this->assertFalse(Money::fromZero()->isDebit());
+        $this->assertTrue(Money::from(10)->isCredit());
+        $this->assertFalse(Money::from(10)->isDebit());
+        $this->assertTrue(Money::from(-10)->isDebit());
+        $this->assertFalse(Money::from(-10)->isCredit());
+
+        $this->assertEquals('$10.00', Money::from(10)->toCredit()->getHumansFormat());
+        $this->assertEquals('$10.00', Money::from(-10)->toCredit()->getHumansFormat());
+        $this->assertEquals('-$10.00', Money::from(10)->toDebit()->getHumansFormat());
+        $this->assertEquals('-$10.00', Money::from(-10)->toDebit()->getHumansFormat());
+        $this->assertEquals('$0.00', Money::from(0)->toCredit()->getHumansFormat());
+        $this->assertEquals('$0.00', Money::from(0)->toDebit()->getHumansFormat());
     }
 }

@@ -4,10 +4,12 @@ namespace Ecode\Types\Misc;
 
 use Ecode\Enums\Currency;
 use Ecode\Enums\Locale;
+use Ecode\Types\AbstractType;
+use Ecode\Types\Numeric;
 use Exception;
 use NumberFormatter;
 
-final class Money
+final class Money extends AbstractType
 {
     public readonly float $amount;
     public readonly Currency $currency;
@@ -74,12 +76,16 @@ final class Money
      */
     public static function currenciesAreTheSame(Currency ...$currencies): bool
     {
-        if (count($currencies) < 2) throw new Exception('At least two currencies are required.');
+        if (count($currencies) < 2) {
+            throw new Exception('At least two currencies are required.');
+        }
 
         $baseCurrency = array_shift($currencies);
 
         foreach ($currencies as $currency) {
-            if ($baseCurrency !== $currency) return false;
+            if ($baseCurrency !== $currency) {
+                return false;
+            }
         }
 
         return true;
@@ -208,16 +214,18 @@ final class Money
         $totalValues = count($values);
         $sum = 0;
 
-        if ($totalValues < 2)
+        if ($totalValues < 2) {
             throw new Exception('At least two currencies are required to calculate average.');
+        }
 
         foreach ($values as $value) {
             $currencies[] = $value->currency;
             $sum += $value->amount;
         }
 
-        if (!self::currenciesAreTheSame(...$currencies))
+        if (!self::currenciesAreTheSame(...$currencies)) {
             throw new Exception('All currencies must be equals.');
+        }
 
         $avg = $sum / $totalValues;
 
@@ -273,8 +281,42 @@ final class Money
         ];
     }
 
-    public function clone(): self
+    public function isNeutral(): bool
     {
-        return new Money($this->amount, $this->currency);
+        return Numeric::valueIsNeutral($this->amount);
+    }
+
+    public function isCredit(): bool
+    {
+        return Numeric::valueIsPositive($this->amount);
+    }
+
+    public function isDebit(): bool
+    {
+        return Numeric::valueIsNegative($this->amount);
+    }
+
+    public function toCredit(): Money
+    {
+        if ($this->isNeutral()) {
+            return $this->clone();
+        }
+
+        return new Money(
+            amount: Numeric::convertToPositive($this->amount),
+            currency: $this->currency
+        );
+    }
+
+    public function toDebit(): Money
+    {
+        if ($this->isNeutral()) {
+            return $this->clone();
+        }
+
+        return new Money(
+            amount: Numeric::convertToNegative($this->amount),
+            currency: $this->currency
+        );
     }
 }
