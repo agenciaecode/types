@@ -25,6 +25,20 @@ final class Money extends AbstractType
         return new Money($amount, $currency);
     }
 
+    public static function fromArray(array $array): Money
+    {
+        return new Money($array['amount'], Currency::from($array['currency']));
+    }
+
+    public static function innFromArray(?array $array): ?Money
+    {
+        if (empty($array)) {
+            return null;
+        }
+
+        return self::fromArray($array);
+    }
+
     public static function fromZero(Currency $currency = Currency::USD): Money
     {
         return new Money(0, $currency);
