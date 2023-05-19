@@ -68,6 +68,7 @@ class NumericTest extends TestCase
         $this->assertTrue(Numeric::from(20)->between(10, 30));
         $this->assertTrue(Numeric::from(20)->betweenOrEqualThen(20, 40));
     }
+
     /**
      * @throws Exception
      */
@@ -81,5 +82,50 @@ class NumericTest extends TestCase
         $this->assertEquals(500, Numeric::from(400)->sumPercentage(25)->value);
         $this->assertEquals(300, Numeric::from(400)->minusPercentage(25)->value);
         $this->assertEquals(20, Numeric::from(500)->percentageRatio(100));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function test_should_be_able_to_reverse_numeric_type()
+    {
+        $this->assertEquals(10, Numeric::convertToPositive(10));
+        $this->assertEquals(10, Numeric::convertToPositive(-10));
+
+        $this->assertEquals(-10, Numeric::convertToNegative(10));
+        $this->assertEquals(-10, Numeric::convertToNegative(-10));
+
+        $this->assertEquals(-10, Numeric::convertToInverse(10));
+        $this->assertEquals(10, Numeric::convertToInverse(-10));
+
+        $this->assertEquals(10, Numeric::from(10)->toPositive()->value);
+        $this->assertEquals(10, Numeric::from(-10)->toPositive()->value);
+
+        $this->assertEquals(-10, Numeric::from(10)->toNegative()->value);
+        $this->assertEquals(-10, Numeric::from(-10)->toNegative()->value);
+
+        $this->assertEquals(-10, Numeric::from(10)->toInverse()->value);
+        $this->assertEquals(10, Numeric::from(-10)->toInverse()->value);
+
+        $this->assertEquals(-10, Numeric::from(10)->toInverse()->value);
+        $this->assertEquals(10, Numeric::from(-10)->toInverse()->value);
+
+        $this->assertTrue(Numeric::valueIsNeutral(0));
+        $this->assertFalse(Numeric::valueIsNeutral(1));
+        $this->assertTrue(Numeric::valueIsPositive(10));
+        $this->assertFalse(Numeric::valueIsPositive(-10));
+        $this->assertTrue(Numeric::valueIsNegative(-10));
+        $this->assertFalse(Numeric::valueIsNegative(10));
+        $this->assertFalse(Numeric::valueIsPositive(0));
+        $this->assertFalse(Numeric::valueIsNegative(0));
+
+        $this->assertTrue(Numeric::from(0)->isNeutral());
+        $this->assertFalse(Numeric::from(1)->isNeutral());
+        $this->assertTrue(Numeric::from(10)->isPositive());
+        $this->assertFalse(Numeric::from(-10)->isPositive());
+        $this->assertTrue(Numeric::from(-10)->isNegative());
+        $this->assertFalse(Numeric::from(10)->isNegative());
+        $this->assertFalse(Numeric::from(0)->isPositive());
+        $this->assertFalse(Numeric::from(0)->isNegative());
     }
 }
