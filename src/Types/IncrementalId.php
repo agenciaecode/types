@@ -2,14 +2,22 @@
 
 namespace Ecode\Types;
 
+use Ecode\Exceptions\Http\InvalidTypeHttpException;
 use Exception;
 
 final class IncrementalId
 {
     public readonly int $value;
 
+    /**
+     * @throws InvalidTypeHttpException
+     */
     protected function __construct(int $value)
     {
+        if (self::isValid($value)) {
+            throw new InvalidTypeHttpException('Invalid IncrementalId value.');
+        }
+
         $this->value = $value;
     }
 
