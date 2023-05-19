@@ -43,6 +43,9 @@ final class IncrementalId
         }
     }
 
+    /**
+     * @throws InvalidTypeHttpException
+     */
     public static function innFrom(int|null $value): ?IncrementalId
     {
         if (is_null($value)) {
@@ -62,11 +65,17 @@ final class IncrementalId
         return $this->value === $value->value;
     }
 
+    /**
+     * @throws InvalidTypeHttpException
+     */
     public function next(): IncrementalId
     {
         return new IncrementalId($this->value + 1);
     }
 
+    /**
+     * @throws InvalidTypeHttpException
+     */
     public function previous(): ?IncrementalId
     {
         if ($this->value === 1) {
