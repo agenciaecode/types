@@ -123,5 +123,8 @@ class MoneyTest extends TestCase
         $this->assertEquals('-$10.00', Money::from(-10)->toDebit()->getHumansFormat());
         $this->assertEquals('$0.00', Money::from(0)->toCredit()->getHumansFormat());
         $this->assertEquals('$0.00', Money::from(0)->toDebit()->getHumansFormat());
+
+        $this->assertEquals(['amount' => 1, 'currency' => 'USD'], Money::from(1)->toArray());
+        $this->assertEquals(Money::from(1), Money::fromArray(['amount' => 1, 'currency' => 'USD']));
     }
 }
