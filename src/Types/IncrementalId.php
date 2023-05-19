@@ -14,7 +14,7 @@ final class IncrementalId
      */
     protected function __construct(int $value)
     {
-        if (self::isValid($value)) {
+        if (!self::isValid($value)) {
             throw new InvalidTypeHttpException('Invalid IncrementalId value.');
         }
 
@@ -26,6 +26,9 @@ final class IncrementalId
         return is_int($value) && $value > 0;
     }
 
+    /**
+     * @throws InvalidTypeHttpException
+     */
     public static function from(int $value): IncrementalId
     {
         return new IncrementalId($value);
