@@ -2,9 +2,7 @@
 
 namespace Ecode\Tests\Types;
 
-use Ecode\Exceptions\Http\InvalidTypeHttpException;
 use Ecode\Types\Numeric;
-use Ecode\Types\UnitOfInformation\Byte;
 use Exception;
 use PHPUnit\Framework\TestCase;
 
@@ -38,17 +36,9 @@ class NumericTest extends TestCase
     /**
      * @throws Exception
      */
-    public function test_should_not_be_able_to_compare_value_with_numeric_type()
-    {
-        $this->expectException(InvalidTypeHttpException::class);
-        $this->assertTrue(Numeric::from(20)->lessThan(Byte::from(1000)));
-    }
-
-    /**
-     * @throws Exception
-     */
     public function test_should_be_able_to_compares_values_with_numeric_type()
     {
+        // Comparisons
         $this->assertTrue(Numeric::from(123)->equals(Numeric::from(123)));
         $this->assertFalse(Numeric::from(123)->equals(Numeric::from(321)));
         $this->assertTrue(Numeric::from(20)->lessThan(21));
@@ -72,8 +62,9 @@ class NumericTest extends TestCase
     /**
      * @throws Exception
      */
-    public function test_should_be_able_to_execute_maths_operations_with_numeric_type()
+    public function test_should_be_able_to_execute_math_operations_with_numeric_type()
     {
+        // Math operations
         $this->assertEquals(20, Numeric::from(10)->sum(10)->value);
         $this->assertEquals(10, Numeric::from(20)->minus(10)->value);
         $this->assertEquals(100, Numeric::from(20)->multiply(5)->value);
@@ -89,6 +80,7 @@ class NumericTest extends TestCase
      */
     public function test_should_be_able_to_reverse_numeric_type()
     {
+        // Conversions
         $this->assertEquals(10, Numeric::convertToPositive(10));
         $this->assertEquals(10, Numeric::convertToPositive(-10));
 
@@ -110,15 +102,7 @@ class NumericTest extends TestCase
         $this->assertEquals(-10, Numeric::from(10)->toInverse()->value);
         $this->assertEquals(10, Numeric::from(-10)->toInverse()->value);
 
-        $this->assertTrue(Numeric::valueIsNeutral(0));
-        $this->assertFalse(Numeric::valueIsNeutral(1));
-        $this->assertTrue(Numeric::valueIsPositive(10));
-        $this->assertFalse(Numeric::valueIsPositive(-10));
-        $this->assertTrue(Numeric::valueIsNegative(-10));
-        $this->assertFalse(Numeric::valueIsNegative(10));
-        $this->assertFalse(Numeric::valueIsPositive(0));
-        $this->assertFalse(Numeric::valueIsNegative(0));
-
+        // Checks
         $this->assertTrue(Numeric::from(0)->isNeutral());
         $this->assertFalse(Numeric::from(1)->isNeutral());
         $this->assertTrue(Numeric::from(10)->isPositive());

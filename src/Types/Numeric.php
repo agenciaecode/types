@@ -92,9 +92,9 @@ class Numeric
     }
 
     /**
-     * @throws Exception
+     * @throws InvalidTypeHttpException
      */
-    private function normalize(float|int|self $value): float|int
+    public function normalize(float|int|self $value): float|int
     {
         if (is_int($value) || is_float($value)) {
             return $value;
@@ -105,128 +105,78 @@ class Numeric
         }
 
         throw new InvalidTypeHttpException(message: sprintf(
-            'Only int, float and %s are accepted in this operation.',
+            'Only %s|int|float are accepted in this operation.',
             static::class
         ));
     }
 
     /**
-     * @throws Exception
+     * @throws InvalidTypeHttpException
      */
     public function sum(float|int|self $value): static
     {
-        return new static($this->value + self::normalize($value));
+        return new static(
+            value: $this->value + $this->normalize($value)
+        );
     }
 
     /**
-     * @throws Exception
+     * @throws InvalidTypeHttpException
      */
     public function minus(float|int|self $value): static
     {
-        return new static($this->value - self::normalize($value));
+        return new static(
+            value: $this->value - $this->normalize($value)
+        );
     }
 
     /**
-     * @throws Exception
+     * @throws InvalidTypeHttpException
      */
     public function multiply(float|int|self $multiplier): static
     {
-        return new static($this->value * self::normalize($multiplier));
+        return new static(
+            value: $this->value * $this->normalize($multiplier)
+        );
     }
 
     /**
-     * @throws Exception
+     * @throws InvalidTypeHttpException
      */
     public function divide(float|int|self $divisor): static
     {
-        return new static($this->value / self::normalize($divisor));
-    }
-
-    /**
-     * @throws Exception
-     */
-    public function lessThan(float|int|self $value): bool
-    {
-        return $this->value < self::normalize($value);
-    }
-
-    /**
-     * @throws Exception
-     */
-    public function lessThanOrEqualTo(float|int|self $value): bool
-    {
-        return $this->value <= self::normalize($value);
-    }
-
-    /**
-     * @throws Exception
-     */
-    public function greaterThan(float|int|self $value): bool
-    {
-        return $this->value > self::normalize($value);
-    }
-
-    /**
-     * @throws Exception
-     */
-    public function greaterThanOrEqualTo(float|int|self $value): bool
-    {
-        return $this->value >= self::normalize($value);
-    }
-
-    /**
-     * @throws Exception
-     */
-    public function equalTo(float|int|self $value): bool
-    {
-        return $this->value === self::normalize($value);
-    }
-
-    /**
-     * @throws Exception
-     */
-    public function notEqualTo(float|int|self $value): bool
-    {
-        return $this->value !== self::normalize($value);
-    }
-
-    /**
-     * @throws Exception
-     */
-    public function between(float|int|self $minValue, float|int|self $maxValue): bool
-    {
-        return $this->value > self::normalize($minValue) && $this->value < self::normalize($maxValue);
-    }
-
-    /**
-     * @throws Exception
-     */
-    public function betweenOrEqualThen(float|int|self $minValue, float|int|self $maxValue): bool
-    {
-        return $this->value >= self::normalize($minValue) && $this->value <= self::normalize($maxValue);
+        return new static(
+            value: $this->value / $this->normalize($divisor)
+        );
     }
 
     public function percentage(float|int $ratio): static
     {
-        return new static($this->value / 100 * $ratio);
+        return new static(
+            value: $this->value / 100 * $ratio
+        );
     }
 
     public function sumPercentage(float|int $ratio): static
     {
-        return new static($this->value + ($this->value / 100 * $ratio));
+        return new static(
+            value: $this->value + ($this->value / 100 * $ratio)
+        );
     }
 
     public function minusPercentage(float|int $ratio): static
     {
-        return new static($this->value - ($this->value / 100 * $ratio));
+        return new static(
+            value: $this->value - ($this->value / 100 * $ratio)
+        );
     }
 
     /**
-     * @throws Exception
+     * @throws InvalidTypeHttpException
      */
     public function percentageRatio(float|int|self $value): float|int
     {
-        return self::normalize($value) / $this->value * 100;
+        return $this->normalize($value) / $this->value * 100;
     }
 
     public static function convertToPositive(float|int $value): float|int
@@ -246,46 +196,101 @@ class Numeric
 
     public function toPositive(): static
     {
-        return new static(self::convertToPositive($this->value));
+        return new static(
+            value: self::convertToPositive($this->value)
+        );
     }
 
     public function toNegative(): static
     {
-        return new static(self::convertToNegative($this->value));
+        return new static(
+            value: self::convertToNegative($this->value)
+        );
     }
 
     public function toInverse(): static
     {
-        return new static(self::convertToInverse($this->value));
+        return new static(
+            value: self::convertToInverse($this->value)
+        );
     }
 
-    public static function valueIsNeutral(float|int $value): bool
+    /**
+     * @throws InvalidTypeHttpException
+     */
+    public function lessThan(float|int|self $value): bool
     {
-        return $value == 0;
+        return $this->value < $this->normalize($value);
     }
 
-    public static function valueIsPositive(float|int $value): bool
+    /**
+     * @throws InvalidTypeHttpException
+     */
+    public function lessThanOrEqualTo(float|int|self $value): bool
     {
-        return $value > 0;
+        return $this->value <= $this->normalize($value);
     }
 
-    public static function valueIsNegative(float|int $value): bool
+    /**
+     * @throws InvalidTypeHttpException
+     */
+    public function greaterThan(float|int|self $value): bool
     {
-        return $value < 0;
+        return $this->value > $this->normalize($value);
+    }
+
+    /**
+     * @throws InvalidTypeHttpException
+     */
+    public function greaterThanOrEqualTo(float|int|self $value): bool
+    {
+        return $this->value >= $this->normalize($value);
+    }
+
+    /**
+     * @throws InvalidTypeHttpException
+     */
+    public function equalTo(float|int|self $value): bool
+    {
+        return $this->value === $this->normalize($value);
+    }
+
+    /**
+     * @throws InvalidTypeHttpException
+     */
+    public function notEqualTo(float|int|self $value): bool
+    {
+        return $this->value !== $this->normalize($value);
+    }
+
+    /**
+     * @throws InvalidTypeHttpException
+     */
+    public function between(float|int|self $minValue, float|int|self $maxValue): bool
+    {
+        return $this->value > $this->normalize($minValue) && $this->value < $this->normalize($maxValue);
+    }
+
+    /**
+     * @throws InvalidTypeHttpException
+     */
+    public function betweenOrEqualThen(float|int|self $minValue, float|int|self $maxValue): bool
+    {
+        return $this->value >= $this->normalize($minValue) && $this->value <= $this->normalize($maxValue);
     }
 
     public function isNeutral(): bool
     {
-        return self::valueIsNeutral($this->value);
+        return $this->value == 0;
     }
 
     public function isPositive(): bool
     {
-        return self::valueIsPositive($this->value);
+        return $this->value > 0;
     }
 
     public function isNegative(): bool
     {
-        return self::valueIsNegative($this->value);
+        return $this->value < 0;
     }
 }
