@@ -1,8 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Ecode\Tests\Types\UnitOfInformation;
+namespace Ecode\Tests\Types\UnitOfMeasurement\Information;
 
-use Ecode\Types\UnitOfInformation\Byte;
+use Ecode\Types\UnitOfMeasurement\Information\Byte;
+use Ecode\Types\UnitOfMeasurement\Information\Gigabyte;
+use Ecode\Types\UnitOfMeasurement\Information\Kilobyte;
+use Ecode\Types\UnitOfMeasurement\Weight\Kilogram;
 use PHPUnit\Framework\TestCase;
 
 class ByteTest extends TestCase

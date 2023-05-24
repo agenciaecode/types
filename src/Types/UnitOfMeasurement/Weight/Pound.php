@@ -2,9 +2,7 @@
 
 namespace Ecode\Types\UnitOfMeasurement\Weight;
 
-use Ecode\Types\UnitOfMeasurement\UnitOfMeasurement;
-
-final class Pound extends UnitOfMeasurement
+final class Pound extends Weight
 {
     const NAME = 'Pound';
     const PLURAL = 'Pounds';
@@ -80,5 +78,10 @@ final class Pound extends UnitOfMeasurement
     public static function getPlural(): string
     {
         return self::PLURAL;
+    }
+
+    protected function normalize(Weight|float|int $value): float|int
+    {
+        // TODO: Implement normalize() method.
     }
 }

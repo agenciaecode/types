@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Ecode\Types\UnitOfInformation;
+namespace Ecode\Types\UnitOfMeasurement\Information;
 
-final class Byte extends UnitOfInformation
+final class Byte extends Information
 {
     const NAME = 'Byte';
     const PLURAL = 'Bytes';
@@ -10,7 +10,7 @@ final class Byte extends UnitOfInformation
 
     public static function fromKilobytes(int|float $value): Byte
     {
-        return new Byte($value * 1024);
+        return new Byte(self::convertKilobyteToByte($value));
     }
 
     public static function innFromKilobytes(int|float|null $value): ?Byte
@@ -19,7 +19,7 @@ final class Byte extends UnitOfInformation
             return null;
         }
 
-        return new Byte($value * 1024);
+        return new Byte(self::convertKilobyteToByte($value));
     }
 
     public function toKilobytes(): Kilobyte
@@ -29,7 +29,7 @@ final class Byte extends UnitOfInformation
 
     public static function fromMegabytes(int|float $value): Byte
     {
-        return new Byte($value * 1024 * 1024);
+        return new Byte(self::convertMegabyteToByte($value));
     }
 
     public static function innFromMegabytes(int|float|null $value): ?Byte
@@ -38,7 +38,7 @@ final class Byte extends UnitOfInformation
             return null;
         }
 
-        return new Byte($value * 1024 * 1024);
+        return new Byte(self::convertMegabyteToByte($value));
     }
 
     public function toMegabytes(): Megabyte
@@ -48,7 +48,7 @@ final class Byte extends UnitOfInformation
 
     public static function fromGigabytes(int|float $value): Byte
     {
-        return new Byte($value * 1024 * 1024 * 1024);
+        return new Byte(self::convertGigabyteToByte($value));
     }
 
     public static function innFromGigabytes(int|float|null $value): ?Byte
@@ -57,7 +57,7 @@ final class Byte extends UnitOfInformation
             return null;
         }
 
-        return new Byte($value * 1024 * 1024 * 1024);
+        return new Byte(self::convertGigabyteToByte($value));
     }
 
     public function toGigabytes(): Gigabyte
@@ -78,5 +78,18 @@ final class Byte extends UnitOfInformation
     public static function getPlural(): string
     {
         return self::PLURAL;
+    }
+
+    protected function normalize(Information|float|int $value): float|int
+    {
+        if (is_int($value) || is_float($value)) {
+            return $value;
+        }
+
+        return match (get_class($value)) {
+            Gigabyte::class => self::convertGigabyteToByte($value->value),
+            Kilobyte::class => self::convertKilobyteToByte($value->value),
+            Megabyte::class => self::convertMegabyteToByte($value->value),
+        };
     }
 }

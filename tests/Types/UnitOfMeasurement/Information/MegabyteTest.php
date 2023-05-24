@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Ecode\Tests\Types\UnitOfInformation;
+namespace Ecode\Tests\Types\UnitOfMeasurement\Information;
 
-use Ecode\Types\UnitOfInformation\Megabyte;
+use Ecode\Types\UnitOfMeasurement\Information\Megabyte;
 use PHPUnit\Framework\TestCase;
 
 class MegabyteTest extends TestCase
