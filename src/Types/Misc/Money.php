@@ -297,22 +297,22 @@ final class Money extends AbstractType
 
     public function isNeutral(): bool
     {
-        return Numeric::valueIsNeutral($this->amount);
+        return $this->amount == 0;
     }
 
     public function isCredit(): bool
     {
-        return Numeric::valueIsPositive($this->amount);
+        return $this->amount > 0;
     }
 
     public function isDebit(): bool
     {
-        return Numeric::valueIsNegative($this->amount);
+        return $this->amount < 0;
     }
 
     public function toCredit(): Money
     {
-        if ($this->isNeutral()) {
+        if ($this->isNeutral() || $this->isCredit()) {
             return $this->clone();
         }
 
@@ -324,7 +324,7 @@ final class Money extends AbstractType
 
     public function toDebit(): Money
     {
-        if ($this->isNeutral()) {
+        if ($this->isNeutral() || $this->isDebit()) {
             return $this->clone();
         }
 

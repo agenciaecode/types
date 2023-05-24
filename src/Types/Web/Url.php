@@ -17,7 +17,7 @@ final class Url extends Str
             throw new InvalidTypeHttpException(sprintf('%s is an invalid Url type.', $value));
         }
 
-        parent::__construct(strtolower($value));
+        parent::__construct($value);
     }
 
     public static function isValid(mixed $value): bool

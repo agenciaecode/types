@@ -2,9 +2,7 @@
 
 namespace Ecode\Types\UnitOfMeasurement\Weight;
 
-use Ecode\Types\UnitOfMeasurement\UnitOfMeasurement;
-
-final class Gram extends UnitOfMeasurement
+final class Gram extends Weight
 {
     const NAME = 'Gram';
     const PLURAL = 'Grams';
@@ -80,5 +78,10 @@ final class Gram extends UnitOfMeasurement
     public static function getPlural(): string
     {
         return self::PLURAL;
+    }
+
+    protected function normalize(Weight|float|int $value): float|int
+    {
+        // TODO: Implement normalize() method.
     }
 }

@@ -2,9 +2,7 @@
 
 namespace Ecode\Types\UnitOfMeasurement\Weight;
 
-use Ecode\Types\UnitOfMeasurement\UnitOfMeasurement;
-
-final class Kilogram extends UnitOfMeasurement
+final class Kilogram extends Weight
 {
     const NAME = 'Kilogram';
     const PLURAL = 'Kilograms';
@@ -80,5 +78,10 @@ final class Kilogram extends UnitOfMeasurement
     public static function getPlural(): string
     {
         return self::PLURAL;
+    }
+
+    protected function normalize(Weight|float|int $value): float|int
+    {
+        // TODO: Implement normalize() method.
     }
 }

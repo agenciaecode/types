@@ -2,9 +2,7 @@
 
 namespace Ecode\Types\UnitOfMeasurement\Weight;
 
-use Ecode\Types\UnitOfMeasurement\UnitOfMeasurement;
-
-final class Ounce extends UnitOfMeasurement
+final class Ounce extends Weight
 {
     const NAME = 'Ounce';
     const PLURAL = 'Ounces';
@@ -80,5 +78,10 @@ final class Ounce extends UnitOfMeasurement
     public static function getPlural(): string
     {
         return self::PLURAL;
+    }
+
+    protected function normalize(Weight|float|int $value): float|int
+    {
+        // TODO: Implement normalize() method.
     }
 }

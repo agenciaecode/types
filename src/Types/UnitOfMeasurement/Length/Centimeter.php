@@ -2,9 +2,7 @@
 
 namespace Ecode\Types\UnitOfMeasurement\Length;
 
-use Ecode\Types\UnitOfMeasurement\UnitOfMeasurement;
-
-final class Centimeter extends UnitOfMeasurement
+final class Centimeter extends Length
 {
     const NAME = 'Centimeter';
     const PLURAL = 'Centimeters';
@@ -99,5 +97,10 @@ final class Centimeter extends UnitOfMeasurement
     public static function getPlural(): string
     {
         return self::PLURAL;
+    }
+
+    protected function normalize(Length|float|int $value): float|int
+    {
+        // TODO: Implement normalize() method.
     }
 }
