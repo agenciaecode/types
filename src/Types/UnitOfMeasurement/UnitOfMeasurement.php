@@ -60,16 +60,25 @@ abstract class UnitOfMeasurement
 
     public function getHumansFormat(bool $abbreviated = true, int $maxDecimalPlaces = 2): string
     {
-        $handledValue = (float)Numeric::numberFormat($this->value, $maxDecimalPlaces);
+        return self::formatForHumans($this->value, $abbreviated, $maxDecimalPlaces);
+    }
+
+    public static function formatForHumans(
+        float|int $value,
+        bool $abbreviated = true,
+        int $maxDecimalPlaces = 2
+    ): string
+    {
+        $handledValue = (float)Numeric::numberFormat($value, $maxDecimalPlaces);
 
         if ($abbreviated) {
-            return sprintf('%s %s', $handledValue, $this->getSymbol());
+            return sprintf('%s %s', $handledValue, static::getSymbol());
         }
 
-        if ($handledValue == 1) {
-            return sprintf('%s %s', $handledValue, strtolower($this->getName()));
+        if ($handledValue >= 1 && $handledValue < 2) {
+            return sprintf('%s %s', $handledValue, strtolower(static::getName()));
         }
 
-        return sprintf('%s %s', $handledValue, strtolower($this->getPlural()));
+        return sprintf('%s %s', $handledValue, strtolower(static::getPlural()));
     }
 }

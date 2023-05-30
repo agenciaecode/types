@@ -14,7 +14,7 @@ class GramTest extends TestCase
         $this->assertEquals('200', (string)Gram::from(200));
         $this->assertEquals('200 g', Gram::from(200)->getHumansFormat());
         $this->assertEquals('200 grams', Gram::from(200)->getHumansFormat(false));
-        $this->assertEquals('1 gram', Gram::from(1)->getHumansFormat(false));
+        $this->assertEquals('1.5 gram', Gram::from(1.5)->getHumansFormat(false));
         $this->assertEquals('1 gram', Gram::innFrom(1)->getHumansFormat(false));
         $this->assertEquals(null, Gram::innFrom(null));
     }
@@ -24,7 +24,7 @@ class GramTest extends TestCase
         $this->assertInstanceOf(Gram::class, Gram::fromKilograms(1));
         $this->assertEquals(null, Gram::innFromKilograms(null));
         $this->assertEquals(1000, Gram::fromKilograms(1)->value);
-        $this->assertEquals(1, Gram::fromKilograms(1)->toKilograms());
+        $this->assertEquals(1, Gram::fromKilograms(1)->toKilograms()->value);
     }
 
     public function test_should_be_able_to_create_a_valid_gram_from_pounds()
@@ -40,6 +40,6 @@ class GramTest extends TestCase
         $this->assertInstanceOf(Gram::class, Gram::fromOunces(10));
         $this->assertEquals(null, Gram::innFromOunces(null));
         $this->assertEquals(283.49523125, Gram::fromOunces(10)->value);
-        $this->assertEquals(10, Gram::fromOunces(10)->toOunces());
+        $this->assertEquals('10 oz', Gram::fromOunces(10)->toOunces()->getHumansFormat());
     }
 }
