@@ -88,6 +88,7 @@ final class Kilogram extends Weight
 
         return match (get_class($value)) {
             Gram::class => self::convertGramToKilogram($value->value),
+            Kilogram::class => $value->value,
             Ounce::class => self::convertOunceToKilogram($value->value),
             Pound::class => self::convertPoundToKilogram($value->value),
         };
