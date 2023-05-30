@@ -10,7 +10,7 @@ final class Gram extends Weight
 
     public static function fromKilograms(float|int $value): Gram
     {
-        return new Gram($value * 1000);
+        return new Gram(self::convertKilogramToGram($value));
     }
 
     public static function innFromKilograms(float|int|null $value): ?Gram
@@ -19,17 +19,17 @@ final class Gram extends Weight
             return null;
         }
 
-        return new Gram($value * 1000);
+        return new Gram(self::convertKilogramToGram($value));
     }
 
-    public function toKilograms(): float|int
+    public function toKilograms(): Kilogram
     {
-        return $this->value / 1000;
+        return Kilogram::fromGrams($this->value);
     }
 
     public static function fromPounds(float|int $value): Gram
     {
-        return new Gram($value * 453.59237);
+        return new Gram(self::convertPoundToGram($value));
     }
 
     public static function innFromPounds(float|int|null $value): ?Gram
@@ -38,7 +38,7 @@ final class Gram extends Weight
             return null;
         }
 
-        return new Gram($value * 453.59237);
+        return new Gram(self::convertPoundToGram($value));
     }
 
     public function toPounds(): Pound
@@ -48,7 +48,7 @@ final class Gram extends Weight
 
     public static function fromOunces(float|int $value): Gram
     {
-        return new Gram($value * 28.349523125);
+        return new Gram(self::convertOunceToGram($value));
     }
 
     public static function innFromOunces(float|int|null $value): ?Gram
@@ -57,12 +57,12 @@ final class Gram extends Weight
             return null;
         }
 
-        return new Gram($value * 28.349523125);
+        return new Gram(self::convertOunceToGram($value));
     }
 
-    public function toOunces(): float|int
+    public function toOunces(): Ounce
     {
-        return $this->value / 28.349523125;
+        return Ounce::fromGrams($this->value);
     }
 
     public static function getSymbol(): string
@@ -82,6 +82,14 @@ final class Gram extends Weight
 
     protected function normalize(Weight|float|int $value): float|int
     {
-        // TODO: Implement normalize() method.
+        if (is_int($value) || is_float($value)) {
+            return $value;
+        }
+
+        return match (get_class($value)) {
+            Kilogram::class => self::convertKilogramToGram($value->value),
+            Ounce::class => self::convertOunceToGram($value->value),
+            Pound::class => self::convertPoundToGram($value->value),
+        };
     }
 }

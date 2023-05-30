@@ -2,7 +2,10 @@
 
 namespace Ecode\Tests\Types\UnitOfMeasurement\Weight;
 
+use Ecode\Types\UnitOfMeasurement\Weight\Gram;
 use Ecode\Types\UnitOfMeasurement\Weight\Kilogram;
+use Ecode\Types\UnitOfMeasurement\Weight\Ounce;
+use Ecode\Types\UnitOfMeasurement\Weight\Pound;
 use PHPUnit\Framework\TestCase;
 
 class KilogramTest extends TestCase
@@ -14,7 +17,7 @@ class KilogramTest extends TestCase
         $this->assertEquals('16', (string)Kilogram::from(16));
         $this->assertEquals('16 kg', Kilogram::from(16)->getHumansFormat());
         $this->assertEquals('16 kilograms', Kilogram::from(16)->getHumansFormat(false));
-        $this->assertEquals('1 kilogram', Kilogram::from(1)->getHumansFormat(false));
+        $this->assertEquals('1.5 kilogram', Kilogram::from(1.5)->getHumansFormat(false));
         $this->assertEquals('1 kilogram', Kilogram::innFrom(1)->getHumansFormat(false));
         $this->assertEquals(null, Kilogram::innFrom(null));
     }
@@ -41,5 +44,26 @@ class KilogramTest extends TestCase
         $this->assertEquals(null, Kilogram::innFromOunces(null));
         $this->assertEquals(283.495231, Kilogram::fromOunces(10000)->value);
         $this->assertEquals('100 oz', Kilogram::fromOunces(100)->toOunces()->getHumansFormat());
+    }
+
+    public function test_maths_operations_with_kilogram()
+    {
+        $this->assertEquals(11, Kilogram::from(10)->sum(Gram::from(1000))->value);
+        $this->assertEquals(9, Kilogram::from(10)->minus(Gram::from(1000))->value);
+        $this->assertEquals(10, Kilogram::from(10)->percentageRatio(Gram::from(1000)));
+
+        $this->assertEquals(10.9071847392, Kilogram::from(10)->sum(Ounce::from(32))->value);
+        $this->assertEquals(7.16504769, Kilogram::from(10)->minus(Ounce::from(100))->value);
+        $this->assertEquals(5.386409389, Kilogram::from(10)->percentageRatio(Ounce::from(19)));
+
+        $this->assertEquals(10.90718474, Kilogram::from(10)->sum(Pound::from(2))->value);
+        $this->assertEquals(8.63922289, Kilogram::from(10)->minus(Pound::from(3))->value);
+        $this->assertEquals(4.535923700000001, Kilogram::from(10)->percentageRatio(Pound::from(1)));
+
+        $this->assertEquals(15, Kilogram::from(10)->sumPercentage(50)->value);
+        $this->assertEquals(7, Kilogram::from(10)->minusPercentage(30)->value);
+        $this->assertEquals(30, Kilogram::from(10)->multiply(3)->value);
+        $this->assertEquals(5, Kilogram::from(10)->divide(2)->value);
+        $this->assertEquals(2, Kilogram::from(10)->percentage(20)->value);
     }
 }

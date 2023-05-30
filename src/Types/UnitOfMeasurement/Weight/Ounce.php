@@ -10,7 +10,7 @@ final class Ounce extends Weight
 
     public static function fromKilograms(float|int $value): Ounce
     {
-        return new Ounce($value * 35.2739619496);
+        return new Ounce(self::convertKilogramToOunce($value));
     }
 
     public static function innFromKilograms(float|int|null $value): ?Ounce
@@ -19,7 +19,7 @@ final class Ounce extends Weight
             return null;
         }
 
-        return new Ounce($value * 35.2739619496);
+        return new Ounce(self::convertKilogramToOunce($value));
     }
 
     public function toKilograms(): Kilogram
@@ -29,7 +29,7 @@ final class Ounce extends Weight
 
     public static function fromGrams(float|int $value): Ounce
     {
-        return new Ounce($value * 0.0352739619);
+        return new Ounce(self::convertGramToOunce($value));
     }
 
     public static function innFromGrams(float|int|null $value): ?Ounce
@@ -38,7 +38,7 @@ final class Ounce extends Weight
             return null;
         }
 
-        return new Ounce($value * 0.0352739619);
+        return new Ounce(self::convertGramToOunce($value));
     }
 
     public function toGrams(): Gram
@@ -48,7 +48,7 @@ final class Ounce extends Weight
 
     public static function fromPounds(float|int $value): Ounce
     {
-        return new Ounce($value * 16);
+        return new Ounce(self::convertPoundToOunce($value));
     }
 
     public static function innFromPounds(float|int|null $value): ?Ounce
@@ -57,7 +57,7 @@ final class Ounce extends Weight
             return null;
         }
 
-        return new Ounce($value * 16);
+        return new Ounce(self::convertPoundToOunce($value));
     }
 
     public function toPounds(): Pound
@@ -82,6 +82,14 @@ final class Ounce extends Weight
 
     protected function normalize(Weight|float|int $value): float|int
     {
-        // TODO: Implement normalize() method.
+        if (is_int($value) || is_float($value)) {
+            return $value;
+        }
+
+        return match (get_class($value)) {
+            Gram::class => self::convertGramToOunce($value->value),
+            Kilogram::class => self::convertKilogramToOunce($value->value),
+            Pound::class => self::convertPoundToOunce($value->value),
+        };
     }
 }

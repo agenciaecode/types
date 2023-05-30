@@ -14,7 +14,7 @@ class OunceTest extends TestCase
         $this->assertEquals('1200', (string)Ounce::from(1200));
         $this->assertEquals('1200 oz', Ounce::from(1200)->getHumansFormat());
         $this->assertEquals('1200 ounces', Ounce::from(1200)->getHumansFormat(false));
-        $this->assertEquals('1 ounce', Ounce::from(1)->getHumansFormat(false));
+        $this->assertEquals('1.5 ounce', Ounce::from(1.5)->getHumansFormat(false));
         $this->assertEquals('1 ounce', Ounce::innFrom(1)->getHumansFormat(false));
         $this->assertEquals(null, Ounce::innFrom(null));
     }
