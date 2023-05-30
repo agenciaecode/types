@@ -48,6 +48,10 @@ class KilogramTest extends TestCase
 
     public function test_maths_operations_with_kilogram()
     {
+        $this->assertEquals(11, Kilogram::from(10)->sum(Kilogram::from(1))->value);
+        $this->assertEquals(8, Kilogram::from(10)->minus(Kilogram::from(2))->value);
+        $this->assertEquals(30, Kilogram::from(10)->percentageRatio(Kilogram::from(3)));
+
         $this->assertEquals(11, Kilogram::from(10)->sum(Gram::from(1000))->value);
         $this->assertEquals(9, Kilogram::from(10)->minus(Gram::from(1000))->value);
         $this->assertEquals(10, Kilogram::from(10)->percentageRatio(Gram::from(1000)));
