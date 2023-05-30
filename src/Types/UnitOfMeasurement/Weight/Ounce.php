@@ -89,6 +89,7 @@ final class Ounce extends Weight
         return match (get_class($value)) {
             Gram::class => self::convertGramToOunce($value->value),
             Kilogram::class => self::convertKilogramToOunce($value->value),
+            Ounce::class => $value->value,
             Pound::class => self::convertPoundToOunce($value->value),
         };
     }

@@ -90,6 +90,7 @@ final class Pound extends Weight
             Gram::class => self::convertGramToPound($value->value),
             Kilogram::class => self::convertKilogramToPound($value->value),
             Ounce::class => self::convertOunceToPound($value->value),
+            Pound::class => $value->value,
         };
     }
 }
