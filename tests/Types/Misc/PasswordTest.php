@@ -13,8 +13,8 @@ class PasswordTest extends TestCase
      */
     public function test_should_be_able_to_create_a_valid_password()
     {
-        $this->assertInstanceOf(Password::class, Password::from('P@ssw0rd'));
-        $this->assertEquals('P@ssw0rd', Password::from('P@ssw0rd')->value);
-        $this->assertEquals(null, Password::tryFrom('123123'));
+        $this->assertInstanceOf(Password::class, Password::from('pass123'));
+        $this->assertEquals('pass123', Password::from('pass123')->value);
+        $this->assertEquals(null, Password::tryFrom('123'));
     }
 }
