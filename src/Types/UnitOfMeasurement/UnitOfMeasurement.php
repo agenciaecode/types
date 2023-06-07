@@ -2,11 +2,14 @@
 
 namespace Ecode\Types\UnitOfMeasurement;
 
+use Ecode\Enums\Locale;
 use Ecode\Types\Numeric;
 use Exception;
 
 abstract class UnitOfMeasurement
 {
+    public static Locale $defaultLocale = Locale::EN_US;
+
     public readonly float|int $value;
 
     abstract public static function getSymbol(): string;
@@ -18,6 +21,11 @@ abstract class UnitOfMeasurement
     protected function __construct(float|int $value)
     {
         $this->value = $value;
+    }
+
+    public static function resetDefaults(): void
+    {
+        self::$defaultLocale = Locale::EN_US;
     }
 
     public static function from(float|int $value): static
@@ -58,18 +66,25 @@ abstract class UnitOfMeasurement
         return (string)$this->value;
     }
 
-    public function getHumansFormat(bool $abbreviated = true, int $maxDecimalPlaces = 2): string
+    public function getHumansFormat(bool $abbreviated = true, int $maxDecimalPlaces = 2, Locale $locale = null): string
     {
-        return self::formatForHumans($this->value, $abbreviated, $maxDecimalPlaces);
+        return self::formatForHumans($this->value, $abbreviated, $maxDecimalPlaces, $locale ?? self::$defaultLocale);
     }
 
     public static function formatForHumans(
         float|int $value,
         bool $abbreviated = true,
-        int $maxDecimalPlaces = 2
+        int $maxDecimalPlaces = 2,
+        Locale $locale = null
     ): string
     {
+        $locale = $locale ?? self::$defaultLocale;
+
         $handledValue = (float)Numeric::numberFormat($value, $maxDecimalPlaces);
+
+        if ($locale === Locale::PT_BR) {
+            $handledValue = str_replace('.', ',', (string)$handledValue);
+        }
 
         if ($abbreviated) {
             return sprintf('%s %s', $handledValue, static::getSymbol());
