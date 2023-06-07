@@ -2,6 +2,7 @@
 
 namespace Ecode\Tests\Types\UnitOfMeasurement\Weight;
 
+use Ecode\Enums\Locale;
 use Ecode\Types\UnitOfMeasurement\Weight\Gram;
 use Ecode\Types\UnitOfMeasurement\Weight\Kilogram;
 use Ecode\Types\UnitOfMeasurement\Weight\Ounce;
@@ -12,6 +13,11 @@ class KilogramTest extends TestCase
 {
     public function test_should_be_able_to_create_a_valid_kilogram()
     {
+        $this->assertEquals('2.1 kg' , Kilogram::from(2.1)->getHumansFormat());
+        Kilogram::$defaultLocale = Locale::PT_BR;
+        $this->assertEquals('2,1 kg' , Kilogram::from(2.1)->getHumansFormat());
+        Kilogram::resetDefaults();
+
         $this->assertInstanceOf(Kilogram::class, Kilogram::from(16));
         $this->assertEquals(16, Kilogram::from(16)->value);
         $this->assertEquals('16', (string)Kilogram::from(16));

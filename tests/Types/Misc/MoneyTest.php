@@ -3,6 +3,7 @@
 namespace Ecode\Tests\Types\Misc;
 
 use Ecode\Enums\Currency;
+use Ecode\Enums\Locale;
 use Ecode\Types\Misc\Money;
 use Exception;
 use PHPUnit\Framework\TestCase;
@@ -15,8 +16,15 @@ class MoneyTest extends TestCase
     public function test_should_be_able_to_create_a_valid_money()
     {
         $this->assertInstanceOf(Money::class, Money::from(200));
+
         $this->assertEquals('$2,199.98', Money::from(2199.981234)->getHumansFormat());
         $this->assertEquals('-$2,199.98', Money::from(-2199.981234)->getHumansFormat());
+        Money::$defaultCurrency = Currency::BRL;
+        Money::$defaultLocale = Locale::PT_BR;
+        $this->assertEquals('R$ 2.199,98', Money::from(2199.981234)->getHumansFormat());
+        $this->assertEquals('-R$ 2.199,98', Money::from(-2199.981234)->getHumansFormat());
+        Money::resetDefaults();
+
         $this->assertEquals(2199, Money::from(2199)->amount);
         $this->assertEquals(Currency::USD, Money::from(2199)->currency);
         $this->assertEquals("$", Money::from(2199)->getSymbol());
