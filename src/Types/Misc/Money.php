@@ -23,6 +23,12 @@ final class Money extends AbstractType
         $this->currency = $currency;
     }
 
+    public static function resetDefaults(): void
+    {
+        self::$defaultCurrency = Currency::USD;
+        self::$defaultLocale = Locale::EN_US;
+    }
+
     public static function from(float $amount, Currency $currency = null): Money
     {
         return new Money($amount, $currency ?? self::$defaultCurrency);
