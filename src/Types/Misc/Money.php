@@ -11,6 +11,9 @@ use NumberFormatter;
 
 final class Money extends AbstractType
 {
+    public static Currency $defaultCurrency = Currency::USD;
+    public static Locale $defaultLocale = Locale::EN_US;
+
     public readonly float $amount;
     public readonly Currency $currency;
 
@@ -20,9 +23,9 @@ final class Money extends AbstractType
         $this->currency = $currency;
     }
 
-    public static function from(float $amount, Currency $currency = Currency::USD): Money
+    public static function from(float $amount, Currency $currency = null): Money
     {
-        return new Money($amount, $currency);
+        return new Money($amount, $currency ?? self::$defaultCurrency);
     }
 
     public static function fromArray(array $array): Money
@@ -39,27 +42,28 @@ final class Money extends AbstractType
         return self::fromArray($array);
     }
 
-    public static function fromZero(Currency $currency = Currency::USD): Money
+    public static function fromZero(Currency $currency = null): Money
     {
-        return new Money(0, $currency);
+        return new Money(0, $currency ?? self::$defaultCurrency);
     }
 
-    public static function init(Currency $currency = Currency::USD): Money
+    public static function init(Currency $currency = null): Money
     {
-        return self::fromZero($currency);
+        return self::fromZero($currency ?? self::$defaultCurrency);
     }
 
-    public static function innFrom(?float $amount, ?Currency $currency = Currency::USD): ?Money
+    public static function innFrom(?float $amount, Currency $currency = null): ?Money
     {
-        if (is_null($amount) || is_null($currency)) {
+        if (is_null($amount)) {
             return null;
         }
 
-        return new Money($amount, $currency);
+        return new Money($amount, $currency ?? self::$defaultCurrency);
     }
 
-    public function getHumansFormat(Locale $locale = Locale::EN_US): string
+    public function getHumansFormat(Locale $locale = null): string
     {
+        $locale = $locale ?? self::$defaultLocale;
         $formatter = new NumberFormatter($locale->value, NumberFormatter::CURRENCY);
         $formattedString = $formatter->formatCurrency($this->amount, $this->currency->value);
         return str_replace("\xc2\xa0", " ", $formattedString);
@@ -70,13 +74,14 @@ final class Money extends AbstractType
         return $this->getHumansFormat();
     }
 
-    public function getSymbol(Locale $locale = Locale::EN_US): string
+    public function getSymbol(Locale $locale = null): string
     {
-        return self::getSymbolByCurrency($this->currency, $locale);
+        return self::getSymbolByCurrency($this->currency, $locale ?? self::$defaultLocale);
     }
 
-    public static function getSymbolByCurrency(Currency $currency, Locale $locale = Locale::EN_US): string
+    public static function getSymbolByCurrency(Currency $currency, Locale $locale = null): string
     {
+        $locale = $locale ?? self::$defaultLocale;
         $formatter = new NumberFormatter(
             "$locale->value@currency=$currency->value",
             NumberFormatter::CURRENCY

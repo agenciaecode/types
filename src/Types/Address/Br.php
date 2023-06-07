@@ -7,7 +7,7 @@ use Ecode\Types\Address\PostalCode\PostalCode;
 
 class Br implements AddressStandard
 {
-    public static function isValid(
+    public static function validator(
         string $addressLine1,
         ?string $addressLine2 = null,
         ?string $dependentLocality = null,
@@ -15,71 +15,24 @@ class Br implements AddressStandard
         ?string $adminArea = null,
         ?string $postalCode = null,
         ?string $poBox = null
-    ): bool
+    ): ?array
     {
-        if (!self::isAddressLine1Valid($addressLine1)) {
-            return false;
+        if (is_null($dependentLocality)) {
+            $errors[] = 'Invalid dependent locality.';
         }
 
-        if (!self::isAddressLine2Valid($addressLine2)) {
-            return false;
+        if (is_null($locality)) {
+            $errors[] = 'Invalid locality.';
         }
 
-        if (!self::isDependentLocalityValid($dependentLocality)) {
-            return false;
+        if (is_null($adminArea)) {
+            $errors[] = 'Invalid admin area.';
         }
 
-        if (!self::isLocalityValid($locality)) {
-            return false;
+        if (!PostalCode::isValid($postalCode, Country::BRAZIL)) {
+            $errors[] = 'Invalid Postal Code.';
         }
 
-        if (!self::isAdminAreaValid($adminArea)) {
-            return false;
-        }
-
-        if (!self::isPostalCodeValid($postalCode)) {
-            return false;
-        }
-
-        if (!self::isPoBoxValid($poBox)) {
-            return false;
-        }
-
-        return true;
-    }
-
-    public static function isAddressLine1Valid(string $addressLine1): bool
-    {
-        return true;
-    }
-
-    public static function isAddressLine2Valid(?string $addressLine2): bool
-    {
-        return true;
-    }
-
-    public static function isDependentLocalityValid(?string $dependentLocality): bool
-    {
-        return $dependentLocality !== null;
-    }
-
-    public static function isLocalityValid(?string $locality): bool
-    {
-        return $locality !== null;
-    }
-
-    public static function isAdminAreaValid(?string $adminArea): bool
-    {
-        return $adminArea !== null;
-    }
-
-    public static function isPostalCodeValid(?string $postalCode): bool
-    {
-        return PostalCode::isValid($postalCode, Country::BRAZIL) === true;
-    }
-
-    public static function isPoBoxValid(?string $poBox): bool
-    {
-        return true;
+        return $errors ?? null;
     }
 }

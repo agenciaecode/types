@@ -106,8 +106,8 @@ class MoneyTest extends TestCase
         $this->assertEquals(0, Money::init()->amount);
         $this->assertEquals(20.1, Money::from(20.1)->round());
         $this->assertEquals(20.16, Money::from(20.15562938)->round());
-        $this->assertEquals(null, Money::innFrom(500, null));
-        $this->assertEquals(null, Money::innFrom(null, null));
+        $this->assertEquals(Money::from(500), Money::innFrom(500));
+        $this->assertEquals(null, Money::innFrom(null));
 
         $this->assertTrue(Money::fromZero()->isNeutral());
         $this->assertFalse(Money::fromZero()->isCredit());

@@ -5,9 +5,9 @@ namespace Ecode\Types\Misc;
 use Ecode\Exceptions\Http\InvalidTypeHttpException;
 use Exception;
 
-final class Password
+final class StrongPassword
 {
-    const MIN_LENGTH = 6;
+    const MIN_LENGTH = 8;
     const MAX_LENGTH = 45;
 
     public readonly string $value;
@@ -31,7 +31,7 @@ final class Password
         return is_null(self::validator($value));
     }
 
-    public static function validator(string $value): ?array
+    public static function validator(mixed $value): ?array
     {
         if (strlen($value) < self::MIN_LENGTH || strlen($value) > self::MAX_LENGTH) {
             $errors[] = sprintf(
@@ -41,21 +41,37 @@ final class Password
             );
         }
 
+        if (preg_match('@[A-Z]@', $value) === 0) {
+            $errors[] = 'The password must contain at least one uppercase letter.';
+        }
+
+        if (preg_match('@[a-z]@', $value) === 0) {
+            $errors[] = 'The password must contain at least one lowercase letter.';
+        }
+
+        if (preg_match('@[0-9]@', $value) === 0) {
+            $errors[] = 'The password must contain at least one number.';
+        }
+
+        if (preg_match('@\W@', $value) === 0) {
+            $errors[] = 'The password must contain at least one special char.';
+        }
+
         return $errors ?? null;
     }
 
     /**
      * @throws InvalidTypeHttpException
      */
-    public static function from(string $value): Password
+    public static function from(string $value): StrongPassword
     {
-        return new Password($value);
+        return new StrongPassword($value);
     }
 
-    public static function tryFrom(string $value): ?Password
+    public static function tryFrom(string $value): ?StrongPassword
     {
         try {
-            return new Password($value);
+            return new StrongPassword($value);
         } catch (Exception) {
             return null;
         }
@@ -64,13 +80,13 @@ final class Password
     /**
      * @throws InvalidTypeHttpException
      */
-    public static function innFrom(?string $value): ?Password
+    public static function innFrom(?string $value): ?StrongPassword
     {
         if (is_null($value)) {
             return null;
         }
 
-        return new Password($value);
+        return new StrongPassword($value);
     }
 
     public function __toString(): string
@@ -78,7 +94,7 @@ final class Password
         return $this->value;
     }
 
-    public function equals(Password $value): bool
+    public function equals(StrongPassword $value): bool
     {
         return $this->value === $value->value;
     }
