@@ -10,9 +10,8 @@
     }
   ],
   "require": {
-    "php": ">=8.1",
+    "php": ">=8.2",
     "agenciaecode/exceptions": "^1.0",
-    "agenciaecode/enums": "^1.0",
     "cocur/slugify": "^4.2",
     "ramsey/uuid": "^4.7",
     "ext-intl": "*"

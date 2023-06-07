@@ -4,24 +4,24 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d19f2d768be6b910d3094feb44da0946",
+    "content-hash": "2b89affe252ec823482151ca2ba16012",
     "packages": [
         {
             "name": "agenciaecode/enums",
-            "version": "v1.0.2",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/agenciaecode/enums.git",
-                "reference": "9639e0410d5b4c8400dfee07edcdfd5f76f00598"
+                "reference": "1afbc7b733642ea73126e96fbc5aa3f0b42ff95b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agenciaecode/enums/zipball/9639e0410d5b4c8400dfee07edcdfd5f76f00598",
-                "reference": "9639e0410d5b4c8400dfee07edcdfd5f76f00598",
+                "url": "https://api.github.com/repos/agenciaecode/enums/zipball/1afbc7b733642ea73126e96fbc5aa3f0b42ff95b",
+                "reference": "1afbc7b733642ea73126e96fbc5aa3f0b42ff95b",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.1"
+                "php": ">=8.2"
             },
             "require-dev": {
                 "phpunit/phpunit": "^9.5"
@@ -46,27 +46,27 @@
             "homepage": "https://github.com/agenciaecode/enums",
             "support": {
                 "issues": "https://github.com/agenciaecode/enums/issues",
-                "source": "https://github.com/agenciaecode/enums/tree/v1.0.2"
+                "source": "https://github.com/agenciaecode/enums/tree/v1.0.3"
             },
-            "time": "2022-12-01T02:25:01+00:00"
+            "time": "2023-06-07T20:33:38+00:00"
         },
         {
             "name": "agenciaecode/exceptions",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/agenciaecode/exceptions.git",
-                "reference": "877f8b9b413ade9189ed228f805d36f42532a545"
+                "reference": "78f2d605f814e9d54a26a2098d7c4abc87956fc0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agenciaecode/exceptions/zipball/877f8b9b413ade9189ed228f805d36f42532a545",
-                "reference": "877f8b9b413ade9189ed228f805d36f42532a545",
+                "url": "https://api.github.com/repos/agenciaecode/exceptions/zipball/78f2d605f814e9d54a26a2098d7c4abc87956fc0",
+                "reference": "78f2d605f814e9d54a26a2098d7c4abc87956fc0",
                 "shasum": ""
             },
             "require": {
                 "agenciaecode/enums": "^1.0",
-                "php": ">=8.1"
+                "php": ">=8.2"
             },
             "require-dev": {
                 "phpunit/phpunit": "^9.5"
@@ -91,9 +91,9 @@
             "homepage": "https://github.com/agenciaecode/exceptions",
             "support": {
                 "issues": "https://github.com/agenciaecode/exceptions/issues",
-                "source": "https://github.com/agenciaecode/exceptions/tree/v1.0.1"
+                "source": "https://github.com/agenciaecode/exceptions/tree/v1.0.2"
             },
-            "time": "2023-01-13T03:24:36+00:00"
+            "time": "2023-06-07T20:36:30+00:00"
         },
         {
             "name": "brick/math",
@@ -2145,7 +2145,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=8.1",
+        "php": ">=8.2",
         "ext-intl": "*"
     },
     "platform-dev": [],
