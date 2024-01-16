@@ -15,6 +15,10 @@ class MoneyTest extends TestCase
      */
     public function test_should_be_able_to_create_a_valid_money()
     {
+        $this->assertEquals(20.92, Money::from(20.92001)->round());
+        $this->assertEquals(-20.93, Money::from(-20.92999)->round());
+        $this->assertEquals(20.16, Money::from(20.15555)->round());
+
         $this->assertInstanceOf(Money::class, Money::from(200));
 
         $this->assertEquals('$2,199.98', Money::from(2199.981234)->getHumansFormat());
@@ -112,7 +116,7 @@ class MoneyTest extends TestCase
 
         $this->assertEquals(0, Money::fromZero()->amount);
         $this->assertEquals(0, Money::init()->amount);
-        $this->assertEquals(20.1, Money::from(20.1)->round());
+        $this->assertEquals(20.10, Money::from(20.1000)->round());
         $this->assertEquals(20.16, Money::from(20.15562938)->round());
         $this->assertEquals(Money::from(500), Money::innFrom(500));
         $this->assertEquals(null, Money::innFrom(null));
