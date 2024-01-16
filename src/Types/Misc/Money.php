@@ -289,9 +289,9 @@ final class Money extends AbstractType
         return $this->normalize($value) / $this->amount * 100;
     }
 
-    public static function roundAmount(float $amount): float
+    public static function roundAmount(float $amount, $maxPlaces = 2): float
     {
-        return round(num: $amount, precision: 2);
+        return round($amount, $maxPlaces);
     }
 
     public function round(): float {
