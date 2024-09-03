@@ -20,13 +20,25 @@ final class Url extends Str
         parent::__construct($value);
     }
 
+    public static function encode(string $url): string
+    {
+        $encodedUrl = urlencode($url);
+        $encodedUrl = str_replace('%3A', ':', $encodedUrl);
+        $encodedUrl = str_replace('%2F', '/', $encodedUrl);
+        $encodedUrl = str_replace('%3F', '?', $encodedUrl);
+        $encodedUrl = str_replace('%3D', '=', $encodedUrl);
+        $encodedUrl = str_replace('%26', '&', $encodedUrl);
+        $encodedUrl = str_replace('%40', '@', $encodedUrl);
+        return str_replace('%23', '#', $encodedUrl);
+    }
+
     public static function isValid(mixed $value): bool
     {
         if (!is_string($value)) {
             return false;
         }
 
-        return filter_var($value, FILTER_VALIDATE_URL) !== false;
+        return filter_var(self::encode($value), FILTER_VALIDATE_URL) !== false;
     }
 
     public function getScheme(): string

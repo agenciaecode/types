@@ -20,13 +20,13 @@ class UrlTest extends TestCase
 
     public function test_url_parts()
     {
-        $url = Url::from('https://username:password@hostname:9090/path?arg=value#anchor');
+        $url = Url::from('https://username:password@hostname:9090/path-áàaãâ?arg=value#anchor');
         $this->assertEquals('https', $url->getScheme());
         $this->assertEquals('username', $url->getUser());
         $this->assertEquals('password', $url->getPassword());
         $this->assertEquals('hostname', $url->getHost());
         $this->assertEquals(9090, $url->getPort());
-        $this->assertEquals('/path', $url->getPath());
+        $this->assertEquals('/path-áàaãâ', $url->getPath());
         $this->assertEquals('arg=value', $url->getQuery());
         $this->assertEquals(['arg' => 'value'], $url->getQueryAsArray());
         $this->assertEquals('anchor', $url->getFragment());
